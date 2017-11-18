@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../library/forCalc/CalculatorKeyboard-master/CalculatorKeyboard.xcodeproj">
+      location = "group:CalculatorKeyboard-master/CalculatorKeyboard.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ingCalc.xcodeproj">
