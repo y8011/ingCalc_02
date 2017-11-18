@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B28DD9BE1FBE89DD0006EEFF /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */; };
 		B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */; };
 		B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152A11FBC9EFF00FD9030 /* ViewController.swift */; };
 		B2F152A51FBC9EFF00FD9030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F152A31FBC9EFF00FD9030 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F1529C1FBC9EFF00FD9030 /* ingCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ingCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F152A11FBC9EFF00FD9030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B28DD9BE1FBE89DD0006EEFF /* CalculatorKeyboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 				B2F152B31FBC9EFF00FD9030 /* ingCalcTests */,
 				B2F152BE1FBC9EFF00FD9030 /* ingCalcUITests */,
 				B2F1529D1FBC9EFF00FD9030 /* Products */,
+				B2F153131FBD46B300FD9030 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +127,14 @@
 				B2F152C11FBC9EFF00FD9030 /* Info.plist */,
 			);
 			path = ingCalcUITests;
+			sourceTree = "<group>";
+		};
+		B2F153131FBD46B300FD9030 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
