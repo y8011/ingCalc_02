@@ -12,9 +12,10 @@
 		B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152A11FBC9EFF00FD9030 /* ViewController.swift */; };
 		B2F152A51FBC9EFF00FD9030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F152A31FBC9EFF00FD9030 /* Main.storyboard */; };
 		B2F152A71FBC9EFF00FD9030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */; };
-		B2F152AA1FBC9EFF00FD9030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F152A81FBC9EFF00FD9030 /* LaunchScreen.storyboard */; };
 		B2F152B51FBC9EFF00FD9030 /* ingCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152B41FBC9EFF00FD9030 /* ingCalcTests.swift */; };
 		B2F152C01FBC9EFF00FD9030 /* ingCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152BF1FBC9EFF00FD9030 /* ingCalcUITests.swift */; };
+		B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */; };
+		B2FFD3101FC1CD8F0008DBF1 /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B2FFD30F1FC1CCE90008DBF1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B2FFD3101FC1CD8F0008DBF1 /* CalculatorKeyboard.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F1529C1FBC9EFF00FD9030 /* ingCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ingCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +55,6 @@
 		B2F152A11FBC9EFF00FD9030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B2F152A41FBC9EFF00FD9030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B2F152A91FBC9EFF00FD9030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2F152AB1FBC9EFF00FD9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F152B01FBC9EFF00FD9030 /* ingCalcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ingCalcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F152B41FBC9EFF00FD9030 /* ingCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCalcTests.swift; sourceTree = "<group>"; };
@@ -49,6 +62,7 @@
 		B2F152BB1FBC9EFF00FD9030 /* ingCalcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ingCalcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F152BF1FBC9EFF00FD9030 /* ingCalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCalcUITests.swift; sourceTree = "<group>"; };
 		B2F152C11FBC9EFF00FD9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +119,7 @@
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
 				B2F152A31FBC9EFF00FD9030 /* Main.storyboard */,
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
-				B2F152A81FBC9EFF00FD9030 /* LaunchScreen.storyboard */,
+				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
 				B2F152AB1FBC9EFF00FD9030 /* Info.plist */,
 			);
 			path = ingCalc;
@@ -147,6 +161,7 @@
 				B2F152981FBC9EFF00FD9030 /* Sources */,
 				B2F152991FBC9EFF00FD9030 /* Frameworks */,
 				B2F1529A1FBC9EFF00FD9030 /* Resources */,
+				B2FFD30F1FC1CCE90008DBF1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -244,7 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F152AA1FBC9EFF00FD9030 /* LaunchScreen.storyboard in Resources */,
+				B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */,
 				B2F152A71FBC9EFF00FD9030 /* Assets.xcassets in Resources */,
 				B2F152A51FBC9EFF00FD9030 /* Main.storyboard in Resources */,
 			);
@@ -314,14 +329,6 @@
 				B2F152A41FBC9EFF00FD9030 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B2F152A81FBC9EFF00FD9030 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2F152A91FBC9EFF00FD9030 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -439,8 +446,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XV8YGZ29G7;
 				INFOPLIST_FILE = ingCalc/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -453,8 +461,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XV8YGZ29G7;
 				INFOPLIST_FILE = ingCalc/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -31,13 +31,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
-                                <rect key="frame" x="0.0" y="108" width="240" height="128"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="WK8-Ov-kR1" appends="YES" id="r3G-GP-b6F"/>
-                                    <outletCollection property="gestureRecognizers" destination="P5n-GF-aYY" appends="YES" id="kyS-H4-Cjo"/>
                                 </connections>
                             </imageView>
                         </subviews>
@@ -55,11 +54,6 @@
                         <action selector="longPressImageView:" destination="BYZ-38-t0r" id="hMI-BA-oyD"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <tapGestureRecognizer id="P5n-GF-aYY">
-                    <connections>
-                        <action selector="tapImageView:" destination="BYZ-38-t0r" id="MQW-ZB-MSl"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
         </scene>

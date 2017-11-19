@@ -29,8 +29,30 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
         
+
+        //初回は写真表示させずに行く。
+//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+//
+//            //写真ライブラリ（カメラロール）表示用のViewControllerを宣言
+//            let controller = UIImagePickerController()
+//
+//            controller.delegate = self
+//            //新しく宣言したViewControllerでカメラとカメラロールのどちらを表示するかを指定
+//            controller.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+//            //トリミング
+//            controller.allowsEditing = true
+//            //新たに追加したカメラロール表示ViewControllerをpresetViewControllerにする
+//            self.present(controller, animated: true,completion: nil)
+//
+//        }
     
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        inputText.becomeFirstResponder()
+    }
+    
     
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String) {
         inputText.text = value
@@ -40,13 +62,10 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     //ジェスチャー
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
-        
+        showAlbum()
         display()
     }
     
-    @IBAction func tapImageView(_ sender: UITapGestureRecognizer) {
-        print("TAP")
-    }
     
     
     
@@ -70,7 +89,7 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         if strURL != nil {
             
             let url = URL(string: strURL as String!)
-            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)  // fetchResult変更
+            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)  // TODO:fetchResult変更
             
             let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
             let manager: PHImageManager = PHImageManager()
@@ -81,11 +100,43 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         }
     }
     
+    func showCamera() {
+        print("showCamera")
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.modalPresentationStyle = UIModalPresentationStyle.popover
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+
+            if let popover = picker.popoverPresentationController {
+                popover.sourceView = self.view
+                popover.sourceRect = displayImageView.frame
+                popover.permittedArrowDirections = UIPopoverArrowDirection.any
+            }
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+
+
+    func showAlbum(){
+        print("showAlbum")
+        let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.photoLibrary
+
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+            //インスタンスの作成
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.sourceType = sourceType
+            cameraPicker.delegate = self
+            self.present(cameraPicker, animated: true, completion:  nil)
+
+
+        }
+    }
 
 
     
     func save() {
-        
+        print("save()")
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             
             //写真ライブラリ（カメラロール）表示用のViewControllerを宣言
@@ -107,13 +158,25 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
 
         
         
-        //        let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
-        let assetURL:AnyObject = info[UIImagePickerControllerPHAsset]! as AnyObject  // コーションが出たので変更。
+                let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
+        let imageURL:AnyObject = info[UIImagePickerControllerImageURL]! as AnyObject  // コーションが出たので変更。
+        print("didFinishPickingMediaWithInfo")
+        print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
+        print(imageURL) /* file:///Users/yuka/Library/Developer/CoreSimulator/Devices/C679ECF0-0655-4785-B09B-88591EE5E4EA/data/Containers/Data/Application/ADC1DCAE-A8EA-4827-9BCB-BD60D8CB6F8F/tmp/E86756F3-585B-4A3B-BA78-EDE39ECA010E.jpeg */
+        
+        print(info[UIImagePickerControllerMediaType]!) //public.image
+        //print(info[UIImagePickerControllerMediaMetadata]!)
+        print(info[UIImagePickerControllerOriginalImage]!)//<UIImage: 0x60c0000b9f20> size {3000, 2002} orientation 0 scale 1.000000
+                                                        //info[UIImagePickerControllerOriginalImage] as? UIImageにするとそのままUIImageを取得できます。
+        //print(info[UIImagePickerControllerEditedImage])//<UIImage: 0x6080000bb9c0> size {1242, 1242} orientation 0 scale 1.000000
+        //print(info[UIImagePickerControllerMediaURL]!)
+        //print(info[UIImagePickerControllerCropRect]!)
 
         let strURL:String = assetURL.description
-        
-        print(strURL)
-        
+        let strURL2:String = imageURL.description
+        print("----  ")
+        print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
+        print(strURL2)  //file:///Users/yuka/Library/Developer/CoreSimulator/Devices/C679ECF0-0655-4785-B09B-88591EE5E4EA/data/Containers/Data/Application/5D53066C-49C3-4176-A1AB-AD1C828A7AA5/tmp/07108CE3-7A7E-46C1-88F2-36B25DB5877D.jpeg
         
         // ユーザーデフォルトを用意する
         let myDefault = UserDefaults.standard
