@@ -13,9 +13,12 @@
         <array key="Damascus.ttc">
             <string>Damascus</string>
         </array>
+        <array key="PartyLET.ttf">
+            <string>PartyLetPlain</string>
+        </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ingCalc" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,20 +42,37 @@
                                 <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zs-Sp-UE3">
+                                <rect key="frame" x="41" y="139" width="110" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="camera"/>
+                                <connections>
+                                    <action selector="tapOpenCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6oh-PB-swV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WuP-fJ-VeB">
-                        <nil key="title"/>
-                        <pageControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="6nh-mD-0Fn">
-                            <rect key="frame" x="187.5" y="3.5" width="0.0" height="37"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="hGs-88-gYq">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="cmf-vK-Haz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wio-Ap-loJ">
+                                <rect key="frame" x="16" y="7" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="camera"/>
+                                <connections>
+                                    <action selector="tapOpenCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lec-At-NB3"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="7Pf-SK-IaK">
                             <connections>
-                                <segue destination="OTM-7h-X9x" kind="show" id="itf-wQ-1mL"/>
+                                <segue destination="OTM-7h-X9x" kind="show" id="8XP-I3-PlV"/>
                             </connections>
-                        </pageControl>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="displayImageView" destination="EGJ-Tl-Mal" id="tSc-KZ-Tiv"/>
                         <outlet property="inputText" destination="7rD-Bv-jkZ" id="tf5-4t-NsL"/>
@@ -66,7 +86,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-481" y="148"/>
+            <point key="canvasLocation" x="-482.39999999999998" y="147.97601199400302"/>
         </scene>
         <!--Rireki View Controller-->
         <scene sceneID="EZV-La-uGG">
@@ -75,6 +95,15 @@
                     <view key="view" contentMode="scaleToFill" id="toU-LQ-yKp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rireki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
+                                <rect key="frame" x="42" y="131" width="282" height="173"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="80"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="mns-t9-i6x"/>
                     </view>
@@ -82,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ONY-D3-Yz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="489" y="148"/>
+            <point key="canvasLocation" x="488.80000000000001" y="147.97601199400302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F7D-Vu-hxZ">

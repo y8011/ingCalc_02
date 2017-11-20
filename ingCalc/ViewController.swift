@@ -16,7 +16,9 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     @IBOutlet weak var inputText: UITextField!
     @IBOutlet weak var displayImageView: UIImageView!
     
-    
+    //===============================
+    // viewDidLoad
+    //===============================
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,24 +30,13 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
         
-
-        //初回は写真表示させずに行く。
-//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-//
-//            //写真ライブラリ（カメラロール）表示用のViewControllerを宣言
-//            let controller = UIImagePickerController()
-//
-//            controller.delegate = self
-//            //新しく宣言したViewControllerでカメラとカメラロールのどちらを表示するかを指定
-//            controller.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-//            //トリミング
-//            controller.allowsEditing = true
-//            //新たに追加したカメラロール表示ViewControllerをpresetViewControllerにする
-//            self.present(controller, animated: true,completion: nil)
-//
-//        }
+        
     
     }
+    
+    //===============================
+    // viewDidAppear
+    //===============================
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -78,6 +69,11 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     }
     
     
+    @IBAction func tapOpenCamera(_ sender: UIButton) {
+        showCamera()
+
+        
+    }
     func display() {
         
         print("display")
@@ -196,6 +192,8 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         imagePicker.dismiss(animated: true, completion: nil)
         
     }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
