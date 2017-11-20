@@ -16,6 +16,7 @@
 		B2F152C01FBC9EFF00FD9030 /* ingCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152BF1FBC9EFF00FD9030 /* ingCalcUITests.swift */; };
 		B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */; };
 		B2FFD3101FC1CD8F0008DBF1 /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2FFD3911FC27C900008DBF1 /* RirekiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		B2F152BF1FBC9EFF00FD9030 /* ingCalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCalcUITests.swift; sourceTree = "<group>"; };
 		B2F152C11FBC9EFF00FD9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RirekiViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */,
+				B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */,
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
 				B2F152A31FBC9EFF00FD9030 /* Main.storyboard */,
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
@@ -288,6 +291,7 @@
 			files = (
 				B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */,
 				B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */,
+				B2FFD3911FC27C900008DBF1 /* RirekiViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,7 +25,6 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         keyboard.delegate = self
         keyboard.showDecimal = true
         inputText.inputView = keyboard
-        // inputText.text = "0"
         
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
         
@@ -50,12 +49,13 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        inputText.becomeFirstResponder()
+        inputText.becomeFirstResponder()   //計算機
     }
     
     
+    //計算機
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String) {
-        inputText.text = value
+            inputText.text = value
     }
     
     //===============================
