@@ -53,17 +53,18 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     }
     
     
-    //計算機
+    //===============================
+    // 計算機
+    //===============================
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String) {
             inputText.text = value
     }
     
     //===============================
-    //ジェスチャー
+    // ジェスチャー
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
         showAlbum()
-        display()
     }
     
     
@@ -120,6 +121,7 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
 
     func showAlbum(){
         print("showAlbum")
+        
         let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.photoLibrary
 
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
@@ -158,7 +160,7 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
 
         
         
-                let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
+        let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
         let imageURL:AnyObject = info[UIImagePickerControllerImageURL]! as AnyObject  // コーションが出たので変更。
         print("didFinishPickingMediaWithInfo")
         print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
@@ -188,7 +190,8 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         myDefault.synchronize()
         
         
-        
+        display()
+
         //閉じる処理
         imagePicker.dismiss(animated: true, completion: nil)
         
