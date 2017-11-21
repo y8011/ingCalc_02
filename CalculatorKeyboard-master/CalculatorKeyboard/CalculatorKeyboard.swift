@@ -36,6 +36,7 @@ enum CalculatorKey: Int {
 open class CalculatorKeyboard: UIView {
     open weak var delegate: CalculatorDelegate?
     open var numbersBackgroundColor = UIColor(white: 0.97, alpha: 1.0) {
+
         didSet {
             adjustLayout()
         }
@@ -118,6 +119,8 @@ open class CalculatorKeyboard: UIView {
             if let button = self.view.viewWithTag(i) as? UIButton {
                 button.tintColor = numbersBackgroundColor
                 button.setTitleColor(numbersTextColor, for: UIControlState())
+                //okayu
+                button.titleLabel?.font.withSize(20.0)
             }
         }
         

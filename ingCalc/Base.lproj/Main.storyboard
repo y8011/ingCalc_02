@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Title-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ingCalc" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,42 +31,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="WK8-Ov-kR1" appends="YES" id="r3G-GP-b6F"/>
-                                </connections>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0." borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Bv-jkZ">
-                                <rect key="frame" x="41" y="82" width="293" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cty-1a-cjX">
+                                <rect key="frame" x="0.0" y="169" width="375" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="WK8-Ov-kR1" appends="YES" id="Eqd-f7-ZLe"/>
+                                </connections>
+                            </scrollView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0." borderStyle="roundedRect" textAlignment="right" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Bv-jkZ">
+                                <rect key="frame" x="41" y="107" width="293" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Damascus" family="Damascus" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zs-Sp-UE3">
-                                <rect key="frame" x="41" y="139" width="110" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="camera"/>
-                                <connections>
-                                    <action selector="tapOpenCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6oh-PB-swV"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="hGs-88-gYq">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="cmf-vK-Haz">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wio-Ap-loJ">
-                                <rect key="frame" x="16" y="7" width="51" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="camera"/>
-                                <connections>
-                                    <action selector="tapOpenCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lec-At-NB3"/>
-                                </connections>
-                            </button>
+                    <navigationItem key="navigationItem" id="hGs-88-gYq">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="camera" id="cmf-vK-Haz">
+                            <color key="tintColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="7Pf-SK-IaK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="7Pf-SK-IaK">
+                            <color key="tintColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="OTM-7h-X9x" kind="show" id="8XP-I3-PlV"/>
                             </connections>
@@ -74,15 +66,15 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="displayImageView" destination="EGJ-Tl-Mal" id="tSc-KZ-Tiv"/>
                         <outlet property="inputText" destination="7rD-Bv-jkZ" id="tf5-4t-NsL"/>
+                        <outlet property="myScrollView" destination="Cty-1a-cjX" id="MIW-ql-xST"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <navigationItem title="Title" id="k2X-ht-4ko"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WK8-Ov-kR1">
                     <connections>
-                        <action selector="longPressImageView:" destination="BYZ-38-t0r" id="hMI-BA-oyD"/>
+                        <action selector="longPressImageView:" destination="BYZ-38-t0r" id="B8N-nv-cxM"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>

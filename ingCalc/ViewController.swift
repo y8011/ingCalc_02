@@ -11,23 +11,31 @@ import CalculatorKeyboard
 import Photos
 import MobileCoreServices
 
-class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class ViewController: UIViewController
+, CalculatorDelegate
+, UIImagePickerControllerDelegate
+, UINavigationControllerDelegate
+,UIScrollViewDelegate
+{
 
     @IBOutlet weak var inputText: UITextField!
-    @IBOutlet weak var displayImageView: UIImageView!
-    
+    //@IBOutlet weak var displayImageView: UIImageView!
+    var displayImageView: UIImageView = UIImageView()
+    @IBOutlet weak var myScrollView: UIScrollView!
+
     //===============================
     // viewDidLoad
     //===============================
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let frame = CGRect(x:0 , y:0 , width: UIScreen.main.bounds.width, height:300 )
-        let keyboard = CalculatorKeyboard(frame: frame)
-        keyboard.delegate = self
-        keyboard.showDecimal = true
-        inputText.inputView = keyboard
+        initCalc()
         
+        displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
+        displayImageView.isUserInteractionEnabled = true  // Gestureの許可
+        displayImageView.backgroundColor = UIColor.purple
+        initScrollImage()
+
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
         
         
@@ -49,6 +57,18 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     //===============================
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String) {
             inputText.text = value
+    }
+
+    func initCalc() {
+        let frame = CGRect(x:0 , y:0 , width: UIScreen.main.bounds.width, height:300 )
+        let keyboard = CalculatorKeyboard(frame: frame)
+        
+        
+        keyboard.delegate = self
+        keyboard.showDecimal = true
+        inputText.inputView = keyboard
+        
+
     }
     
     //===============================
@@ -74,6 +94,7 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
 
         
     }
+    
     func display() {
         
         print("display")
@@ -90,7 +111,10 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
             
             let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
             let manager: PHImageManager = PHImageManager()
-            manager.requestImage(for: asset, targetSize: CGSize(width: 5, height: 500), contentMode: .aspectFill, options: nil, resultHandler: { ( image , info) -> Void in self.displayImageView.image = image
+            manager.requestImage(for: asset, targetSize: CGSize(width: 5, height: 500), contentMode: .aspectFill, options: nil, resultHandler: { ( image , info) -> Void in
+                self.displayImageView.image = image!
+                 // print(image!)
+                 // print(info!)
                 
             })
             
@@ -98,20 +122,29 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     }
     
     func showCamera() {
-        print("showCamera")
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            let picker = UIImagePickerController()
-            picker.modalPresentationStyle = UIModalPresentationStyle.popover
-            picker.delegate = self
-            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        print(#function)
+        //カメラボタンが使えるかどうか判別するための情報を取得（列挙体）
+        //意味のわかる言葉に置き換え。中身はenumで数字で作ってる
+        let camera = UIImagePickerControllerSourceType.camera
 
-            if let popover = picker.popoverPresentationController {
-                popover.sourceView = self.view
-                popover.sourceRect = displayImageView.frame
-                popover.permittedArrowDirections = UIPopoverArrowDirection.any
-            }
-            self.present(picker, animated: true, completion: nil)
+        //カメラが使える場合　撮影モードの画面を表示
+        //クラス名.メソッド名　で使えるメソッド＝型メソッド
+        if UIImagePickerController.isSourceTypeAvailable(camera) {
+            let picker = UIImagePickerController()
+            
+            //カメラモードに設定
+            picker.sourceType = camera
+            
+            //デリゲートの設定（撮影後のメソッドを感知するため）
+            picker.delegate = self
+            
+            //撮影モード画面の表示（モーダル）
+            present(picker, animated: true, completion: nil)
+            
+            
         }
+        
+    
     }
 
 
@@ -151,30 +184,55 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
         }
     }
     
-    //カメラロールで写真を選んだ後
+    //カメラで撮影し終わった後に発動
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//
+//        //imageViewに撮影した写真をセットするために変数に保存する
+//        let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+//
+//        //画面上のimageViewに設定
+//        displayImageView.image = takenimage
+//
+//        //自分のデバイス（プログラムが動いている場所）に写真を保存（カメラロール）
+//        UIImageWriteToSavedPhotosAlbum(takenimage, nil, nil, nil)
+//
+//        //モーダルで表示した撮影モード画面を閉じる（前の画面に戻る）
+//        dismiss(animated: true, completion: nil)
+//
+//    }
+    //カメラロールで写真を選んだ後発動
     func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
         
-        
+        //for camera
+        if (info.index(forKey: UIImagePickerControllerOriginalImage) != nil) {
+            //imageViewに撮影した写真をセットするために変数に保存する
+            let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+            
+            //画面上のimageViewに設定
+            displayImageView.image = takenimage
+            
+            //自分のデバイス（プログラムが動いている場所）に写真を保存（カメラロール）
+            UIImageWriteToSavedPhotosAlbum(takenimage, nil, nil, nil)
+            
+            //モーダルで表示した撮影モード画面を閉じる（前の画面に戻る）
+            dismiss(animated: true, completion: nil)
+            
+            return
+        }
+        //for photolibrary
         let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
-        let imageURL:AnyObject = info[UIImagePickerControllerImageURL]! as AnyObject  // コーションが出たので変更。
         print("didFinishPickingMediaWithInfo")
         print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
-        print(imageURL) /* file:///Users/yuka/Library/Developer/CoreSimulator/Devices/C679ECF0-0655-4785-B09B-88591EE5E4EA/data/Containers/Data/Application/ADC1DCAE-A8EA-4827-9BCB-BD60D8CB6F8F/tmp/E86756F3-585B-4A3B-BA78-EDE39ECA010E.jpeg */
         
         print(info[UIImagePickerControllerMediaType]!) //public.image
         //print(info[UIImagePickerControllerMediaMetadata]!)
         print(info[UIImagePickerControllerOriginalImage]!)//<UIImage: 0x60c0000b9f20> size {3000, 2002} orientation 0 scale 1.000000
                                                         //info[UIImagePickerControllerOriginalImage] as? UIImageにするとそのままUIImageを取得できます。
-        //print(info[UIImagePickerControllerEditedImage])//<UIImage: 0x6080000bb9c0> size {1242, 1242} orientation 0 scale 1.000000
-        //print(info[UIImagePickerControllerMediaURL]!)
-        //print(info[UIImagePickerControllerCropRect]!)
 
         let strURL:String = assetURL.description
-        let strURL2:String = imageURL.description
         print("----  ")
         print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
-        print(strURL2)  //file:///Users/yuka/Library/Developer/CoreSimulator/Devices/C679ECF0-0655-4785-B09B-88591EE5E4EA/data/Containers/Data/Application/5D53066C-49C3-4176-A1AB-AD1C828A7AA5/tmp/07108CE3-7A7E-46C1-88F2-36B25DB5877D.jpeg
         
         // ユーザーデフォルトを用意する
         let myDefault = UserDefaults.standard
@@ -194,7 +252,137 @@ class ViewController: UIViewController, CalculatorDelegate, UIImagePickerControl
     }
     
 
+    //==============================
+    // ScrolView
+    //==============================
+    func initScrollImage() {
+        print("initScrollImage")
+        if let size = displayImageView.image?.size {
+            // imageViewのサイズがscrollView内に収まるように調整
+            let wrate = myScrollView.frame.width / size.width
+            let hrate = myScrollView.frame.height / size.height
+            let rate = min(wrate, hrate , 1)
+            displayImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
+            displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
+            
+            // contentSizeを画像サイズに設定
+            myScrollView.contentSize = displayImageView.frame.size
+            myScrollView.maximumZoomScale = 4.0
+            myScrollView.minimumZoomScale = 1.0
+            
+            myScrollView.delegate = self
+            myScrollView.addSubview(displayImageView)
+            // 初期表示のためcontentInsetを更新
+            updateScrollInset()
+        }
+        
+    }
     
+    func updateScrollInset()
+    {
+        // imageViewの大きさからcontentInsetを再計算
+        // 0を下回らないようにする
+        myScrollView.contentInset = UIEdgeInsetsMake(
+            max((myScrollView.frame.height - displayImageView.frame.height)/2, 0)
+            ,max((myScrollView.frame.width - displayImageView.frame.width)/2, 0)
+            , 0
+            , 0
+        )
+        
+    }
+    
+    // スクロール中に呼び出され続けるデリゲートメソッド.
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // ズーム中に呼び出され続けるデリゲートメソッド.
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        updateScrollInset()
+    }
+    
+    // ユーザが指でドラッグを開始した場合に呼び出されるデリゲートメソッド.
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
+    // velocity = points / second.
+    // targetContentOffsetは、停止が予想されるポイント？
+    // pagingEnabledがYESの場合には、呼び出されません.
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print(#function)
+    }
+    
+    // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
+    // decelerateがYESであれば、慣性移動を行っている.
+    //
+    // 指をぴたっと止めると、decelerateはNOになり、
+    // その場合は「scrollViewWillBeginDecelerating:」「scrollViewDidEndDecelerating:」が呼ばれない？
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print(displayImageView.center)
+        displayImageView.center = scrollView.center
+        print(#function)
+        print(displayImageView.center)
+    }
+    
+    // ユーザがドラッグ後、スクロールが減速する瞬間に呼び出されるデリゲートメソッド.
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // ユーザがドラッグ後、慣性移動も含め、スクロールが停止した際に呼び出されるデリゲートメソッド.
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // スクロールのアニメーションが終了した際に呼び出されるデリゲートメソッド.
+    // アニメーションプロパティがNOの場合には呼び出されない.
+    // 【setContentOffset】/【scrollRectVisible:animated:】
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // ズーム中に呼び出されるデリゲートメソッド.
+    // ズームの値に対応したUIViewを返却する.
+    // nilを返却すると、何も起きない.
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        print(#function)
+        return self.displayImageView
+    }
+    
+    // ズーム開始時に呼び出されるデリゲートメソッド.
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        print(#function)
+    }
+    
+    // ズーム完了時(バウンドアニメーション完了時)に呼び出されるデリゲートメソッド.
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        print(#function)
+    }
+    
+    // 先頭にスクロールする際に呼び出されるデリゲートメソッド.
+    // NOなら反応しない.
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        print(#function)
+        return true
+    }
+    
+    // 先頭へのスクロールが完了した際に呼び出されるデリゲートメソッド.
+    // すでに先頭にいる場合には呼び出されない.
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    
+    //ズームのために要指定
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        print(#function)
+        // ズームのために要指定
+        return displayImageView
+    }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
