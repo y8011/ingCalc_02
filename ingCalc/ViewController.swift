@@ -33,11 +33,11 @@ class ViewController: UIViewController
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
-        displayImageView.backgroundColor = UIColor.purple
+        displayImageView.backgroundColor = UIColor.black
         initScrollImage()
 
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
-        
+        displayImageView.contentMode = UIViewContentMode.scaleAspectFit
         
     
     }
@@ -79,6 +79,14 @@ class ViewController: UIViewController
     }
     
     
+    //===============================
+    // カメラボタン
+    //===============================
+    @IBAction func tapCameraBarButton(_ sender: UIBarButtonItem) {
+        showCamera()
+        
+    }
+    
     
     
     //===============================
@@ -89,12 +97,8 @@ class ViewController: UIViewController
     }
     
     
-    @IBAction func tapOpenCamera(_ sender: UIButton) {
-        showCamera()
 
-        
-    }
-    
+
     func display() {
         
         print("display")
@@ -109,15 +113,21 @@ class ViewController: UIViewController
             let url = URL(string: strURL as String!)
             let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)  // TODO:fetchResult変更
             
-            let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
+            let asset: PHAsset = (fetchResult.firstObject as! PHAsset)
             let manager: PHImageManager = PHImageManager()
-            manager.requestImage(for: asset, targetSize: CGSize(width: 5, height: 500), contentMode: .aspectFill, options: nil, resultHandler: { ( image , info) -> Void in
+            let size = myScrollView.frame.size
+            
+            manager.requestImage(for: asset, targetSize: size , contentMode: .aspectFit, options: nil, resultHandler: { ( image , info) -> Void in
                 self.displayImageView.image = image!
                  // print(image!)
-                 // print(info!)
+                  print(info!)
+                print("[myScrollView.frame.size]↓")
+                print(size)
+                print(self.myScrollView.center)
                 
             })
-            
+            // 初期表示のためcontentInsetを更新
+            updateScrollInset()
         }
     }
     
@@ -204,8 +214,10 @@ class ViewController: UIViewController
     func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
         
+        print(#function)
         //for camera
-        if (info.index(forKey: UIImagePickerControllerOriginalImage) != nil) {
+        // UIImagePickerControllerReferenceURL はカメラロールを選択した時だけ存在するので切り分け。
+        if (info.index(forKey: UIImagePickerControllerReferenceURL) == nil) {
             //imageViewに撮影した写真をセットするために変数に保存する
             let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
             
@@ -215,39 +227,47 @@ class ViewController: UIViewController
             //自分のデバイス（プログラムが動いている場所）に写真を保存（カメラロール）
             UIImageWriteToSavedPhotosAlbum(takenimage, nil, nil, nil)
             
+            updateScrollInset()
+
             //モーダルで表示した撮影モード画面を閉じる（前の画面に戻る）
             dismiss(animated: true, completion: nil)
             
-            return
         }
-        //for photolibrary
-        let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
-        print("didFinishPickingMediaWithInfo")
-        print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
-        
-        print(info[UIImagePickerControllerMediaType]!) //public.image
-        //print(info[UIImagePickerControllerMediaMetadata]!)
-        print(info[UIImagePickerControllerOriginalImage]!)//<UIImage: 0x60c0000b9f20> size {3000, 2002} orientation 0 scale 1.000000
-                                                        //info[UIImagePickerControllerOriginalImage] as? UIImageにするとそのままUIImageを取得できます。
+        else {
+            //for photolibrary
+            let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
+            print("didFinishPickingMediaWithInfo")
+            print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
+            
+            print(info[UIImagePickerControllerMediaType]!) //public.image
+            //print(info[UIImagePickerControllerMediaMetadata]!)
+            print(info[UIImagePickerControllerOriginalImage]!)//<UIImage: 0x60c0000b9f20> size {3000, 2002} orientation 0 scale 1.000000
+                                                            //info[UIImagePickerControllerOriginalImage] as? UIImageにするとそのままUIImageを取得できます。
 
-        let strURL:String = assetURL.description
-        print("----  ")
-        print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
-        
-        // ユーザーデフォルトを用意する
-        let myDefault = UserDefaults.standard
-        
-        // データを書き込んで
-        myDefault.set(strURL, forKey: "selectedPhotoURL")
-        
-        // 即反映させる
-        myDefault.synchronize()
-        
-        
-        display()
+            let strURL:String = assetURL.description
+            print("----  ")
+            print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
+            
+            // ユーザーデフォルトを用意する
+            let myDefault = UserDefaults.standard
+            
+            // データを書き込んで
+            myDefault.set(strURL, forKey: "selectedPhotoURL")
+            
+            // 即反映させる
+            myDefault.synchronize()
+            
+            
+           // display()  画質が悪くなるので削除
+            let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+            
+            //画面上のimageViewに設定
+            displayImageView.image = takenimage
+            updateScrollInset()
 
-        //閉じる処理
-        imagePicker.dismiss(animated: true, completion: nil)
+            //閉じる処理
+            imagePicker.dismiss(animated: true, completion: nil)
+        }
         
     }
     
@@ -320,6 +340,7 @@ class ViewController: UIViewController
     // 指をぴたっと止めると、decelerateはNOになり、
     // その場合は「scrollViewWillBeginDecelerating:」「scrollViewDidEndDecelerating:」が呼ばれない？
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("[displayImageView.center]↓")
         print(displayImageView.center)
         displayImageView.center = scrollView.center
         print(#function)
