@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import CalculatorKeyboard
-import Photos
-import MobileCoreServices
+import CalculatorKeyboard   // 計算機用
+import Photos               // 写真用
+//import MobileCoreServices   // ?
+
 
 class ViewController: UIViewController
 , CalculatorDelegate

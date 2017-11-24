@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "2.0.9",
+  "iOS" : [
+    {
+      "name" : "ActionCell",
+      "hash" : "45081881da0c15250552cc7ab590fe43be14ec20c20255cf77692c7b4bd195a3"
+    }
+  ]
+}

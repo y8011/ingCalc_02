@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B28DD9BE1FBE89DD0006EEFF /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */; };
+		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
+		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
+		B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B296CB931FC44C8600E17D46 /* Red-kitten.jpg */; };
+		B2B67EF61FC87A340086134C /* ActionCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B67EF51FC87A340086134C /* ActionCell.framework */; };
 		B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */; };
 		B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152A11FBC9EFF00FD9030 /* ViewController.swift */; };
 		B2F152A51FBC9EFF00FD9030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F152A31FBC9EFF00FD9030 /* Main.storyboard */; };
@@ -16,7 +19,6 @@
 		B2F152B51FBC9EFF00FD9030 /* ingCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152B41FBC9EFF00FD9030 /* ingCalcTests.swift */; };
 		B2F152C01FBC9EFF00FD9030 /* ingCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152BF1FBC9EFF00FD9030 /* ingCalcUITests.swift */; };
 		B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */; };
-		B2FFD3101FC1CD8F0008DBF1 /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2FFD3911FC27C900008DBF1 /* RirekiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,15 +46,17 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B2FFD3101FC1CD8F0008DBF1 /* CalculatorKeyboard.framework in CopyFiles */,
+				B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B296CB931FC44C8600E17D46 /* Red-kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Red-kitten.jpg"; sourceTree = "<group>"; };
+		B2B67EF51FC87A340086134C /* ActionCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionCell.framework; path = Carthage/Build/iOS/ActionCell.framework; sourceTree = "<group>"; };
 		B2F1529C1FBC9EFF00FD9030 /* ingCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ingCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F152A11FBC9EFF00FD9030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B28DD9BE1FBE89DD0006EEFF /* CalculatorKeyboard.framework in Frameworks */,
+				B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */,
+				B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */,
+				B2B67EF61FC87A340086134C /* ActionCell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +104,7 @@
 		B2F152931FBC9EFF00FD9030 = {
 			isa = PBXGroup;
 			children = (
+				B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */,
 				B2F1529E1FBC9EFF00FD9030 /* ingCalc */,
 				B2F152B31FBC9EFF00FD9030 /* ingCalcTests */,
 				B2F152BE1FBC9EFF00FD9030 /* ingCalcUITests */,
@@ -152,7 +159,8 @@
 		B2F153131FBD46B300FD9030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B28DD9BF1FBE89DD0006EEFF /* CalculatorKeyboard.framework */,
+				B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */,
+				B2B67EF51FC87A340086134C /* ActionCell.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -455,6 +463,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XV8YGZ29G7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ingCalc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
@@ -470,6 +482,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XV8YGZ29G7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ingCalc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;

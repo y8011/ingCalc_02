@@ -1,0 +1,11 @@
+framework module CalculatorKeyboard {
+  umbrella header "CalculatorKeyboard.h"
+
+  export *
+  module * { export * }
+}
+
+module CalculatorKeyboard.Swift {
+    header "CalculatorKeyboard-Swift.h"
+    requires objc
+}
