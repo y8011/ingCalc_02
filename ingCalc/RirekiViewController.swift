@@ -54,31 +54,29 @@ class RirekiViewController: UIViewController
     //3.リストに表示する文字列を決定し、表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellta", for: indexPath) as! CustomTableViewCell
-
-        cell.button.setTitle("result", for: .normal)
-        cell.button.addTarget(self, action: #selector(cellButtonClicked(_:)), for: .touchUpInside)
+        cell.button.setTitle(rirekiResult[indexPath.row], for: .normal)
+        cell.button.addTarget(self, action:  #selector(cellButtonClicked(_:))
+            , for: .touchUpInside)
         let wrapper = ActionCell()
         wrapper.delegate = self
         wrapper.animationStyle = .concurrent
         wrapper.wrap(cell: cell,
                      actionsLeft: [
                         {
-                            let action = IconTextAction(action: "cell 3 -- left 0")
-                            action.icon.image = #imageLiteral(resourceName: "image_5").withRenderingMode(.alwaysTemplate)
-                            action.icon.tintColor = UIColor.white
-                            action.label.text = "Hello"
-                            action.label.font = UIFont.systemFont(ofSize: 12)
-                            action.label.textColor = UIColor.white
-                            action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
-                            return action
-                        }(),
-                        {
                             let action = TextAction(action: "cell 3 -- left 1")
                             action.label.text = "Long Sentence"
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
                             action.backgroundColor = UIColor(red:1.00, green:0.78, blue:0.80, alpha:1.00)
+                            return action
+                        }(),
+                        {
+                            let action = IconAction(action: "cell 3 -- left 2")
+                            action.icon.image = #imageLiteral(resourceName: "image_0").withRenderingMode(.alwaysTemplate)
+                            action.icon.tintColor = UIColor.white
+                            action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
                             return action
                         }(),
                         ],
@@ -101,21 +99,14 @@ class RirekiViewController: UIViewController
                             action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
                             return action
                         }(),
-                        {
-                            let action = IconAction(action: "cell 3 -- right 2")
-                            action.icon.image = #imageLiteral(resourceName: "image_2").withRenderingMode(.alwaysTemplate)
-                            action.icon.tintColor = UIColor.white
-                            action.backgroundColor = UIColor(red:1.00, green:0.78, blue:0.80, alpha:1.00)
-                            return action
-                        }(),
+
                         ])
         return cell
-        
     }
     
     //addTargetでselector通じて引数を渡すことはできない。それ自身を渡すことならできる
     //なので、テキストラベルに入っているボタンを渡すことにする
-    func cellButtonClicked(_ sender: UIButton) {
+    @objc func cellButtonClicked(_ sender: UIButton) {
        // self.output.text = "cell button clicked"
         print(#function)
         let myPasteBoard = UIPasteboard.general
