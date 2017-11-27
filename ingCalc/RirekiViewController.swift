@@ -39,13 +39,13 @@ class RirekiViewController: UIViewController
     //=============================
     //TableView
     //=============================
-    var rirekiResult:[String] = ["result1","result2","result3","result4","result5","result6","result7","result8","result9","result10"]
+
 
     //2.行数の決定
     // numberofrowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return rirekiTexts.count
         
         //return rirekiResult.count
         
@@ -56,7 +56,8 @@ class RirekiViewController: UIViewController
 
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellta", for: indexPath) as! CustomTableViewCell
-        cell.button.setTitle(rirekiResult[indexPath.row], for: .normal)
+        let count:Int = rirekiTexts.count - indexPath.row - 1
+        cell.button.setTitle(rirekiTexts[count], for: .normal)
         cell.button.addTarget(self, action:  #selector(cellButtonClicked(_:))
             , for: .touchUpInside)
         let wrapper = ActionCell()
@@ -64,14 +65,7 @@ class RirekiViewController: UIViewController
         wrapper.animationStyle = .concurrent
         wrapper.wrap(cell: cell,
                      actionsLeft: [
-                        {
-                            let action = TextAction(action: "cell 3 -- left 1")
-                            action.label.text = "Long Sentence"
-                            action.label.font = UIFont.systemFont(ofSize: 12)
-                            action.label.textColor = UIColor.white
-                            action.backgroundColor = UIColor(red:1.00, green:0.78, blue:0.80, alpha:1.00)
-                            return action
-                        }(),
+
                         {
                             let action = IconAction(action: "cell 3 -- left 2")
                             action.icon.image = #imageLiteral(resourceName: "image_0").withRenderingMode(.alwaysTemplate)
@@ -91,14 +85,7 @@ class RirekiViewController: UIViewController
                             action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
                             return action
                         }(),
-                        {
-                            let action = TextAction(action: "cell 3 -- right 1")
-                            action.label.text = "Long Sentence"
-                            action.label.font = UIFont.systemFont(ofSize: 12)
-                            action.label.textColor = UIColor.white
-                            action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
-                            return action
-                        }(),
+
 
                         ])
         return cell
@@ -115,6 +102,35 @@ class RirekiViewController: UIViewController
         print(sender.titleLabel?.text as! String)
     }
 
+    
+    //=============================
+    // Alert
+    //=============================
+    func alertAction1(s_title:String, s_message:String, s_action:String){
+        
+        //部品となるアラート
+        let alert = UIAlertController(
+            title: s_title ,
+            message: s_message,
+            preferredStyle: .alert
+        )
+        
+        //ボタンを増やしたいときは、addActionをもう一つ作ればよい
+        alert.addAction(
+            UIAlertAction(
+                title: s_action,
+                style: .default,
+                handler: nil)
+        )
+        
+        //アラートを表示
+        present(alert,
+                animated: true,
+                completion: nil
+        )
+        
+    }
+
 
     /*
     // MARK: - Navigation
@@ -127,6 +143,7 @@ class RirekiViewController: UIViewController
     */
 
 }
+
 
 extension RirekiViewController: ActionCellDelegate {
     

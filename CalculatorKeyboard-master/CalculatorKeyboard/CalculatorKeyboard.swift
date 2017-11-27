@@ -9,10 +9,10 @@
 import UIKit
 
 public protocol CalculatorDelegate: class {
-    func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String)
+    func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType:Int)
 }
 
-enum CalculatorKey: Int {
+public enum CalculatorKey: Int {
     case zero = 1
     case one
     case two
@@ -148,22 +148,22 @@ open class CalculatorKeyboard: UIView {
         switch (sender.tag) {
         case (CalculatorKey.zero.rawValue)...(CalculatorKey.nine.rawValue):
             let output = processor.storeOperand(sender.tag-1)
-            delegate?.calculator(self, didChangeValue: output)
+            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.decimal.rawValue:
             let output = processor.addDecimal()
-            delegate?.calculator(self, didChangeValue: output)
+            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.clear.rawValue:
             let output = processor.clearAll()
-            delegate?.calculator(self, didChangeValue: output)
+            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.delete.rawValue:
             let output = processor.deleteLastDigit()
-            delegate?.calculator(self, didChangeValue: output)
+            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case (CalculatorKey.multiply.rawValue)...(CalculatorKey.add.rawValue):
             let output = processor.storeOperator(sender.tag)
-            delegate?.calculator(self, didChangeValue: output)
+            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.equal.rawValue:
             let output = processor.computeFinalValue()
-            delegate?.calculator(self, didChangeValue: output)
+            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
             break
         default:
             break

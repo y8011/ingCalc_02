@@ -11,6 +11,9 @@ import CalculatorKeyboard   // 計算機用
 import Photos               // 写真用
 //import MobileCoreServices   // ?
 
+//var rirekiResult:[String] = ["result1","result2","result3","result4","result5","result6","result7","result8","result9","result10"]
+var rirekiResult:[String] = []
+var rirekiTexts:[String] = []
 
 class ViewController: UIViewController
 , CalculatorDelegate
@@ -24,12 +27,18 @@ class ViewController: UIViewController
     var displayImageView: UIImageView = UIImageView()
     @IBOutlet weak var myScrollView: UIScrollView!
 
+    // 計算機
+    var keyboard:CalculatorKeyboard = CalculatorKeyboard()
+    var resultText:String = ""
+    var suuji:String = ""
+
+    
     //===============================
     // viewDidLoad
     //===============================
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initCalc()
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
@@ -56,14 +65,48 @@ class ViewController: UIViewController
     //===============================
     // 計算機
     //===============================
-    func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String) {
-            inputText.text = value
-    }
+    func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType: Int) {
+        inputText.text = value
+        
+        switch KeyType {
+        case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
+            if KeyType == CalculatorKey.multiply.rawValue {
+                resultText = resultText + "\(suuji)x"
+            }
+            else if KeyType == CalculatorKey.divide.rawValue {
+                resultText = resultText + "\(suuji)/"
+            }
+            else if KeyType == CalculatorKey.subtract.rawValue {
+                resultText = resultText + "\(suuji)-"
+            }
+            else if KeyType == CalculatorKey.add.rawValue {
+                resultText = resultText + "\(suuji)+"
+            }
+            
+        case CalculatorKey.equal.rawValue :
+            resultText = resultText + "\(suuji) = \(value)"
 
+            rirekiTexts.append(resultText)
+            rirekiResult.append(value)
+            resultText = ""
+            
+        case CalculatorKey.clear.rawValue:
+            print("けされたぁ")
+            resultText = ""
+        default:
+            break
+            
+        }
+        
+        suuji = value
+        print(value)
+        print(resultText)
+    }
+    
     func initCalc() {
         let frame = CGRect(x:0 , y:0 , width: UIScreen.main.bounds.width, height:300 )
-        let keyboard = CalculatorKeyboard(frame: frame)
-        
+        keyboard = CalculatorKeyboard(frame: frame)
+
         
         keyboard.delegate = self
         keyboard.showDecimal = true
@@ -79,6 +122,8 @@ class ViewController: UIViewController
         showAlbum()
     }
     
+    
+
     
     //===============================
     // カメラボタン
@@ -160,7 +205,6 @@ class ViewController: UIViewController
 
 
     func showAlbum(){
-        print("showAlbum")
         
         let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.photoLibrary
 
@@ -195,22 +239,7 @@ class ViewController: UIViewController
         }
     }
     
-    //カメラで撮影し終わった後に発動
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//
-//        //imageViewに撮影した写真をセットするために変数に保存する
-//        let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
-//
-//        //画面上のimageViewに設定
-//        displayImageView.image = takenimage
-//
-//        //自分のデバイス（プログラムが動いている場所）に写真を保存（カメラロール）
-//        UIImageWriteToSavedPhotosAlbum(takenimage, nil, nil, nil)
-//
-//        //モーダルで表示した撮影モード画面を閉じる（前の画面に戻る）
-//        dismiss(animated: true, completion: nil)
-//
-//    }
+
     //カメラロールで写真を選んだ後発動
     func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
@@ -403,6 +432,8 @@ class ViewController: UIViewController
         // ズームのために要指定
         return displayImageView
     }
+    
+    
 
 
     override func didReceiveMemoryWarning() {
