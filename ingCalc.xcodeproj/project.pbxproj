@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B227062F1FCCF43700855257 /* ingCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B227062E1FCCF43700855257 /* ingCore.swift */; };
+		B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */; };
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
 		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
 		B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,6 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B227062E1FCCF43700855257 /* ingCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCore.swift; sourceTree = "<group>"; };
+		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B28329051FC901FE007EAB87 /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalculatorKeyboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/ingCalc-gboozwlncoxehddjesxywzhftvxr/Build/Products/Debug-iphoneos/CalculatorKeyboard.framework"; sourceTree = "<group>"; };
@@ -133,9 +137,11 @@
 				B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */,
 				B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */,
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
+				B227062E1FCCF43700855257 /* ingCore.swift */,
 				B2F152A31FBC9EFF00FD9030 /* Main.storyboard */,
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
+				B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */,
 				B2F152AB1FBC9EFF00FD9030 /* Info.plist */,
 			);
 			path = ingCalc;
@@ -307,7 +313,9 @@
 			files = (
 				B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */,
 				B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */,
+				B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */,
 				B2FFD3911FC27C900008DBF1 /* RirekiViewController.swift in Sources */,
+				B227062F1FCCF43700855257 /* ingCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +609,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */,
+			);
+			currentVersion = B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */;
+			path = ingCalc.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B2F152941FBC9EFF00FD9030 /* Project object */;
 }

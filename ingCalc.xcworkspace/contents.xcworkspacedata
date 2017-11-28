@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Rireki+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Rireki+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:CalculatorKeyboard-master/CalculatorKeyboard.xcodeproj">
    </FileRef>
    <FileRef

@@ -9,11 +9,12 @@
 import UIKit
 import CalculatorKeyboard   // 計算機用
 import Photos               // 写真用
-//import MobileCoreServices   // ?
+import CoreData
 
-//var rirekiResult:[String] = ["result1","result2","result3","result4","result5","result6","result7","result8","result9","result10"]
+
 var rirekiResult:[String] = []
 var rirekiTexts:[String] = []
+var rirekiNum:Int = -1
 
 class ViewController: UIViewController
 , CalculatorDelegate
@@ -26,6 +27,7 @@ class ViewController: UIViewController
     //@IBOutlet weak var displayImageView: UIImageView!
     var displayImageView: UIImageView = UIImageView()
     @IBOutlet weak var myScrollView: UIScrollView!
+    
 
     // 計算機
     var keyboard:CalculatorKeyboard = CalculatorKeyboard()
@@ -67,7 +69,8 @@ class ViewController: UIViewController
     //===============================
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType: Int) {
         inputText.text = value
-        
+        let myIngCore:ingCore = ingCore()
+
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
             if KeyType == CalculatorKey.multiply.rawValue {
@@ -85,10 +88,15 @@ class ViewController: UIViewController
             
         case CalculatorKey.equal.rawValue :
             resultText = resultText + "\(suuji) = \(value)"
-
+            rirekiNum = rirekiNum + 1
+            
             rirekiTexts.append(resultText)
             rirekiResult.append(value)
+            myIngCore.createRecord(r_id: rirekiNum, result: value, resultText: resultText)
             resultText = ""
+            
+            let dics = myIngCore.readRirekiAll()
+            print(dics)
             
         case CalculatorKey.clear.rawValue:
             print("けされたぁ")
@@ -99,8 +107,8 @@ class ViewController: UIViewController
         }
         
         suuji = value
-        print(value)
-        print(resultText)
+       // print(value)
+        //print(resultText)
     }
     
     func initCalc() {
@@ -141,9 +149,6 @@ class ViewController: UIViewController
     func openPhoto() {
         save()
     }
-    
-    
-
 
     func display() {
         
@@ -270,7 +275,6 @@ class ViewController: UIViewController
             print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
             
             print(info[UIImagePickerControllerMediaType]!) //public.image
-            //print(info[UIImagePickerControllerMediaMetadata]!)
             print(info[UIImagePickerControllerOriginalImage]!)//<UIImage: 0x60c0000b9f20> size {3000, 2002} orientation 0 scale 1.000000
                                                             //info[UIImagePickerControllerOriginalImage] as? UIImageにするとそのままUIImageを取得できます。
 
@@ -372,9 +376,9 @@ class ViewController: UIViewController
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("[displayImageView.center]↓")
         print(displayImageView.center)
-        displayImageView.center = scrollView.center
-        print(#function)
-        print(displayImageView.center)
+//        displayImageView.center = scrollView.center
+//        print(#function)
+//        print(displayImageView.center)
     }
     
     // ユーザがドラッグ後、スクロールが減速する瞬間に呼び出されるデリゲートメソッド.

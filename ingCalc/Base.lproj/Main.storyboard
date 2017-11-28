@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
-                                <rect key="frame" x="0.0" y="169" width="375" height="192"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="225"/>
                                 <color key="backgroundColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -43,31 +43,26 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Bv-jkZ">
                                 <rect key="frame" x="16" y="73" width="318" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="pdq-Hk-7vT"/>
+                                    <constraint firstAttribute="height" constant="55" id="pM0-7U-VYF"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="50"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eco-Ic-Jyg">
-                                <rect key="frame" x="0.0" y="73" width="375" height="594"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0om-1u-K4j"/>
-                            <constraint firstItem="Cty-1a-cjX" firstAttribute="trailing" secondItem="EGJ-Tl-Mal" secondAttribute="trailing" id="1Ub-dk-nmT"/>
-                            <constraint firstAttribute="trailing" secondItem="Cty-1a-cjX" secondAttribute="trailing" id="1pX-ga-IVk"/>
-                            <constraint firstItem="Cty-1a-cjX" firstAttribute="top" secondItem="7rD-Bv-jkZ" secondAttribute="bottom" constant="8" symbolic="YES" id="GAB-1l-0bR"/>
-                            <constraint firstItem="Cty-1a-cjX" firstAttribute="leading" secondItem="EGJ-Tl-Mal" secondAttribute="leading" id="KY2-dC-buP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7rD-Bv-jkZ" secondAttribute="trailing" constant="41" id="R1Z-do-b3j"/>
-                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="Sh5-Ha-bQ2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cty-1a-cjX" secondAttribute="bottom" constant="253" id="XQw-SC-C0B"/>
-                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="7rD-Bv-jkZ" secondAttribute="bottom" constant="41" id="fZ1-vY-nJs"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EGJ-Tl-Mal" secondAttribute="bottom" constant="262" id="hAk-JW-lx9"/>
-                            <constraint firstItem="Cty-1a-cjX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iLC-Zc-spj"/>
+                            <constraint firstAttribute="trailing" secondItem="EGJ-Tl-Mal" secondAttribute="trailing" id="HpX-ei-oQL"/>
+                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="SlL-hR-zmL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7rD-Bv-jkZ" secondAttribute="trailing" constant="41" id="aAR-C2-7e7"/>
+                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="ciR-Fs-W9x"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EGJ-Tl-Mal" secondAttribute="bottom" constant="262" id="e5V-eT-53a"/>
+                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f6N-3O-xDe"/>
+                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="leading" secondItem="Cty-1a-cjX" secondAttribute="leading" id="gAn-B5-JSC"/>
+                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="Cty-1a-cjX" secondAttribute="top" id="h2T-zT-nhg"/>
+                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="7rD-Bv-jkZ" secondAttribute="bottom" constant="8" symbolic="YES" id="mFK-PZ-tyA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cty-1a-cjX" secondAttribute="bottom" constant="253" id="pEC-8K-zfW"/>
+                            <constraint firstItem="Cty-1a-cjX" firstAttribute="trailing" secondItem="EGJ-Tl-Mal" secondAttribute="trailing" id="wvg-mM-Wsf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
