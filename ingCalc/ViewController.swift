@@ -88,11 +88,17 @@ class ViewController: UIViewController
             
         case CalculatorKey.equal.rawValue :
             resultText = resultText + "\(suuji) = \(value)"
-            rirekiNum = rirekiNum + 1
-            
+            if(myIngCore.rirekiCount >= 10 ) {
+                rirekiNum = rirekiNum + 1
+                
+            }
+            else{
+                //myIngCore.createRecord(r_id: rirekiNum, result: value, resultText: resultText)
+            }
+            myIngCore.insertRireki(result: value, resultText: resultText)
+
             rirekiTexts.append(resultText)
             rirekiResult.append(value)
-            myIngCore.createRecord(r_id: rirekiNum, result: value, resultText: resultText)
             resultText = ""
             
             let dics = myIngCore.readRirekiAll()
@@ -101,6 +107,8 @@ class ViewController: UIViewController
         case CalculatorKey.clear.rawValue:
             print("けされたぁ")
             resultText = ""
+            myIngCore.deleteRirekiAll()
+            
         default:
             break
             

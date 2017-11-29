@@ -12,9 +12,12 @@ import ActionCell           // アクションセル
 class RirekiViewController: UIViewController
     ,UITableViewDelegate
     ,UITableViewDataSource
+//    ,ActionCellDelegate
 {
     
     @IBOutlet weak var myTableView: UITableView!
+  //  var myActionCell:ActionCell = ActionCell()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +27,14 @@ class RirekiViewController: UIViewController
         myTableView.delegate   = self
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cellta")
         
+    //    myActionCell.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print(#function)
+        myTableView.reloadData()
+    }
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print(#function)
@@ -39,13 +45,12 @@ class RirekiViewController: UIViewController
     //=============================
     //TableView
     //=============================
-
-
     //2.行数の決定
     // numberofrowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return rirekiTexts.count
+        let myIngCore:ingCore = ingCore()
+
+        return myIngCore.rirekiCount
         
         //return rirekiResult.count
         
@@ -54,12 +59,18 @@ class RirekiViewController: UIViewController
     //3.リストに表示する文字列を決定し、表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    
+        let myIngCore:ingCore = ingCore()
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellta", for: indexPath) as! CustomTableViewCell
-        let count:Int = rirekiTexts.count - indexPath.row - 1
-        cell.button.setTitle(rirekiTexts[count], for: .normal)
+        //let count:Int = rirekiTexts.count - indexPath.row - 1
+
+       // cell.button.setTitle(rirekiTexts[count], for: .normal)
+        let rirekiForCell = myIngCore.readRireki(r_id: indexPath.row)
+        print("rirekiForCell:\(rirekiForCell)")
+        cell.button.setTitle((rirekiForCell["resultText"] as! String), for: .normal)
         cell.button.addTarget(self, action:  #selector(cellButtonClicked(_:))
             , for: .touchUpInside)
+        
         let wrapper = ActionCell()
         wrapper.delegate = self
         wrapper.animationStyle = .concurrent
@@ -67,8 +78,8 @@ class RirekiViewController: UIViewController
                      actionsLeft: [
 
                         {
-                            let action = IconAction(action: "cell 3 -- left 2")
-                            action.icon.image = #imageLiteral(resourceName: "image_0").withRenderingMode(.alwaysTemplate)
+                            let action = IconAction(action: "Delete" )
+                            action.icon.image = #imageLiteral(resourceName: "image_8").withRenderingMode(.alwaysTemplate)
                             action.icon.tintColor = UIColor.white
                             action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
                             return action

@@ -105,20 +105,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rireki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
-                                <rect key="frame" x="33" y="64" width="282" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="rireki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
+                                <rect key="frame" x="35" y="70" width="280" height="57"/>
                                 <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="80"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ouK-zP-7Dz">
-                                <rect key="frame" x="0.0" y="155" width="375" height="468"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ouK-zP-7Dz">
+                                <rect key="frame" x="0.0" y="129" width="375" height="468"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ouK-zP-7Dz" secondAttribute="trailing" id="2SZ-Fh-D0P"/>
+                            <constraint firstItem="g8q-DF-fXe" firstAttribute="leading" secondItem="mns-t9-i6x" secondAttribute="leading" constant="33" id="Ah5-O1-khx"/>
+                            <constraint firstItem="mns-t9-i6x" firstAttribute="bottom" secondItem="g8q-DF-fXe" secondAttribute="bottom" constant="493" id="CX0-5L-Nvp"/>
+                            <constraint firstItem="mns-t9-i6x" firstAttribute="trailing" secondItem="g8q-DF-fXe" secondAttribute="trailing" constant="60" id="JmE-xw-BY9"/>
+                            <constraint firstItem="g8q-DF-fXe" firstAttribute="top" secondItem="mns-t9-i6x" secondAttribute="top" id="SUT-iG-WPt"/>
+                            <constraint firstItem="ouK-zP-7Dz" firstAttribute="leading" secondItem="toU-LQ-yKp" secondAttribute="leading" id="Y4W-GP-0I1"/>
+                            <constraint firstItem="mns-t9-i6x" firstAttribute="bottom" secondItem="ouK-zP-7Dz" secondAttribute="bottom" constant="26" id="dil-Zo-T1i"/>
+                            <constraint firstItem="ouK-zP-7Dz" firstAttribute="top" secondItem="mns-t9-i6x" secondAttribute="top" constant="65" id="yLU-SD-o6d"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mns-t9-i6x"/>
                     </view>
                     <navigationItem key="navigationItem" id="Q2j-vK-wmr"/>
