@@ -63,8 +63,9 @@ class RirekiViewController: UIViewController
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellta", for: indexPath) as! CustomTableViewCell
         //let count:Int = rirekiTexts.count - indexPath.row - 1
+        
+        //TODO: Cellの線を消す
 
-       // cell.button.setTitle(rirekiTexts[count], for: .normal)
         let rirekiForCell = myIngCore.readRireki(r_id: indexPath.row)
         print("rirekiForCell:\(rirekiForCell)")
         cell.button.setTitle((rirekiForCell["resultText"] as! String), for: .normal)

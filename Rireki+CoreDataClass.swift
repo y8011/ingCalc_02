@@ -2,7 +2,7 @@
 //  Rireki+CoreDataClass.swift
 //  
 //
-//  Created by yuka on 2017/11/28.
+//  Created by yuka on 2017/12/01.
 //
 //
 

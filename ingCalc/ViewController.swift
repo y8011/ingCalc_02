@@ -5,6 +5,8 @@
 //  Created by yuka on 16/11/2017.
 //  Copyright © 2017 yuka. All rights reserved.
 //
+//TODO: デザインは高さ固定、横はオートで伸びる方が良い
+// fontとのバランスを考えると横長のアイテムは↑のように考える方が良い
 
 import UIKit
 import CalculatorKeyboard   // 計算機用
@@ -71,6 +73,7 @@ class ViewController: UIViewController
         inputText.text = value
         let myIngCore:ingCore = ingCore()
 
+        myIngCore.editRireki(r_id: 1, result: "1", resultText: "1")
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
             if KeyType == CalculatorKey.multiply.rawValue {
