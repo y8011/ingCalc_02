@@ -24,23 +24,32 @@ class ingCoreData {
     private let maxNum:Int = 10
     
     init() {
-        let viewContext = appDalegate.persistentContainer.viewContext
-        let query:NSFetchRequest<Rireki> =  Rireki.fetchRequest()
-        //取り出しの順番
-        let sortDescripter = NSSortDescriptor(key: "resultDate", ascending: false)//ascendind:true 昇順、false 降順です
-        query.sortDescriptors = [sortDescripter]
         
+        //エンティティを操作するためのオブジェクトを作成する
+        let viewContext = appDalegate.persistentContainer.viewContext
+
+        //エンティティオブジェクトを作成する
+        let myEntity = NSEntityDescription.entity(forEntityName: "Rireki", in: viewContext)
+
+        let query:NSFetchRequest<Rireki> =  Rireki.fetchRequest()
+        query.entity = myEntity
+        
+        //取り出しの順番
+        let sortDescripter = NSSortDescriptor(key: "resultDate", ascending: true)//ascendind:true 昇順 古い順、false 降順　新しい順
+        query.sortDescriptors = [sortDescripter]
         do {
             let fetchResults = try viewContext.fetch(query)
             rirekiCount = fetchResults.count
-            for fetch:AnyObject in fetchResults {
-                if(min_rid == -1) {
-                    min_rid = (fetch.value(forKey: "r_id") as? Int)!
+            if(rirekiCount != 0){
+                for fetch:AnyObject in fetchResults {
+                    if(min_rid == -1) {
+                        min_rid = (fetch.value(forKey: "r_id") as? Int)!
+                    }
+                    max_rid = (fetch.value(forKey: "r_id") as? Int)!
                 }
-                max_rid = (fetch.value(forKey: "r_id") as? Int)!
+                NSLog("coreDataの数\(rirekiCount)")
+                NSLog("max_ridの値:\(max_rid)")
             }
-            NSLog("coreDataの数\(rirekiCount)")
-            NSLog("max_ridの値:\(max_rid)")
         }
         catch{
             
@@ -87,16 +96,17 @@ class ingCoreData {
         //エンティティを操作するためのオブジェクトを作成する
         let viewContext = appDalegate.persistentContainer.viewContext
         
-
-        //===== 絞り込み =====
-     //   let r_idPredicate = NSPredicate(format: "r_id = %d", r_id)
-     //   query.predicate = r_idPredicate
+        //エンティティオブジェクトを作成する
+        let myEntity = NSEntityDescription.entity(forEntityName: "Rireki", in: viewContext)
         
-        //エンティティを設定
         let query:NSFetchRequest<Rireki> =  Rireki.fetchRequest()
+        query.entity = myEntity
+        
         //取り出しの順番
-//        let sortDescripter = NSSortDescriptor(key: "resultDate", ascending: false)//ascendind:true 昇順、false 降順です
-//        query.sortDescriptors = [sortDescripter]
+        let sortDescripter = NSSortDescriptor(key: "resultDate", ascending: false)//ascendind:true 昇順 古い順、false 降順　新しい順
+        query.sortDescriptors = [sortDescripter]
+
+        
         //データを一括取得
         do {
             
@@ -119,6 +129,7 @@ class ingCoreData {
             
             
         } catch  {
+            print(error)
             
         }
         
@@ -305,14 +316,20 @@ class ingCoreData {
     
     //==============================
     // 挿入 履歴maxnum件　最新に入れる
+    //　戻り値：　挿入したr_id
     //==============================
     
-    func insertRireki(result:String, resultText:String) {
+    func insertRireki(result:String, resultText:String) -> Int {
         print(#function)
+        let newid:Int = max_rid + 1
         
-        createRecord(r_id: max_rid+1, result: result, resultText: resultText)
-        deleteRireki(r_id: min_rid)
+        createRecord(r_id: newid, result: result, resultText: resultText)
+        if(rirekiCount > maxNum ) {
+            deleteRireki(r_id: min_rid)
+
+        }
         
+        return newid
         
     }
     

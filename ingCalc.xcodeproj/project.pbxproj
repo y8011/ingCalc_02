@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B227062F1FCCF43700855257 /* ingCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B227062E1FCCF43700855257 /* ingCore.swift */; };
 		B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */; };
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
 		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
 		B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B27E0EBB1FC9215E00ABF908 /* ActionCell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2B67EF51FC87A340086134C /* ActionCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B296CB931FC44C8600E17D46 /* Red-kitten.jpg */; };
+		B298283E1FD0E2DE00517CFB /* ingLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */; };
+		B29828401FD0EBC700517CFB /* ingCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B298283F1FD0EBC700517CFB /* ingCoreData.swift */; };
 		B2B67EF61FC87A340086134C /* ActionCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B67EF51FC87A340086134C /* ActionCell.framework */; };
 		B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */; };
 		B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F152A11FBC9EFF00FD9030 /* ViewController.swift */; };
@@ -57,12 +58,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B227062E1FCCF43700855257 /* ingCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCore.swift; sourceTree = "<group>"; };
 		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B28329051FC901FE007EAB87 /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalculatorKeyboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/ingCalc-gboozwlncoxehddjesxywzhftvxr/Build/Products/Debug-iphoneos/CalculatorKeyboard.framework"; sourceTree = "<group>"; };
 		B296CB931FC44C8600E17D46 /* Red-kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Red-kitten.jpg"; sourceTree = "<group>"; };
+		B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingLocalImage.swift; sourceTree = "<group>"; };
+		B298283F1FD0EBC700517CFB /* ingCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCoreData.swift; sourceTree = "<group>"; };
+		B29828411FD0EC6600517CFB /* ingCalc 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ingCalc 2.xcdatamodel"; sourceTree = "<group>"; };
 		B2B67EF51FC87A340086134C /* ActionCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionCell.framework; path = Carthage/Build/iOS/ActionCell.framework; sourceTree = "<group>"; };
 		B2F1529C1FBC9EFF00FD9030 /* ingCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ingCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,7 +140,8 @@
 				B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */,
 				B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */,
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
-				B227062E1FCCF43700855257 /* ingCore.swift */,
+				B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */,
+				B298283F1FD0EBC700517CFB /* ingCoreData.swift */,
 				B2F152A31FBC9EFF00FD9030 /* Main.storyboard */,
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
@@ -313,9 +317,10 @@
 			files = (
 				B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */,
 				B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */,
+				B298283E1FD0E2DE00517CFB /* ingLocalImage.swift in Sources */,
 				B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */,
 				B2FFD3911FC27C900008DBF1 /* RirekiViewController.swift in Sources */,
-				B227062F1FCCF43700855257 /* ingCore.swift in Sources */,
+				B29828401FD0EBC700517CFB /* ingCoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +619,7 @@
 		B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B29828411FD0EC6600517CFB /* ingCalc 2.xcdatamodel */,
 				B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */,
 			);
 			currentVersion = B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */;

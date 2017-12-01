@@ -17,7 +17,8 @@ class RirekiViewController: UIViewController
     
     @IBOutlet weak var myTableView: UITableView!
   //  var myActionCell:ActionCell = ActionCell()
-    
+    var rirekids:[NSDictionary] = []
+    var myIngCoreData:ingCoreData = ingCoreData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ class RirekiViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         print(#function)
-        myTableView.reloadData()
+        reloadForTableView()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,15 +42,23 @@ class RirekiViewController: UIViewController
         print(#function)
         // Dispose of any resources that can be recreated.
     }
-    
 
+    func reloadForTableView() {
+        print(#function)
+        let myIngCoreData:ingCoreData = ingCoreData()
+        rirekids = myIngCoreData.readRirekiAll()
+        
+        myTableView.reloadData()
+
+    }
+    
     //=============================
     //TableView
     //=============================
     //2.行数の決定
     // numberofrowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let myIngCore:ingCore = ingCore()
+        let myIngCore:ingCoreData = ingCoreData()
 
         return myIngCore.rirekiCount
         
@@ -59,19 +69,20 @@ class RirekiViewController: UIViewController
     //3.リストに表示する文字列を決定し、表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let myIngCore:ingCore = ingCore()
+    //    let myIngCore:ingCoreData = ingCoreData()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellta", for: indexPath) as! CustomTableViewCell
-        //let count:Int = rirekiTexts.count - indexPath.row - 1
         
-        //TODO: Cellの線を消す
-
-        let rirekiForCell = myIngCore.readRireki(r_id: indexPath.row)
-        print("rirekiForCell:\(rirekiForCell)")
+        
+//        let rirekiForCell = myIngCore.readRireki(r_id: indexPath.row)
+        let rirekiForCell = rirekids[indexPath.row]
+        cell.hiddenLabelOfRid = rirekiForCell["r_id"] as! Int
+        cell.hiddenLabelOfResult = rirekiForCell["result"] as! String
         cell.button.setTitle((rirekiForCell["resultText"] as! String), for: .normal)
         cell.button.addTarget(self, action:  #selector(cellButtonClicked(_:))
             , for: .touchUpInside)
-        
+        myTableView.separatorColor = UIColor.white
+
         let wrapper = ActionCell()
         wrapper.delegate = self
         wrapper.animationStyle = .concurrent
@@ -79,19 +90,22 @@ class RirekiViewController: UIViewController
                      actionsLeft: [
 
                         {
-                            let action = IconAction(action: "Delete" )
+                            let action = IconTextAction(action: "Delete" )
                             action.icon.image = #imageLiteral(resourceName: "image_8").withRenderingMode(.alwaysTemplate)
                             action.icon.tintColor = UIColor.white
+                            action.label.text = "Delete!\(rirekiForCell["r_id"]!)"
+                            action.label.font = UIFont.systemFont(ofSize: 12)
+                            action.label.textColor = UIColor.white
                             action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
                             return action
                         }(),
                         ],
                      actionsRight: [
                         {
-                            let action = IconTextAction(action: "cell 3 -- right 0")
-                            action.icon.image = #imageLiteral(resourceName: "image_1").withRenderingMode(.alwaysTemplate)
+                            let action = IconTextAction(action: "Copy")
+                            action.icon.image = #imageLiteral(resourceName: "image_7").withRenderingMode(.alwaysTemplate)
                             action.icon.tintColor = UIColor.white
-                            action.label.text = "Hello"
+                            action.label.text = "Copy"
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
                             action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
@@ -144,15 +158,6 @@ class RirekiViewController: UIViewController
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -168,6 +173,32 @@ extension RirekiViewController: ActionCellDelegate {
     public func didActionTriggered(cell: UITableViewCell, action: String) {
         print(#function)
         print(action)
+        let cellta = cell as! CustomTableViewCell
+        
+        if(action == "Delete")
+        {
+            let myIngCoreData:ingCoreData = ingCoreData()
+            let myIngLocalImage:ingLocalImage = ingLocalImage()
+            let ridOfCell = cellta.hiddenLabelOfRid
+            
+            myIngCoreData.deleteRireki(r_id: ridOfCell )
+            print("cellta.hiddenLabelOfRid : \(ridOfCell)")
+            myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(ridOfCell).jpg")
+            self.reloadForTableView()
+            
+            
+        }
+        else if(action == "Copy")
+        {
+            let myPasteBoard = UIPasteboard.general
+//            myPasteBoard.string = (cellta.button.titleLabel?.text as! String)
+            myPasteBoard.string = cellta.hiddenLabelOfResult
+
+            alertAction1(s_title: "ながら電卓",s_message: "クリップボードにコピーされました",s_action: "OK")
+            
+        }
+        
+        
     }
 }
 
@@ -175,6 +206,8 @@ extension RirekiViewController: ActionCellDelegate {
 class CustomTableViewCell: UITableViewCell {
     
     var button: UIButton!
+    var hiddenLabelOfResult:String = ""
+    var hiddenLabelOfRid:Int = 0
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -182,16 +215,17 @@ class CustomTableViewCell: UITableViewCell {
         button = {
             let the = UIButton()
             the.setTitle("click me", for: .normal)
-            the.setTitleColor(UIColor.white, for: .normal)
-            the.backgroundColor = UIColor.brown
+            the.setTitleColor(UIColor.black, for: .normal)
+            the.backgroundColor = UIColor.orange
+       //     the.tintColor = UIColor.orange
             return the
         }()
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
-        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 300))
-        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40))
+        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 500))  //TODO: ここの数字の横幅を画面最大にすること
+        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50))  //TODO: ここの数字とセルの高さを同じにすること
     }
     
     required init?(coder aDecoder: NSCoder) {

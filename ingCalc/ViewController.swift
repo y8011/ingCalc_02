@@ -71,9 +71,8 @@ class ViewController: UIViewController
     //===============================
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType: Int) {
         inputText.text = value
-        let myIngCore:ingCore = ingCore()
+        
 
-        myIngCore.editRireki(r_id: 1, result: "1", resultText: "1")
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
             if KeyType == CalculatorKey.multiply.rawValue {
@@ -91,26 +90,29 @@ class ViewController: UIViewController
             
         case CalculatorKey.equal.rawValue :
             resultText = resultText + "\(suuji) = \(value)"
-            if(myIngCore.rirekiCount >= 10 ) {
+            let myIngCoreData:ingCoreData = ingCoreData()
+            let myIngLocalImage:ingLocalImage = ingLocalImage()
+            if(myIngCoreData.rirekiCount >= 10 ) {
                 rirekiNum = rirekiNum + 1
                 
             }
-            else{
-                //myIngCore.createRecord(r_id: rirekiNum, result: value, resultText: resultText)
-            }
-            myIngCore.insertRireki(result: value, resultText: resultText)
+
+            let newrid = myIngCoreData.insertRireki(result: value, resultText: resultText)
+            myIngLocalImage.storeJpgImageInDocument(image: displayImageView.image!, name: "image\(newrid).jpg")
 
             rirekiTexts.append(resultText)
             rirekiResult.append(value)
             resultText = ""
             
-            let dics = myIngCore.readRirekiAll()
+            let dics = myIngCoreData.readRirekiAll()
             print(dics)
             
         case CalculatorKey.clear.rawValue:
             print("けされたぁ")
             resultText = ""
-            myIngCore.deleteRirekiAll()
+            let myIngCoreData:ingCoreData = ingCoreData()
+            myIngCoreData.deleteRirekiAll()
+            
             
         default:
             break
