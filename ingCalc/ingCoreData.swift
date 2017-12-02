@@ -166,8 +166,9 @@ class ingCoreData {
                 let r_id:Int = (fetch.value(forKey: "r_id") as? Int)!
                 let result:String = (fetch.value(forKey: "result") as? String)!
                 let resultText:String = (fetch.value(forKey: "resultText") as? String)!
-                
-                dic =  ["r_id":r_id,"result":result,"resultText":resultText]
+                let resultDate:NSDate = (fetch.value(forKey: "resultDate") as? NSDate)!
+
+                dic =  ["r_id":r_id,"result":result,"resultText":resultText,"resultDate":resultDate]
                 
                 print(dic)
                 
@@ -260,59 +261,59 @@ class ingCoreData {
     // Edit
     //==============================
     
-    func editRireki(r_id:Int, result:String, resultText:String) {
-        print(#function)
-        //エンティティを操作するためのオブジェクトを作成する
-        let viewContext = appDalegate.persistentContainer.viewContext
-        
-        //どのエンティティからデータを取得してくるか設定（ToDoエンティティ）
-        let query:NSFetchRequest<Rireki> =  Rireki.fetchRequest()
-        
-        
-        //===== 絞り込み =====
-        let r_idPredicate = NSPredicate(format: "r_id = %d", r_id)
-        query.predicate = r_idPredicate
-        
-        do {
-            
-            let fetchResults = try viewContext.fetch(query)
-            
-            if (fetchResults.count == 0) {
-                //なければ新規で作る
-                print(#function)
-                print("ないので作ります。")
-                createRecord(r_id: r_id, result: result, resultText: resultText)
-                return  // 作って終了する
-            }
-            
-            for fetch:AnyObject in fetchResults {
-                
-                //更新する対象のデータをNSManagedObjectにダウンキャスト
-                let record = fetch as! NSManagedObject
-                //値のセット
-                record.setValue(r_id, forKey: "r_id")
-                record.setValue(result, forKey: "result")
-                record.setValue(resultText, forKey: "resultText")
-                
-                //レコードの即時保存
-                do {
-                    try viewContext.save()
-                } catch {
-                    //エラーが発生した時に行う例外処理を書いておく
-                    print(#function)
-                    print("保存できなかった")
-                }
-                
-                
-            }
-            
-            
-        } catch  {
-            
-        }
-        
-        
-    }
+//    func editRireki(r_id:Int, result:String, resultText:String) {
+//        print(#function)
+//        //エンティティを操作するためのオブジェクトを作成する
+//        let viewContext = appDalegate.persistentContainer.viewContext
+//
+//        //どのエンティティからデータを取得してくるか設定（ToDoエンティティ）
+//        let query:NSFetchRequest<Rireki> =  Rireki.fetchRequest()
+//
+//
+//        //===== 絞り込み =====
+//        let r_idPredicate = NSPredicate(format: "r_id = %d", r_id)
+//        query.predicate = r_idPredicate
+//
+//        do {
+//
+//            let fetchResults = try viewContext.fetch(query)
+//
+//            if (fetchResults.count == 0) {
+//                //なければ新規で作る
+//                print(#function)
+//                print("ないので作ります。")
+//                createRecord(r_id: r_id, result: result, resultText: resultText)
+//                return  // 作って終了する
+//            }
+//
+//            for fetch:AnyObject in fetchResults {
+//
+//                //更新する対象のデータをNSManagedObjectにダウンキャスト
+//                let record = fetch as! NSManagedObject
+//                //値のセット
+//                record.setValue(r_id, forKey: "r_id")
+//                record.setValue(result, forKey: "result")
+//                record.setValue(resultText, forKey: "resultText")
+//
+//                //レコードの即時保存
+//                do {
+//                    try viewContext.save()
+//                } catch {
+//                    //エラーが発生した時に行う例外処理を書いておく
+//                    print(#function)
+//                    print("保存できなかった")
+//                }
+//
+//
+//            }
+//
+//
+//        } catch  {
+//
+//        }
+//
+//
+//    }
     
     //==============================
     // 挿入 履歴maxnum件　最新に入れる

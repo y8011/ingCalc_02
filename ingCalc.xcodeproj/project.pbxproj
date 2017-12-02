@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B214A3871FD1CAAE0072714A /* pictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B214A3861FD1CAAE0072714A /* pictureViewController.swift */; };
 		B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */; };
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
 		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B214A3861FD1CAAE0072714A /* pictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pictureViewController.swift; sourceTree = "<group>"; };
 		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
 				B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */,
 				B298283F1FD0EBC700517CFB /* ingCoreData.swift */,
+				B214A3861FD1CAAE0072714A /* pictureViewController.swift */,
 				B2F152A31FBC9EFF00FD9030 /* Main.storyboard */,
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
@@ -317,6 +320,7 @@
 			files = (
 				B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */,
 				B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */,
+				B214A3871FD1CAAE0072714A /* pictureViewController.swift in Sources */,
 				B298283E1FD0E2DE00517CFB /* ingLocalImage.swift in Sources */,
 				B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */,
 				B2FFD3911FC27C900008DBF1 /* RirekiViewController.swift in Sources */,

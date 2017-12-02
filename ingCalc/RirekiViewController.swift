@@ -65,6 +65,30 @@ class RirekiViewController: UIViewController
         //return rirekiResult.count
         
     }
+    
+    var selectedIndex:Int = -1
+    
+    // セグエを使って、画面遷移している時は発動
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 次の画面のインスタンス(オブジェクト）を取得
+        let pvc:pictureViewController = segue.destination as! pictureViewController
+        
+        //次の画面のプロパティ（メンバ変数）passedIndexに選択された行番号を渡す
+        pvc.passedIndex = selectedIndex
+        print(selectedIndex)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)行目がタップされました")
+        //選択された行番号を保存
+        selectedIndex = indexPath.row
+        
+        //セグエの名前を指定して、画面遷移処理を発動
+        //storyboadのIdentifierと名前を合わせるのを忘れずに
+        performSegue(withIdentifier: "segueko", sender: nil)
+        
+    }
 
     //3.リストに表示する文字列を決定し、表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,7 +112,6 @@ class RirekiViewController: UIViewController
         wrapper.animationStyle = .concurrent
         wrapper.wrap(cell: cell,
                      actionsLeft: [
-
                         {
                             let action = IconTextAction(action: "Delete" )
                             action.icon.image = #imageLiteral(resourceName: "image_8").withRenderingMode(.alwaysTemplate)
@@ -111,21 +134,24 @@ class RirekiViewController: UIViewController
                             action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
                             return action
                         }(),
-
-
                         ])
         return cell
     }
     
     //addTargetでselector通じて引数を渡すことはできない。それ自身を渡すことならできる
     //なので、テキストラベルに入っているボタンを渡すことにする
-    @objc func cellButtonClicked(_ sender: UIButton) {
+    @objc func cellButtonClicked(_ sender: UIButton ) {
        // self.output.text = "cell button clicked"
         print(#function)
-        let myPasteBoard = UIPasteboard.general
-        myPasteBoard.string = sender.titleLabel?.text as! String
-        print(sender.description)
-        print(sender.titleLabel?.text as! String)
+
+     //==============================================================================ここなおす
+        //選択された行番号を保存
+        selectedIndex = 1
+        
+        //セグエの名前を指定して、画面遷移処理を発動
+        //storyboadのIdentifierと名前を合わせるのを忘れずに
+        performSegue(withIdentifier: "segueko", sender: nil)
+
     }
 
     
@@ -154,11 +180,7 @@ class RirekiViewController: UIViewController
                 animated: true,
                 completion: nil
         )
-        
     }
-
-
-
 }
 
 

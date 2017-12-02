@@ -163,37 +163,37 @@ class ViewController: UIViewController
         save()
     }
 
-    func display() {
-        
-        print("display")
-        // UserDefaultから取り出す
-        let myDefault = UserDefaults.standard
-        
-        //データを取り出す
-        let strURL = myDefault.string(forKey: "selectedPhotoURL")
-        
-        if strURL != nil {
-            
-            let url = URL(string: strURL as String!)
-            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)  // TODO:fetchResult変更
-            
-            let asset: PHAsset = (fetchResult.firstObject as! PHAsset)
-            let manager: PHImageManager = PHImageManager()
-            let size = myScrollView.frame.size
-            
-            manager.requestImage(for: asset, targetSize: size , contentMode: .aspectFit, options: nil, resultHandler: { ( image , info) -> Void in
-                self.displayImageView.image = image!
-                 // print(image!)
-                  print(info!)
-                print("[myScrollView.frame.size]↓")
-                print(size)
-                print(self.myScrollView.center)
-                
-            })
-            // 初期表示のためcontentInsetを更新
-            updateScrollInset()
-        }
-    }
+//    func display() {
+//
+//        print("display")
+//        // UserDefaultから取り出す
+//        let myDefault = UserDefaults.standard
+//
+//        //データを取り出す
+//        let strURL = myDefault.string(forKey: "selectedPhotoURL")
+//
+//        if strURL != nil {
+//
+//            let url = URL(string: strURL as String!)
+//            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)  // TODO:fetchResult変更
+//
+//            let asset: PHAsset = (fetchResult.firstObject as! PHAsset)
+//            let manager: PHImageManager = PHImageManager()
+//            let size = myScrollView.frame.size
+//
+//            manager.requestImage(for: asset, targetSize: size , contentMode: .aspectFit, options: nil, resultHandler: { ( image , info) -> Void in
+//                self.displayImageView.image = image!
+//                 // print(image!)
+//                  print(info!)
+//                print("[myScrollView.frame.size]↓")
+//                print(size)
+//                print(self.myScrollView.center)
+//
+//            })
+//            // 初期表示のためcontentInsetを更新
+//            updateScrollInset()
+//        }
+//    }
     
     func showCamera() {
         print(#function)
