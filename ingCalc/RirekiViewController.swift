@@ -42,6 +42,13 @@ class RirekiViewController: UIViewController
         print(#function)
         // Dispose of any resources that can be recreated.
     }
+    
+    //移動した画面から戻ってきた時発動
+    @IBAction func returnMenu(_ segu:UIStoryboardSegue) {
+        print("戻ってきました")
+        
+    }
+
 
     func reloadForTableView() {
         print(#function)

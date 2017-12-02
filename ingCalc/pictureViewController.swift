@@ -49,6 +49,9 @@ class pictureViewController: UIViewController
 
     }
     
+    @IBAction func tapBack(_ sender: UIButton) {
+        
+    }
     //==============================
     // ScrolView
     //==============================
@@ -88,10 +91,19 @@ class pictureViewController: UIViewController
         )
         
     }
+    // スクロール中に呼び出され続けるデリゲートメソッド.
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
     // ズーム中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         print(#function)
       updateScrollInset()
+    }
+    // ユーザが指でドラッグを開始した場合に呼び出されるデリゲートメソッド.
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print(#function)
     }
     
     // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
@@ -101,6 +113,36 @@ class pictureViewController: UIViewController
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         print(#function)
     }
+
+    // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
+    // decelerateがYESであれば、慣性移動を行っている.
+    //
+    // 指をぴたっと止めると、decelerateはNOになり、
+    // その場合は「scrollViewWillBeginDecelerating:」「scrollViewDidEndDecelerating:」が呼ばれない？
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("[displayImageView.center]↓")
+        print(detailImageView.center)
+        //        displayImageView.center = scrollView.center
+        //        print(#function)
+        //        print(displayImageView.center)
+    }
+    
+    // ユーザがドラッグ後、スクロールが減速する瞬間に呼び出されるデリゲートメソッド.
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // ユーザがドラッグ後、慣性移動も含め、スクロールが停止した際に呼び出されるデリゲートメソッド.
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print(#function)
+    }
+    
+    // スクロールのアニメーションが終了した際に呼び出されるデリゲートメソッド.
+    // アニメーションプロパティがNOの場合には呼び出されない.
+    // 【setContentOffset】/【scrollRectVisible:animated:】
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print(#function)
+    }
     
     // ズーム中に呼び出されるデリゲートメソッド.
     // ズームの値に対応したUIViewを返却する.
@@ -108,6 +150,11 @@ class pictureViewController: UIViewController
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         print(#function)
         return self.detailImageView
+    }
+    
+    // ズーム完了時(バウンドアニメーション完了時)に呼び出されるデリゲートメソッド.
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        print(#function)
     }
     
     // 先頭にスクロールする際に呼び出されるデリゲートメソッド.

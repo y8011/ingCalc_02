@@ -132,10 +132,11 @@
                     <navigationItem key="navigationItem" id="Q2j-vK-wmr"/>
                     <connections>
                         <outlet property="myTableView" destination="ouK-zP-7Dz" id="ch9-Q2-0UL"/>
-                        <segue destination="6rC-ad-928" kind="presentation" identifier="segueko" id="7MU-LX-zId"/>
+                        <segue destination="6rC-ad-928" kind="modal" identifier="segueko" id="7MU-LX-zId"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ONY-D3-Yz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4S1-UX-914" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="488.80000000000001" y="147.97601199400302"/>
         </scene>
@@ -155,13 +156,15 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zN-Kj-Raz">
-                                <rect key="frame" x="0.0" y="62" width="375" height="405"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bS-F4-gCa">
                                 <rect key="frame" x="0.0" y="62" width="375" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zN-Kj-Raz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ytb-eb-Dis">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -174,6 +177,10 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                 <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="tapBack:" destination="6rC-ad-928" eventType="touchUpInside" id="hCw-Qs-hhb"/>
+                                                    <segue destination="4S1-UX-914" kind="unwind" unwindAction="returnMenu:" id="51C-pE-cfs"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
