@@ -14,9 +14,6 @@ import Photos               // 写真用
 import CoreData
 
 
-var rirekiResult:[String] = []
-var rirekiTexts:[String] = []
-var rirekiNum:Int = -1
 
 class ViewController: UIViewController
 , CalculatorDelegate
@@ -75,6 +72,26 @@ class ViewController: UIViewController
 
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
+//            let str = "Hello,World Everybody."
+//            let comma = str.index(of: ",")!
+//            let dot   = str.index(of: ".")!
+//            let space = str.index(of: " ")!
+//
+//            print(str[..<comma]) // "Hello"
+//            print(str[..<dot])   // "Hello,World Everybody"
+//            print(str[..<space]) // "Hello,World"
+            if btn4cnt > 1 {
+                //operatorが連続していたら一番後ろにあるopratorの文字を削除する。そのあとで入れ直す
+                let cnt = resultText.count
+                print(resultText.endIndex)
+                print(resultText.startIndex)
+//                resultText.remove(at: resultText.endIndex)
+                print(cnt)
+                print(resultText)
+                let range = resultText.index(resultText.endIndex, offsetBy: -1)..<resultText.endIndex
+                resultText.removeSubrange(range)
+                print(resultText)
+            }
             if KeyType == CalculatorKey.multiply.rawValue {
                 resultText = resultText + "\(suuji)x"
             }
@@ -92,25 +109,35 @@ class ViewController: UIViewController
             resultText = resultText + "\(suuji) = \(value)"
             let myIngCoreData:ingCoreData = ingCoreData()
             let myIngLocalImage:ingLocalImage = ingLocalImage()
-            if(myIngCoreData.rirekiCount >= 10 ) {
-                rirekiNum = rirekiNum + 1
-                
-            }
 
             let newrid = myIngCoreData.insertRireki(result: value, resultText: resultText)
             myIngLocalImage.storeJpgImageInDocument(image: displayImageView.image!, name: "image\(newrid).jpg")
 
-            rirekiTexts.append(resultText)
-            rirekiResult.append(value)
             resultText = ""
             
-            let dics = myIngCoreData.readRirekiAll()
-            print(dics)
             
         case CalculatorKey.clear.rawValue:
             print("けされたぁ")
             resultText = ""
             let myIngCoreData:ingCoreData = ingCoreData()
+            let myIngLocalImage:ingLocalImage = ingLocalImage()
+            
+            let dics = myIngCoreData.readRirekiAll()
+            switch myIngCoreData.rirekiCount {
+            case 0:
+                break
+            case 1:
+                let r_id = myIngCoreData.max_rid
+                myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(r_id).jpg")
+            case 2...:
+                for i in 1...myIngCoreData.rirekiCount {
+                    let dic = dics[i-1]
+                    let r_id:Int  = dic["r_id"] as! Int
+                    myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(r_id).jpg")
+                }
+            default:
+                break
+            }
             myIngCoreData.deleteRirekiAll()
             
             
@@ -230,8 +257,10 @@ class ViewController: UIViewController
     //カメラロールで写真を選んだ後発動
     func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
-        
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+
         //for camera
         // UIImagePickerControllerReferenceURL はカメラロールを選択した時だけ存在するので切り分け。
         if (info.index(forKey: UIImagePickerControllerReferenceURL) == nil) {
@@ -253,16 +282,16 @@ class ViewController: UIViewController
         else {
             //for photolibrary
             let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
-            print("didFinishPickingMediaWithInfo")
-            print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
-            
-            print(info[UIImagePickerControllerMediaType]!) //public.image
-            print(info[UIImagePickerControllerOriginalImage]!)//<UIImage: 0x60c0000b9f20> size {3000, 2002} orientation 0 scale 1.000000
-                                                            //info[UIImagePickerControllerOriginalImage] as? UIImageにするとそのままUIImageを取得できます。
+            if Constants.DEBUG == true {
+                print("didFinishPickingMediaWithInfo")
+                print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
+            }
 
             let strURL:String = assetURL.description
-            print("----  ")
-            print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
+            if Constants.DEBUG == true {
+                print("----  ")
+                print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
+            }
             
             // ユーザーデフォルトを用意する
             let myDefault = UserDefaults.standard
@@ -339,7 +368,10 @@ class ViewController: UIViewController
     
     // ユーザが指でドラッグを開始した場合に呼び出されるデリゲートメソッド.
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+        
     }
     
     // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
@@ -347,7 +379,9 @@ class ViewController: UIViewController
     // targetContentOffsetは、停止が予想されるポイント？
     // pagingEnabledがYESの場合には、呼び出されません.
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
@@ -356,65 +390,82 @@ class ViewController: UIViewController
     // 指をぴたっと止めると、decelerateはNOになり、
     // その場合は「scrollViewWillBeginDecelerating:」「scrollViewDidEndDecelerating:」が呼ばれない？
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("[displayImageView.center]↓")
-        print(displayImageView.center)
-//        displayImageView.center = scrollView.center
-//        print(#function)
-//        print(displayImageView.center)
+        if Constants.DEBUG == true {
+            print("[displayImageView.center]↓")
+            print(displayImageView.center)
+        }
     }
     
     // ユーザがドラッグ後、スクロールが減速する瞬間に呼び出されるデリゲートメソッド.
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ユーザがドラッグ後、慣性移動も含め、スクロールが停止した際に呼び出されるデリゲートメソッド.
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print(#function)
-    }
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+   }
     
     // スクロールのアニメーションが終了した際に呼び出されるデリゲートメソッド.
     // アニメーションプロパティがNOの場合には呼び出されない.
     // 【setContentOffset】/【scrollRectVisible:animated:】
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        print(#function)
-    }
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+   }
     
     // ズーム中に呼び出されるデリゲートメソッド.
     // ズームの値に対応したUIViewを返却する.
     // nilを返却すると、何も起きない.
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         return self.displayImageView
     }
     
     // ズーム開始時に呼び出されるデリゲートメソッド.
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ズーム完了時(バウンドアニメーション完了時)に呼び出されるデリゲートメソッド.
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // 先頭にスクロールする際に呼び出されるデリゲートメソッド.
     // NOなら反応しない.
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         return true
     }
     
     // 先頭へのスクロールが完了した際に呼び出されるデリゲートメソッド.
     // すでに先頭にいる場合には呼び出されない.
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     
     //ズームのために要指定
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         // ズームのために要指定
         return displayImageView
     }

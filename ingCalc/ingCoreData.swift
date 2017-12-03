@@ -31,7 +31,7 @@ class ingCoreData {
         //エンティティオブジェクトを作成する
         let myEntity = NSEntityDescription.entity(forEntityName: "Rireki", in: viewContext)
 
-        let query:NSFetchRequest<Rireki> =  Rireki.fetchRequest()
+        let query:NSFetchRequest<Rireki> = Rireki.fetchRequest()
         query.entity = myEntity
         
         //取り出しの順番
@@ -60,7 +60,9 @@ class ingCoreData {
     // Create
     //==============================
     func createRecord(r_id:Int, result:String, resultText:String) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         //エンティティを操作するためのオブジェクトを作成する
         let viewContext = appDalegate.persistentContainer.viewContext
         
@@ -92,7 +94,9 @@ class ingCoreData {
     //==============================
     //既に存在するデータの読み込み処理
     func readRirekiAll() -> [NSDictionary] {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         //エンティティを操作するためのオブジェクトを作成する
         let viewContext = appDalegate.persistentContainer.viewContext
         
@@ -120,8 +124,8 @@ class ingCoreData {
 
                 let dic =  ["r_id":r_id,"result":result,"resultText":resultText,"resultDate":resultDate] as [String : Any]
                 
-                print(dic)
-                
+
+
                 dics.append(dic as NSDictionary)
                 
                 
@@ -142,7 +146,9 @@ class ingCoreData {
     // Read 1
     //==============================
     func readRireki(r_id:Int) -> NSDictionary {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         //エンティティを操作するためのオブジェクトを作成する
         let viewContext = appDalegate.persistentContainer.viewContext
         var dic:NSDictionary = NSDictionary()
@@ -185,7 +191,9 @@ class ingCoreData {
     // Delete all
     //==============================
     func deleteRirekiAll() {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         //エンティティを操作するためのオブジェクトを作成する
         let viewContext = appDalegate.persistentContainer.viewContext
         
@@ -250,15 +258,17 @@ class ingCoreData {
             
         } catch  {
             
-            print(#function)
-            print("削除するレコードなかったよ")
+            if Constants.DEBUG == true {
+                print(#function)
+                print("削除するレコードなかったよ")
+            }
             
         }
         
     }
     
     //==============================
-    // Edit
+    // Edit　今回は使わないけど記述残しとく
     //==============================
     
 //    func editRireki(r_id:Int, result:String, resultText:String) {
@@ -321,7 +331,9 @@ class ingCoreData {
     //==============================
     
     func insertRireki(result:String, resultText:String) -> Int {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         let newid:Int = max_rid + 1
         
         createRecord(r_id: newid, result: result, resultText: resultText)

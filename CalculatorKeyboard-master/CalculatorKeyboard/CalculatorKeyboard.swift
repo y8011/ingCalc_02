@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+public var btn4cnt:Int = -1  //okayu四則演算が連続で呼ばれているかの確認用
+
 public protocol CalculatorDelegate: class {
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType:Int)
 }
@@ -147,21 +150,26 @@ open class CalculatorKeyboard: UIView {
     @IBAction func buttonPressed(_ sender: UIButton) {
         switch (sender.tag) {
         case (CalculatorKey.zero.rawValue)...(CalculatorKey.nine.rawValue):
+            btn4cnt = 0
             let output = processor.storeOperand(sender.tag-1)
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.decimal.rawValue:
+            btn4cnt = 0
             let output = processor.addDecimal()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.clear.rawValue:
+            btn4cnt = 0
             let output = processor.clearAll()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.delete.rawValue:
             let output = processor.deleteLastDigit()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case (CalculatorKey.multiply.rawValue)...(CalculatorKey.add.rawValue):
+            btn4cnt = btn4cnt + 1
             let output = processor.storeOperator(sender.tag)
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.equal.rawValue:
+            btn4cnt = 0
             let output = processor.computeFinalValue()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
             break

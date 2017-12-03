@@ -12,11 +12,9 @@ import ActionCell           // アクションセル
 class RirekiViewController: UIViewController
     ,UITableViewDelegate
     ,UITableViewDataSource
-//    ,ActionCellDelegate
 {
     
     @IBOutlet weak var myTableView: UITableView!
-  //  var myActionCell:ActionCell = ActionCell()
     var rirekids:[NSDictionary] = []
     var myIngCoreData:ingCoreData = ingCoreData()
     
@@ -28,7 +26,6 @@ class RirekiViewController: UIViewController
         myTableView.delegate   = self
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cellta")
         
-    //    myActionCell.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,12 +37,13 @@ class RirekiViewController: UIViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print(#function)
-        // Dispose of any resources that can be recreated.
+
     }
     
     //移動した画面から戻ってきた時発動
     @IBAction func returnMenu(_ segu:UIStoryboardSegue) {
-        print("戻ってきました")
+        print(#function)
+        myTableView.reloadData()
         
     }
 
@@ -68,8 +66,6 @@ class RirekiViewController: UIViewController
         let myIngCore:ingCoreData = ingCoreData()
 
         return myIngCore.rirekiCount
-        
-        //return rirekiResult.count
         
     }
     
@@ -148,20 +144,19 @@ class RirekiViewController: UIViewController
     //addTargetでselector通じて引数を渡すことはできない。それ自身を渡すことならできる
     //なので、テキストラベルに入っているボタンを渡すことにする
     @objc func cellButtonClicked(_ sender: UIButton ) {
-       // self.output.text = "cell button clicked"
         print(#function)
 
-     //==============================================================================ここなおす
+        let btn:UIButton = sender
+        let cell:CustomTableViewCell = btn.superview?.superview as! CustomTableViewCell
         //選択された行番号を保存
-        selectedIndex = 1
-        
+        selectedIndex =   cell.hiddenLabelOfRid
+
         //セグエの名前を指定して、画面遷移処理を発動
         //storyboadのIdentifierと名前を合わせるのを忘れずに
         performSegue(withIdentifier: "segueko", sender: nil)
 
     }
 
-    
     //=============================
     // Alert
     //=============================
@@ -230,6 +225,8 @@ extension RirekiViewController: ActionCellDelegate {
         
     }
 }
+
+
 
 // ActionCell用
 class CustomTableViewCell: UITableViewCell {

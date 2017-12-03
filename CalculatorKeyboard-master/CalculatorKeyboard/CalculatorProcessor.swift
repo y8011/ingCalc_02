@@ -78,9 +78,12 @@ class CalculatorProcessor {
         return currentOperand
     }
     
+    
     func storeOperator(_ rawValue: Int) -> String {
         if storedOperator != nil && storedOperator != .equal {
-            previousOperand = computeFinalValue()
+            if(btn4cnt == 1) {//okayu
+                previousOperand = computeFinalValue()
+            }//okayu
         } else if storedOperator == .equal && rawValue == CalculatorKey.equal.rawValue {
             return currentOperand
         } else {

@@ -17,17 +17,24 @@ class pictureViewController: UIViewController
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailScrollView: UIScrollView!
     @IBOutlet weak var myTextView: UITextView!
+    @IBOutlet weak var myNavigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         detailImageView.isUserInteractionEnabled = true  // Gestureの許可
 
         initScrollImage()
+        myNavigationBar.titleTextAttributes
+            = [NSAttributedStringKey.font: UIFont(name: "Menlo", size: 16)!]
         
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+
         
         let myIngLocalImage:ingLocalImage = ingLocalImage()
         let image = myIngLocalImage.readJpgImageInDocument(nameOfImage: "image\(passedIndex).jpg")
@@ -39,11 +46,14 @@ class pictureViewController: UIViewController
         myTextView.text = dic["resultText"] as! String
         //日付を文字列に変換
         let df = DateFormatter()
-        df.dateFormat = "yyyy/MM/dd"
-        //時差補正　日本時間
-        df.locale = NSLocale(localeIdentifier: "ja_JP") as! Locale!
+        df.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+        df.dateStyle = .long
+        df.timeStyle = .short
 
-        self.title = df.string(from: dic["resultDate"] as! Date)
+        df.doesRelativeDateFormatting = true
+
+        myNavigationBar.topItem?.title = df.string(from: dic["resultDate"] as! Date)
+
         
         updateScrollInset()
 
@@ -56,7 +66,10 @@ class pictureViewController: UIViewController
     // ScrolView
     //==============================
     func initScrollImage() {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+        
         if let size = detailImageView.image?.size {
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = detailScrollView.frame.width / size.width
@@ -80,7 +93,10 @@ class pictureViewController: UIViewController
     
     func updateScrollInset()
     {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+        
         // imageViewの大きさからcontentInsetを再計算
         // 0を下回らないようにする
         detailScrollView.contentInset = UIEdgeInsetsMake(
@@ -93,17 +109,23 @@ class pictureViewController: UIViewController
     }
     // スクロール中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ズーム中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
       updateScrollInset()
     }
     // ユーザが指でドラッグを開始した場合に呼び出されるデリゲートメソッド.
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
@@ -111,7 +133,9 @@ class pictureViewController: UIViewController
     // targetContentOffsetは、停止が予想されるポイント？
     // pagingEnabledがYESの場合には、呼び出されません.
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
 
     // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
@@ -120,53 +144,67 @@ class pictureViewController: UIViewController
     // 指をぴたっと止めると、decelerateはNOになり、
     // その場合は「scrollViewWillBeginDecelerating:」「scrollViewDidEndDecelerating:」が呼ばれない？
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("[displayImageView.center]↓")
-        print(detailImageView.center)
-        //        displayImageView.center = scrollView.center
-        //        print(#function)
-        //        print(displayImageView.center)
+        if Constants.DEBUG == true {
+            print(#function)
+            print("[displayImageView.center]↓")
+            print(detailImageView.center)
+        }
     }
     
     // ユーザがドラッグ後、スクロールが減速する瞬間に呼び出されるデリゲートメソッド.
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ユーザがドラッグ後、慣性移動も含め、スクロールが停止した際に呼び出されるデリゲートメソッド.
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // スクロールのアニメーションが終了した際に呼び出されるデリゲートメソッド.
     // アニメーションプロパティがNOの場合には呼び出されない.
     // 【setContentOffset】/【scrollRectVisible:animated:】
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ズーム中に呼び出されるデリゲートメソッド.
     // ズームの値に対応したUIViewを返却する.
     // nilを返却すると、何も起きない.
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         return self.detailImageView
     }
     
     // ズーム完了時(バウンドアニメーション完了時)に呼び出されるデリゲートメソッド.
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // 先頭にスクロールする際に呼び出されるデリゲートメソッド.
     // NOなら反応しない.
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         return true
     }
 
     //ズームのために要指定
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         // ズームのために要指定
         return detailImageView
     }
