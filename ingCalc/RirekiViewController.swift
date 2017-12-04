@@ -42,14 +42,18 @@ class RirekiViewController: UIViewController
     
     //移動した画面から戻ってきた時発動
     @IBAction func returnMenu(_ segu:UIStoryboardSegue) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         myTableView.reloadData()
         
     }
 
 
     func reloadForTableView() {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         let myIngCoreData:ingCoreData = ingCoreData()
         rirekids = myIngCoreData.readRirekiAll()
         
@@ -75,7 +79,9 @@ class RirekiViewController: UIViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 次の画面のインスタンス(オブジェクト）を取得
         let pvc:pictureViewController = segue.destination as! pictureViewController
-        
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         //次の画面のプロパティ（メンバ変数）passedIndexに選択された行番号を渡す
         pvc.passedIndex = selectedIndex
         print(selectedIndex)
@@ -83,7 +89,10 @@ class RirekiViewController: UIViewController
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)行目がタップされました")
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+        
         //選択された行番号を保存
         selectedIndex = indexPath.row
         
@@ -96,12 +105,9 @@ class RirekiViewController: UIViewController
     //3.リストに表示する文字列を決定し、表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    //    let myIngCore:ingCoreData = ingCoreData()
-        
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellta", for: indexPath) as! CustomTableViewCell
         
-        
-//        let rirekiForCell = myIngCore.readRireki(r_id: indexPath.row)
         let rirekiForCell = rirekids[indexPath.row]
         cell.hiddenLabelOfRid = rirekiForCell["r_id"] as! Int
         cell.hiddenLabelOfResult = rirekiForCell["result"] as! String
@@ -119,7 +125,10 @@ class RirekiViewController: UIViewController
                             let action = IconTextAction(action: "Delete" )
                             action.icon.image = #imageLiteral(resourceName: "image_8").withRenderingMode(.alwaysTemplate)
                             action.icon.tintColor = UIColor.white
-                            action.label.text = "Delete!\(rirekiForCell["r_id"]!)"
+                            
+                            if Constants.DEBUG == true { action.label.text = "Delete!\(rirekiForCell["r_id"]!)" }
+                            else {action.label.text = "Delete"}
+                            
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
                             action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
@@ -144,8 +153,10 @@ class RirekiViewController: UIViewController
     //addTargetでselector通じて引数を渡すことはできない。それ自身を渡すことならできる
     //なので、テキストラベルに入っているボタンを渡すことにする
     @objc func cellButtonClicked(_ sender: UIButton ) {
-        print(#function)
-
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+        
         let btn:UIButton = sender
         let cell:CustomTableViewCell = btn.superview?.superview as! CustomTableViewCell
         //選択された行番号を保存
@@ -160,7 +171,7 @@ class RirekiViewController: UIViewController
     //=============================
     // Alert
     //=============================
-    func alertAction1(s_title:String, s_message:String, s_action:String){
+    func alertAction1(s_title:String?, s_message:String, s_action:String){
         
         //部品となるアラート
         let alert = UIAlertController(
@@ -169,20 +180,40 @@ class RirekiViewController: UIViewController
             preferredStyle: .alert
         )
         
+        // アラート表示
+        self.present(alert, animated: true, completion: {
+            // アラートを閉じる
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                alert.dismiss(animated: true, completion: nil)
+            })
+        })
         //ボタンを増やしたいときは、addActionをもう一つ作ればよい
-        alert.addAction(
-            UIAlertAction(
-                title: s_action,
-                style: .default,
-                handler: nil)
-        )
-        
-        //アラートを表示
-        present(alert,
-                animated: true,
-                completion: nil
-        )
+//        alert.addAction(
+//            UIAlertAction(
+//                title: s_action,
+//                style: .default,
+//                handler: nil)
+//        )
+        // 一定時間後に非表示
+
+//        present(alert, animated: true, completion: {
+//            self.perform({self.dismiss(animated: true, completion: nil)}, with: nil, afterDelay: 3.0)
+//        })
+//        UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(alert, animated: true,
+//                                                                                               completion: nil)
+//        // setting the NSTimer to close the alert after timeToDissapear seconds.
+//        _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: <#T##(Timer) -> Void#>) NSTimer.scheduledTimerWithTimeInterval(Double(timeToDissapear), target: self, selector: Selector("dismissAlert"), userInfo: nil, repeats: false)
+//
+//        
+    
     }
+    
+    @objc func closeAlert(_ sender: UIAlertController) {
+        sender.dismiss(animated: true, completion: nil)
+//        sender = nil
+    }
+    
+
 }
 
 

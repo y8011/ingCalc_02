@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,43 +26,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
                                 <rect key="frame" x="0.0" y="136" width="375" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cty-1a-cjX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cty-1a-cjX">
                                 <rect key="frame" x="0.0" y="136" width="375" height="234"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="WK8-Ov-kR1" appends="YES" id="Eqd-f7-ZLe"/>
                                 </connections>
                             </scrollView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Bv-jkZ">
-                                <rect key="frame" x="16" y="73" width="318" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="pM0-7U-VYF"/>
-                                </constraints>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Bv-jkZ">
+                                <rect key="frame" x="36" y="73" width="306" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="47"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-vC-DCN">
+                                <rect key="frame" x="22" y="70" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="SEr-N8-UKr">
+                                <rect key="frame" x="22" y="82" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="×" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="GNG-5e-TA4">
+                                <rect key="frame" x="22" y="94" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="÷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="AaI-vp-b6a">
+                                <rect key="frame" x="22" y="106" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="EGJ-Tl-Mal" secondAttribute="trailing" id="HpX-ei-oQL"/>
-                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="SlL-hR-zmL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7rD-Bv-jkZ" secondAttribute="trailing" constant="41" id="aAR-C2-7e7"/>
-                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="ciR-Fs-W9x"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EGJ-Tl-Mal" secondAttribute="bottom" constant="262" id="e5V-eT-53a"/>
-                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f6N-3O-xDe"/>
-                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="leading" secondItem="Cty-1a-cjX" secondAttribute="leading" id="gAn-B5-JSC"/>
-                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="Cty-1a-cjX" secondAttribute="top" id="h2T-zT-nhg"/>
-                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="7rD-Bv-jkZ" secondAttribute="bottom" constant="8" symbolic="YES" id="mFK-PZ-tyA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cty-1a-cjX" secondAttribute="bottom" constant="253" id="pEC-8K-zfW"/>
-                            <constraint firstItem="Cty-1a-cjX" firstAttribute="trailing" secondItem="EGJ-Tl-Mal" secondAttribute="trailing" id="wvg-mM-Wsf"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
@@ -83,8 +97,12 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="divideLabel" destination="AaI-vp-b6a" id="o09-O0-Wev"/>
                         <outlet property="inputText" destination="7rD-Bv-jkZ" id="tf5-4t-NsL"/>
+                        <outlet property="minusLabel" destination="SEr-N8-UKr" id="8C1-Kt-Ugb"/>
+                        <outlet property="multiplyLabel" destination="GNG-5e-TA4" id="rrA-x3-sMp"/>
                         <outlet property="myScrollView" destination="Cty-1a-cjX" id="MIW-ql-xST"/>
+                        <outlet property="plusLabel" destination="YgQ-vC-DCN" id="9iE-fp-VQc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -95,7 +113,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-482.39999999999998" y="147.97601199400302"/>
+            <point key="canvasLocation" x="-484" y="146.17691154422789"/>
         </scene>
         <!--Rireki View Controller-->
         <scene sceneID="EZV-La-uGG">
@@ -148,36 +166,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed6-SK-5yV">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed6-SK-5yV">
                                 <rect key="frame" x="16" y="478" width="343" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bS-F4-gCa">
-                                <rect key="frame" x="0.0" y="62" width="375" height="405"/>
-                                <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2zN-Kj-Raz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="centerY" secondItem="6bS-F4-gCa" secondAttribute="centerY" id="Jb9-gu-bGn"/>
-                                    <constraint firstAttribute="bottom" secondItem="2zN-Kj-Raz" secondAttribute="bottom" id="PDW-6E-FP0"/>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="centerX" secondItem="6bS-F4-gCa" secondAttribute="centerX" id="Qec-Nt-ZZ6"/>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="top" secondItem="6bS-F4-gCa" secondAttribute="top" id="ZzU-8V-Lds"/>
-                                    <constraint firstAttribute="trailing" secondItem="2zN-Kj-Raz" secondAttribute="trailing" id="cuc-wc-aLf"/>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="leading" secondItem="6bS-F4-gCa" secondAttribute="leading" id="uNm-8x-q3d"/>
-                                </constraints>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zN-Kj-Raz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="403"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bS-F4-gCa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="403"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ytb-eb-Dis">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ytb-eb-Dis">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="AAA" id="i8n-Zw-6Cc">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="iZN-8f-8MB">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="73T-o9-bgS">
-                                                <rect key="frame" x="16" y="7" width="46" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="34" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                 <state key="normal" title="Back"/>
@@ -192,20 +204,6 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="6bS-F4-gCa" secondAttribute="bottom" constant="200" id="1c1-0Y-XB5"/>
-                            <constraint firstItem="GRn-vY-Lv4" firstAttribute="bottom" secondItem="Ed6-SK-5yV" secondAttribute="bottom" constant="70" id="3eY-NK-yUD"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="top" secondItem="GRn-vY-Lv4" secondAttribute="top" constant="42" id="GWx-8n-ZpS"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="leading" secondItem="Ytb-eb-Dis" secondAttribute="leading" id="Pyn-Pp-rMe"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="centerX" secondItem="Ed6-SK-5yV" secondAttribute="centerX" id="Rd5-Aw-KMa"/>
-                            <constraint firstItem="Ytb-eb-Dis" firstAttribute="top" secondItem="GRn-vY-Lv4" secondAttribute="top" id="T73-W7-N1C"/>
-                            <constraint firstItem="Ed6-SK-5yV" firstAttribute="top" secondItem="6bS-F4-gCa" secondAttribute="bottom" constant="11" id="UrR-d0-lvy"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="trailing" secondItem="Ytb-eb-Dis" secondAttribute="trailing" id="coZ-qA-meQ"/>
-                            <constraint firstItem="Ytb-eb-Dis" firstAttribute="centerX" secondItem="Ed6-SK-5yV" secondAttribute="centerX" id="cr1-pw-RP5"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="leading" secondItem="UvU-hP-Vpd" secondAttribute="leading" id="ctI-ye-BvW"/>
-                            <constraint firstAttribute="trailing" secondItem="6bS-F4-gCa" secondAttribute="trailing" id="eIB-Nv-LY9"/>
-                            <constraint firstItem="Ed6-SK-5yV" firstAttribute="leading" secondItem="UvU-hP-Vpd" secondAttribute="leadingMargin" id="pvh-u5-WSF"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GRn-vY-Lv4"/>
                     </view>
                     <connections>

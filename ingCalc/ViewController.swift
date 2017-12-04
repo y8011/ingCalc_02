@@ -27,7 +27,12 @@ class ViewController: UIViewController
     var displayImageView: UIImageView = UIImageView()
     @IBOutlet weak var myScrollView: UIScrollView!
     
-
+    //演算記号のラベル
+    @IBOutlet weak var plusLabel: UILabel!
+    @IBOutlet weak var minusLabel: UILabel!
+    @IBOutlet weak var multiplyLabel: UILabel!
+    @IBOutlet weak var divideLabel: UILabel!
+    
     // 計算機
     var keyboard:CalculatorKeyboard = CalculatorKeyboard()
     var resultText:String = ""
@@ -49,6 +54,8 @@ class ViewController: UIViewController
 
 
         displayImageView.contentMode = UIViewContentMode.scaleAspectFit
+        
+
         
     
     }
@@ -85,24 +92,58 @@ class ViewController: UIViewController
                 let cnt = resultText.count
                 print(resultText.endIndex)
                 print(resultText.startIndex)
-//                resultText.remove(at: resultText.endIndex)
                 print(cnt)
                 print(resultText)
                 let range = resultText.index(resultText.endIndex, offsetBy: -1)..<resultText.endIndex
                 resultText.removeSubrange(range)
+                var ope:String  = ""
+                if KeyType == CalculatorKey.multiply.rawValue {
+                    ope = "x"
+                    hideOpeLabel()
+                    multiplyLabel.isHidden = false
+                }
+                else if KeyType == CalculatorKey.divide.rawValue {
+                    ope = "/"
+                    hideOpeLabel()
+                    divideLabel.isHidden = false
+                }
+                else if KeyType == CalculatorKey.subtract.rawValue {
+                    ope = "-"
+                    hideOpeLabel()
+                    minusLabel.isHidden = false
+                }
+                else if KeyType == CalculatorKey.add.rawValue {
+                    ope = "+"
+                    hideOpeLabel()
+                    plusLabel.isHidden = false
+                }
+                
+                resultText.append(ope)
                 print(resultText)
+                
             }
-            if KeyType == CalculatorKey.multiply.rawValue {
-                resultText = resultText + "\(suuji)x"
-            }
-            else if KeyType == CalculatorKey.divide.rawValue {
-                resultText = resultText + "\(suuji)/"
-            }
-            else if KeyType == CalculatorKey.subtract.rawValue {
-                resultText = resultText + "\(suuji)-"
-            }
-            else if KeyType == CalculatorKey.add.rawValue {
-                resultText = resultText + "\(suuji)+"
+            else {
+                if KeyType == CalculatorKey.multiply.rawValue {
+                    resultText = resultText + "\(suuji)x"
+                    hideOpeLabel()
+                    multiplyLabel.isHidden = false
+                    
+                }
+                else if KeyType == CalculatorKey.divide.rawValue {
+                    resultText = resultText + "\(suuji)/"
+                    hideOpeLabel()
+                    divideLabel.isHidden = false
+                }
+                else if KeyType == CalculatorKey.subtract.rawValue {
+                    resultText = resultText + "\(suuji)-"
+                    hideOpeLabel()
+                    minusLabel.isHidden = false
+                }
+                else if KeyType == CalculatorKey.add.rawValue {
+                    resultText = resultText + "\(suuji)+"
+                    hideOpeLabel()
+                    plusLabel.isHidden = false
+                }
             }
             
         case CalculatorKey.equal.rawValue :
@@ -114,11 +155,13 @@ class ViewController: UIViewController
             myIngLocalImage.storeJpgImageInDocument(image: displayImageView.image!, name: "image\(newrid).jpg")
 
             resultText = ""
+            hideOpeLabel()
             
             
         case CalculatorKey.clear.rawValue:
             print("けされたぁ")
             resultText = ""
+            hideOpeLabel()
             let myIngCoreData:ingCoreData = ingCoreData()
             let myIngLocalImage:ingLocalImage = ingLocalImage()
             
@@ -160,7 +203,14 @@ class ViewController: UIViewController
         keyboard.showDecimal = true
         inputText.inputView = keyboard
         
-
+        hideOpeLabel()
+    }
+    
+    func hideOpeLabel () {
+        plusLabel.isHidden = true
+        minusLabel.isHidden = true
+        multiplyLabel.isHidden = true
+        divideLabel.isHidden = true
     }
     
     //===============================
