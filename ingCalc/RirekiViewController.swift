@@ -48,6 +48,7 @@ class RirekiViewController: UIViewController
         myTableView.reloadData()
         
     }
+    
 
 
     func reloadForTableView() {

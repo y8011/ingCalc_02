@@ -49,7 +49,6 @@ class ViewController: UIViewController
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
-        displayImageView.backgroundColor = UIColor.black
         initScrollImage()
 
 
@@ -79,21 +78,9 @@ class ViewController: UIViewController
 
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
-//            let str = "Hello,World Everybody."
-//            let comma = str.index(of: ",")!
-//            let dot   = str.index(of: ".")!
-//            let space = str.index(of: " ")!
-//
-//            print(str[..<comma]) // "Hello"
-//            print(str[..<dot])   // "Hello,World Everybody"
-//            print(str[..<space]) // "Hello,World"
+
             if btn4cnt > 1 {
                 //operatorが連続していたら一番後ろにあるopratorの文字を削除する。そのあとで入れ直す
-                let cnt = resultText.count
-                print(resultText.endIndex)
-                print(resultText.startIndex)
-                print(cnt)
-                print(resultText)
                 let range = resultText.index(resultText.endIndex, offsetBy: -1)..<resultText.endIndex
                 resultText.removeSubrange(range)
                 var ope:String  = ""
@@ -147,7 +134,15 @@ class ViewController: UIViewController
             }
             
         case CalculatorKey.equal.rawValue :
-            resultText = resultText + "\(suuji) = \(value)"
+            if btn4cnt > 0 {
+                //operatorの続きだったら連続していたらそのあとがoperandが０になっているので
+                //Calculatorの動きに合わせてsuujiを0にする
+                suuji = "0"
+            }
+
+            resultText.append("\(suuji) = \(value)")
+          
+            //履歴に追加する。
             let myIngCoreData:ingCoreData = ingCoreData()
             let myIngLocalImage:ingLocalImage = ingLocalImage()
 
@@ -185,13 +180,15 @@ class ViewController: UIViewController
             
             
         default:
+            //数字が押された時
+          //  hideOpeLabel()
+
             break
             
         }
         
         suuji = value
-       // print(value)
-        //print(resultText)
+
     }
     
     func initCalc() {

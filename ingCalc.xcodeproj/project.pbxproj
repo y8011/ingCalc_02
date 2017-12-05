@@ -13,6 +13,7 @@
 		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
 		B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B26781751FD3DC5100934ECE /* macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26781741FD3DC5100934ECE /* macro.swift */; };
+		B276987F1FD61F9900A83AE4 /* ingCoreAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */; };
 		B27E0EBB1FC9215E00ABF908 /* ActionCell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2B67EF51FC87A340086134C /* ActionCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B296CB931FC44C8600E17D46 /* Red-kitten.jpg */; };
 		B298283E1FD0E2DE00517CFB /* ingLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */; };
@@ -65,6 +66,7 @@
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26781741FD3DC5100934ECE /* macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macro.swift; sourceTree = "<group>"; };
+		B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCoreAudio.swift; sourceTree = "<group>"; };
 		B28329051FC901FE007EAB87 /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalculatorKeyboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/ingCalc-gboozwlncoxehddjesxywzhftvxr/Build/Products/Debug-iphoneos/CalculatorKeyboard.framework"; sourceTree = "<group>"; };
 		B296CB931FC44C8600E17D46 /* Red-kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Red-kitten.jpg"; sourceTree = "<group>"; };
 		B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingLocalImage.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				B296CB931FC44C8600E17D46 /* Red-kitten.jpg */,
+				B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */,
 				B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */,
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
 				B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */,
@@ -324,6 +327,7 @@
 				B26781751FD3DC5100934ECE /* macro.swift in Sources */,
 				B2F152A21FBC9EFF00FD9030 /* ViewController.swift in Sources */,
 				B2F152A01FBC9EFF00FD9030 /* AppDelegate.swift in Sources */,
+				B276987F1FD61F9900A83AE4 /* ingCoreAudio.swift in Sources */,
 				B214A3871FD1CAAE0072714A /* pictureViewController.swift in Sources */,
 				B298283E1FD0E2DE00517CFB /* ingLocalImage.swift in Sources */,
 				B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */,
@@ -493,6 +497,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ingCalc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +517,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ingCalc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";

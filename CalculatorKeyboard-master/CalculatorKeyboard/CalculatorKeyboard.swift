@@ -169,9 +169,10 @@ open class CalculatorKeyboard: UIView {
             let output = processor.storeOperator(sender.tag)
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.equal.rawValue:
-            btn4cnt = 0
+ 
             let output = processor.computeFinalValue()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
+            btn4cnt = 0  //ingCalc側の計算の都合上、delegateの後に移動
             break
         default:
             break

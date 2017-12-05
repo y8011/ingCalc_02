@@ -27,15 +27,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
-                                <rect key="frame" x="0.0" y="136" width="375" height="225"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="231"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.56504092610000001" blue="0.57716577849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cty-1a-cjX">
-                                <rect key="frame" x="0.0" y="136" width="375" height="234"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="231"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="WK8-Ov-kR1" appends="YES" id="Eqd-f7-ZLe"/>
@@ -106,7 +106,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <navigationItem title="Title" id="k2X-ht-4ko"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WK8-Ov-kR1">
                     <connections>
                         <action selector="longPressImageView:" destination="BYZ-38-t0r" id="B8N-nv-cxM"/>
@@ -115,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="-484" y="146.17691154422789"/>
         </scene>
-        <!--Rireki View Controller-->
+        <!--history-->
         <scene sceneID="EZV-La-uGG">
             <objects>
                 <viewController id="OTM-7h-X9x" customClass="RirekiViewController" customModule="ingCalc" customModuleProvider="target" sceneMemberID="viewController">
@@ -123,31 +122,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="rireki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
-                                <rect key="frame" x="35" y="70" width="280" height="57"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rireki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
+                                <rect key="frame" x="57" y="76" width="261" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="80"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ouK-zP-7Dz">
-                                <rect key="frame" x="0.0" y="129" width="375" height="494"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ouK-zP-7Dz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ouK-zP-7Dz" secondAttribute="trailing" id="2SZ-Fh-D0P"/>
-                            <constraint firstItem="g8q-DF-fXe" firstAttribute="leading" secondItem="mns-t9-i6x" secondAttribute="leading" constant="33" id="Ah5-O1-khx"/>
-                            <constraint firstItem="mns-t9-i6x" firstAttribute="bottom" secondItem="g8q-DF-fXe" secondAttribute="bottom" constant="493" id="CX0-5L-Nvp"/>
-                            <constraint firstItem="mns-t9-i6x" firstAttribute="trailing" secondItem="g8q-DF-fXe" secondAttribute="trailing" constant="60" id="JmE-xw-BY9"/>
-                            <constraint firstItem="g8q-DF-fXe" firstAttribute="top" secondItem="mns-t9-i6x" secondAttribute="top" id="SUT-iG-WPt"/>
-                            <constraint firstItem="ouK-zP-7Dz" firstAttribute="leading" secondItem="toU-LQ-yKp" secondAttribute="leading" id="Y4W-GP-0I1"/>
-                            <constraint firstItem="mns-t9-i6x" firstAttribute="bottom" secondItem="ouK-zP-7Dz" secondAttribute="bottom" constant="26" id="dil-Zo-T1i"/>
-                            <constraint firstItem="ouK-zP-7Dz" firstAttribute="top" secondItem="mns-t9-i6x" secondAttribute="top" constant="65" id="yLU-SD-o6d"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mns-t9-i6x"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Q2j-vK-wmr"/>
+                    <navigationItem key="navigationItem" title="history" id="Q2j-vK-wmr"/>
                     <connections>
                         <outlet property="myTableView" destination="ouK-zP-7Dz" id="ch9-Q2-0UL"/>
                         <segue destination="6rC-ad-928" kind="modal" identifier="segueko" id="7MU-LX-zId"/>
