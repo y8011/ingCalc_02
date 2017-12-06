@@ -20,7 +20,9 @@ class RirekiViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor(red:0.96, green:0.5, blue:0, alpha:1)
+        myTableView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
+        
         // TableViewとCellの設定
         myTableView.dataSource = self
         myTableView.delegate   = self
@@ -132,7 +134,8 @@ class RirekiViewController: UIViewController
                             
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
-                            action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
+                         //   action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
+                            action.backgroundColor = UIColor(red: 255/255, green:70/255, blue: 70/255, alpha:1.00)
                             return action
                         }(),
                         ],
@@ -144,7 +147,8 @@ class RirekiViewController: UIViewController
                             action.label.text = "Copy"
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
-                            action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
+                            //action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
+                            action.backgroundColor = UIColor(red: 70/255, green: 70/255, blue: 255/255, alpha:1.00)
                             return action
                         }(),
                         ])
@@ -274,8 +278,11 @@ class CustomTableViewCell: UITableViewCell {
             let the = UIButton()
             the.setTitle("click me", for: .normal)
             the.setTitleColor(UIColor.black, for: .normal)
-            the.backgroundColor = UIColor.orange
-       //     the.tintColor = UIColor.orange
+            the.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
+            the.layer.borderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1).cgColor
+            the.layer.cornerRadius = 5
+            the.layer.borderWidth = 1.5
+            
             return the
         }()
         contentView.addSubview(button)

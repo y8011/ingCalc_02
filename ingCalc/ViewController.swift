@@ -12,6 +12,7 @@ import UIKit
 import CalculatorKeyboard   // 計算機用
 import Photos               // 写真用
 import CoreData
+import AVFoundation
 
 
 
@@ -19,7 +20,7 @@ class ViewController: UIViewController
 , CalculatorDelegate
 , UIImagePickerControllerDelegate
 , UINavigationControllerDelegate
-,UIScrollViewDelegate
+, UIScrollViewDelegate
 {
 
     @IBOutlet weak var inputText: UITextField!
@@ -37,7 +38,10 @@ class ViewController: UIViewController
     var keyboard:CalculatorKeyboard = CalculatorKeyboard()
     var resultText:String = ""
     var suuji:String = ""
-
+    
+    // オーディオ
+    var apCat1:AVAudioPlayer = AVAudioPlayer()
+    var apCat2:AVAudioPlayer = AVAudioPlayer()
     
     //===============================
     // viewDidLoad
@@ -54,10 +58,10 @@ class ViewController: UIViewController
 
         displayImageView.contentMode = UIViewContentMode.scaleAspectFit
         
+        makeSound1("cat1b.mp3")
 
-        
-    
     }
+
     
     //===============================
     // viewDidAppear
@@ -181,8 +185,11 @@ class ViewController: UIViewController
             
         default:
             //数字が押された時
-          //  hideOpeLabel()
-
+            if(value.count > 2) {
+                checkDigit(digit: value)
+            }
+                
+            
             break
             
         }
@@ -211,9 +218,30 @@ class ViewController: UIViewController
     }
     
     //===============================
+    //シークレットコード
+    //===============================
+    func checkDigit(digit: String) {
+        switch digit {
+        case "333":
+            break
+            //cat2.makeSound( "cat-meowing-2.mp3")
+        case "3333333333":
+            inputText.text = """
+            The smallest feline is a masterpiece.
+            ネコ科の一番小さな動物、つまり猫は、最高傑作である。
+            """
+        default:
+            break
+        }
+        
+        
+    }
+    
+    //===============================
     // ジェスチャー
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
+        apCat1.play()
         showAlbum()
     }
     
@@ -518,7 +546,21 @@ class ViewController: UIViewController
     }
     
     
-
+    func makeSound1(_ audioFileName: String) {
+        let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
+        let soundClear = URL(fileURLWithPath: soundFile )
+        
+        //AVAudioPlayerのインスタンス化
+        do {
+            apCat1 = try AVAudioPlayer(contentsOf: soundClear as URL)
+            
+            
+        }catch{
+            print("Failed AVAudioPlayer Instance")
+        }
+        apCat1.prepareToPlay()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -527,4 +569,6 @@ class ViewController: UIViewController
 
 
 }
+
+
 

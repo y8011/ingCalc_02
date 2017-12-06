@@ -14,6 +14,8 @@
 		B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B26781751FD3DC5100934ECE /* macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26781741FD3DC5100934ECE /* macro.swift */; };
 		B276987F1FD61F9900A83AE4 /* ingCoreAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */; };
+		B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B27698801FD62F1D00A83AE4 /* cat1b.mp3 */; };
+		B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */; };
 		B27E0EBB1FC9215E00ABF908 /* ActionCell.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2B67EF51FC87A340086134C /* ActionCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B296CB931FC44C8600E17D46 /* Red-kitten.jpg */; };
 		B298283E1FD0E2DE00517CFB /* ingLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */; };
@@ -67,6 +69,8 @@
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26781741FD3DC5100934ECE /* macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macro.swift; sourceTree = "<group>"; };
 		B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingCoreAudio.swift; sourceTree = "<group>"; };
+		B27698801FD62F1D00A83AE4 /* cat1b.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat1b.mp3; sourceTree = "<group>"; };
+		B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cat-meowing-2.mp3"; sourceTree = "<group>"; };
 		B28329051FC901FE007EAB87 /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalculatorKeyboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/ingCalc-gboozwlncoxehddjesxywzhftvxr/Build/Products/Debug-iphoneos/CalculatorKeyboard.framework"; sourceTree = "<group>"; };
 		B296CB931FC44C8600E17D46 /* Red-kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Red-kitten.jpg"; sourceTree = "<group>"; };
 		B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingLocalImage.swift; sourceTree = "<group>"; };
@@ -143,16 +147,18 @@
 			isa = PBXGroup;
 			children = (
 				B296CB931FC44C8600E17D46 /* Red-kitten.jpg */,
-				B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */,
 				B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */,
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
 				B2FFD3901FC27C900008DBF1 /* RirekiViewController.swift */,
 				B214A3861FD1CAAE0072714A /* pictureViewController.swift */,
+				B276987E1FD61F9900A83AE4 /* ingCoreAudio.swift */,
 				B298283D1FD0E2DE00517CFB /* ingLocalImage.swift */,
 				B298283F1FD0EBC700517CFB /* ingCoreData.swift */,
 				B26781741FD3DC5100934ECE /* macro.swift */,
 				B2F152A31FBC9EFF00FD9030 /* Main.storyboard */,
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
+				B27698801FD62F1D00A83AE4 /* cat1b.mp3 */,
+				B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */,
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
 				B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */,
 				B2F152AB1FBC9EFF00FD9030 /* Info.plist */,
@@ -296,6 +302,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */,
+				B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */,
 				B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */,
 				B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */,
 				B2F152A71FBC9EFF00FD9030 /* Assets.xcassets in Resources */,
