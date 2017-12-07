@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20B2B011FD850F7005BE385 /* cat2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B20B2B001FD850F6005BE385 /* cat2.mp3 */; };
 		B214A3871FD1CAAE0072714A /* pictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B214A3861FD1CAAE0072714A /* pictureViewController.swift */; };
 		B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */; };
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B20B2B001FD850F6005BE385 /* cat2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat2.mp3; sourceTree = "<group>"; };
 		B214A3861FD1CAAE0072714A /* pictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pictureViewController.swift; sourceTree = "<group>"; };
 		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 				B2F152A61FBC9EFF00FD9030 /* Assets.xcassets */,
 				B27698801FD62F1D00A83AE4 /* cat1b.mp3 */,
 				B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */,
+				B20B2B001FD850F6005BE385 /* cat2.mp3 */,
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
 				B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */,
 				B2F152AB1FBC9EFF00FD9030 /* Info.plist */,
@@ -305,6 +308,7 @@
 				B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */,
 				B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */,
 				B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */,
+				B20B2B011FD850F7005BE385 /* cat2.mp3 in Resources */,
 				B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */,
 				B2F152A71FBC9EFF00FD9030 /* Assets.xcassets in Resources */,
 				B2F152A51FBC9EFF00FD9030 /* Main.storyboard in Resources */,

@@ -59,9 +59,23 @@ class pictureViewController: UIViewController
 
     }
     
+    //=================================
+    //ジェスチャー系。タップ
+    //=================================
+    //ツールバーの中のシェアボタンが押された時
+    @IBAction func tapShare(_ sender: UIBarButtonItem) {
+        //シェア用画面（インスタンス）の作成
+        let controller = UIActivityViewController(activityItems: [detailImageView.image], applicationActivities: nil)
+        
+        //シェア用画面を表示
+        present(controller, animated: true, completion: nil)
+    }
+    
     @IBAction func tapBack(_ sender: UIButton) {
         
     }
+    
+    
     //==============================
     // ScrolView
     //==============================

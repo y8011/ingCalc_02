@@ -42,7 +42,8 @@ class ViewController: UIViewController
     // オーディオ
     var apCat1:AVAudioPlayer = AVAudioPlayer()
     var apCat2:AVAudioPlayer = AVAudioPlayer()
-    
+    var apCat3:AVAudioPlayer = AVAudioPlayer()
+
     //===============================
     // viewDidLoad
     //===============================
@@ -58,7 +59,9 @@ class ViewController: UIViewController
 
         displayImageView.contentMode = UIViewContentMode.scaleAspectFit
         
-        makeSound1("cat1b.mp3")
+        self.makeSound1("cat1b.mp3")
+        self.makeSound2("cat-meowing-2.mp3")
+        self.makeSound3("cat2.mp3")
 
     }
 
@@ -110,8 +113,9 @@ class ViewController: UIViewController
                 }
                 
                 resultText.append(ope)
-                print(resultText)
-                
+                if Constants.DEBUG == true {
+                    print(resultText)
+                }
             }
             else {
                 if KeyType == CalculatorKey.multiply.rawValue {
@@ -158,7 +162,9 @@ class ViewController: UIViewController
             
             
         case CalculatorKey.clear.rawValue:
-            print("けされたぁ")
+            if Constants.DEBUG == true {
+                print("けされたぁ")
+            }
             resultText = ""
             hideOpeLabel()
             let myIngCoreData:ingCoreData = ingCoreData()
@@ -180,16 +186,16 @@ class ViewController: UIViewController
             default:
                 break
             }
-            myIngCoreData.deleteRirekiAll()
-            
+            if Constants.DEBUG == true {
+                myIngCoreData.deleteRirekiAll()
+            }
             
         default:
             //数字が押された時
             if(value.count > 2) {
                 checkDigit(digit: value)
             }
-                
-            
+     
             break
             
         }
@@ -202,7 +208,6 @@ class ViewController: UIViewController
         let frame = CGRect(x:0 , y:0 , width: UIScreen.main.bounds.width, height:300 )
         keyboard = CalculatorKeyboard(frame: frame)
 
-        
         keyboard.delegate = self
         keyboard.showDecimal = true
         inputText.inputView = keyboard
@@ -218,18 +223,42 @@ class ViewController: UIViewController
     }
     
     //===============================
-    //シークレットコード
+    //　シークレットコード
     //===============================
     func checkDigit(digit: String) {
         switch digit {
         case "333":
+            apCat2.play()
             break
-            //cat2.makeSound( "cat-meowing-2.mp3")
         case "3333333333":
-            inputText.text = """
-            The smallest feline is a masterpiece.
-            ネコ科の一番小さな動物、つまり猫は、最高傑作である。
-            """
+            apCat3.play()
+
+        case "33333333333333333333":
+            let cat = Int(arc4random()) % 3
+            switch cat {
+            case 0:
+                let text = """
+                The smallest feline is a masterpiece.
+                ネコ科の一番小さな動物、つまり猫は、最高傑作である。
+                """
+                alert1(s_title: "Leonardo da Vinci", s_message: text)
+                
+            case 1:
+                let text = """
+                The smallest feline is a masterpiece.
+                もし道に迷ったら、猫について行くことだ。猫は道に迷わない。
+                """
+                alert1(s_title: "Charles Monroe Schulz", s_message: text)
+                
+            default:
+                let text = """
+                I wish I could write as mysterious as a cat.
+                猫のようにミステリアスに書けたらいいのに。
+                """
+                alert1(s_title: "Edgar Allan Poe", s_message: text)
+                
+            }
+            
         default:
             break
         }
@@ -237,11 +266,53 @@ class ViewController: UIViewController
         
     }
     
+    //=============================
+    // Alert
+    //=============================
+    func alert1(s_title:String?, s_message:String){
+        
+        //部品となるアラート
+        let alert = UIAlertController(
+            title: s_title ,
+            message: s_message,
+            preferredStyle: .alert
+        )
+        
+        alert.view.backgroundColor = UIColor.green
+        //  alert.view.subviews[0].backgroundColor = UIColor.yellow
+        let subView = alert.view.subviews.first!
+        let alertContentView = subView.subviews.first!
+        //alertContentView.superview?.backgroundColor = UIColor.red
+        //alertContentView.backgroundColor = UIColor.red
+        alertContentView.layer.cornerRadius = 5
+        // アラート表示
+        self.present(alert, animated: true, completion: {
+            // アラートを閉じる
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                alert.dismiss(animated: true, completion: nil)
+            })
+        })
+        
+    }
+    
     //===============================
     // ジェスチャー
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
-        apCat1.play()
+        
+        if sender.state != UIGestureRecognizerState.began{
+            return
+        }
+        
+        let neko = Int(arc4random()) % 10
+        print(neko)
+        if neko == 1 {
+            apCat3.play()
+
+        }
+        else {
+            apCat1.play()
+        }
         showAlbum()
     }
     
@@ -303,7 +374,6 @@ class ViewController: UIViewController
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
             self.present(cameraPicker, animated: true, completion:  nil)
-
 
         }
     }
@@ -396,7 +466,9 @@ class ViewController: UIViewController
     // ScrolView
     //==============================
     func initScrollImage() {
-        print("initScrollImage")
+        if Constants.DEBUG == true {
+            print("initScrollImage")
+        }
         if let size = displayImageView.image?.size {
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = myScrollView.frame.width / size.width
@@ -428,7 +500,6 @@ class ViewController: UIViewController
             , 0
             , 0
         )
-        
     }
     
     // スクロール中に呼び出され続けるデリゲートメソッド.
@@ -545,7 +616,9 @@ class ViewController: UIViewController
         return displayImageView
     }
     
-    
+    //===============================
+    // オーディオ
+    //===============================
     func makeSound1(_ audioFileName: String) {
         let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
         let soundClear = URL(fileURLWithPath: soundFile )
@@ -559,6 +632,37 @@ class ViewController: UIViewController
             print("Failed AVAudioPlayer Instance")
         }
         apCat1.prepareToPlay()
+        
+    }
+    
+    func makeSound2(_ audioFileName: String) {
+        let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
+        let soundClear = URL(fileURLWithPath: soundFile )
+        
+        //AVAudioPlayerのインスタンス化
+        do {
+            apCat2 = try AVAudioPlayer(contentsOf: soundClear as URL)
+            
+            
+        }catch{
+            print("Failed AVAudioPlayer Instance")
+        }
+        apCat2.prepareToPlay()
+        
+    }
+    func makeSound3(_ audioFileName: String) {
+        let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
+        let soundClear = URL(fileURLWithPath: soundFile )
+        
+        //AVAudioPlayerのインスタンス化
+        do {
+            apCat3 = try AVAudioPlayer(contentsOf: soundClear as URL)
+            
+            
+        }catch{
+            print("Failed AVAudioPlayer Instance")
+        }
+        apCat3.prepareToPlay()
         
     }
 

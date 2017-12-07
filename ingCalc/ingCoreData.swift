@@ -115,22 +115,22 @@ class ingCoreData {
         do {
             
             let fetchResults = try viewContext.fetch(query)
-            //saveするときに、nilチェックするのでnilはない前提
-            for fetch:AnyObject in fetchResults {
-                let r_id:Int = (fetch.value(forKey: "r_id") as? Int)!
-                let result:String = (fetch.value(forKey: "result") as? String)!
-                let resultText:String = (fetch.value(forKey: "resultText") as? String)!
-                let resultDate:NSDate = (fetch.value(forKey: "resultDate") as? NSDate)!
+            if( fetchResults.count != 0) {
+                for fetch:AnyObject in fetchResults {
+                    let r_id:Int = (fetch.value(forKey: "r_id") as? Int)!
+                    let result:String = (fetch.value(forKey: "result") as? String)!
+                    let resultText:String = (fetch.value(forKey: "resultText") as? String)!
+                    let resultDate:NSDate = (fetch.value(forKey: "resultDate") as? NSDate)!
 
-                let dic =  ["r_id":r_id,"result":result,"resultText":resultText,"resultDate":resultDate] as [String : Any]
-                
+                    let dic =  ["r_id":r_id,"result":result,"resultText":resultText,"resultDate":resultDate] as [String : Any]
+                    
 
 
-                dics.append(dic as NSDictionary)
-                
-                
+                    dics.append(dic as NSDictionary)
+                    
+                    
+                }
             }
-            
             
         } catch  {
             print(error)

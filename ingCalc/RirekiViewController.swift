@@ -152,6 +152,8 @@ class RirekiViewController: UIViewController
                             return action
                         }(),
                         ])
+        
+        cell.selectedBackgroundView?.backgroundColor = UIColor.red
         return cell
     }
     
@@ -188,35 +190,17 @@ class RirekiViewController: UIViewController
         // アラート表示
         self.present(alert, animated: true, completion: {
             // アラートを閉じる
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 alert.dismiss(animated: true, completion: nil)
             })
         })
-        //ボタンを増やしたいときは、addActionをもう一つ作ればよい
-//        alert.addAction(
-//            UIAlertAction(
-//                title: s_action,
-//                style: .default,
-//                handler: nil)
-//        )
-        // 一定時間後に非表示
-
-//        present(alert, animated: true, completion: {
-//            self.perform({self.dismiss(animated: true, completion: nil)}, with: nil, afterDelay: 3.0)
-//        })
-//        UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(alert, animated: true,
-//                                                                                               completion: nil)
-//        // setting the NSTimer to close the alert after timeToDissapear seconds.
-//        _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: <#T##(Timer) -> Void#>) NSTimer.scheduledTimerWithTimeInterval(Double(timeToDissapear), target: self, selector: Selector("dismissAlert"), userInfo: nil, repeats: false)
-//
-//        
     
     }
     
-    @objc func closeAlert(_ sender: UIAlertController) {
-        sender.dismiss(animated: true, completion: nil)
-//        sender = nil
-    }
+//    @objc func closeAlert(_ sender: UIAlertController) {
+//        sender.dismiss(animated: true, completion: nil)
+////        sender = nil
+//    }
     
 
 }
