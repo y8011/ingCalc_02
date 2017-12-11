@@ -23,7 +23,6 @@ class pictureViewController: UIViewController
         super.viewDidLoad()
         detailImageView.isUserInteractionEnabled = true  // Gestureの許可
 
-        initScrollImage()
         myNavigationBar.titleTextAttributes
             = [NSAttributedStringKey.font: UIFont(name: "Menlo", size: 16)!]
         
@@ -54,8 +53,11 @@ class pictureViewController: UIViewController
 
         myNavigationBar.topItem?.title = df.string(from: dic["resultDate"] as! Date)
 
-        
-        updateScrollInset()
+        //imageView.imageに画像を指定する前にinitScrollImage()を実行しているせいでサイズが取得できずにサイズ取得後のif文の内容が実行できてないのが原因です。
+        //画像セット後（viewWillAppear内）にinitScrollImage()を実行するように処理の場所を変えてみてくださいー。
+        initScrollImage()
+
+        //updateScrollInset()
 
     }
     
