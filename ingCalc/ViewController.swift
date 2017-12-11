@@ -33,8 +33,7 @@ class ViewController: UIViewController
     @IBOutlet weak var minusLabel: UILabel!
     @IBOutlet weak var multiplyLabel: UILabel!
     @IBOutlet weak var divideLabel: UILabel!
-    
-    @IBOutlet weak var bottomConstraints: NSLayoutConstraint!
+
     
     // 計算機
     var keyboard:CalculatorKeyboard = CalculatorKeyboard()
@@ -46,13 +45,20 @@ class ViewController: UIViewController
     var apCat2:AVAudioPlayer = AVAudioPlayer()
     var apCat3:AVAudioPlayer = AVAudioPlayer()
 
+
+    //
+    @IBOutlet weak var safeABeqMSVB: NSLayoutConstraint!
+    @IBOutlet weak var safeABeqIMVB: NSLayoutConstraint!
+    
+    @IBOutlet weak var safeABeqMSVBforSE: NSLayoutConstraint!
+    
+    
     //===============================
     // viewDidLoad
     //===============================
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initCalc()
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
@@ -66,11 +72,20 @@ class ViewController: UIViewController
         
         print("frame")
         print(self.view.frame)
-        if #available(iOS 11.0, *) {
-            print("TOP:\(view.safeAreaInsets.top) BTM:\(view.safeAreaInsets.bottom)   LFT:\(view.safeAreaInsets.left) RT:\(view.safeAreaInsets.right)")
-        } else {
-            // Fallback on earlier versions
+        switch self.view.frame.size.height {
+        case 812 :
+            iphoneType = "X"
+//        case 736:
+//            iphoneType = "8plus"
+        case 568 :
+            iphoneType = "SE"
+        default:
+            iphoneType = "other"
         }
+
+        initCalc()
+        
+        adustConstrains()
 
     }
 
@@ -92,6 +107,21 @@ class ViewController: UIViewController
         initScrollImage()
 
     }
+    
+    //==============================
+    // Constrains
+    //==============================
+    func adustConstrains() {
+        if iphoneType == "SE" { // SEの時
+        NSLayoutConstraint.deactivate([safeABeqMSVB,safeABeqIMVB])
+            NSLayoutConstraint.activate([safeABeqMSVBforSE])
+        } else {
+            NSLayoutConstraint.activate([safeABeqMSVB,safeABeqIMVB])
+        NSLayoutConstraint.deactivate([safeABeqMSVBforSE])
+        }
+        
+    }
+    
     
     //===============================
     // 計算機
@@ -222,7 +252,17 @@ class ViewController: UIViewController
     }
     
     func initCalc() {
-        let frame = CGRect(x:0 , y:0 , width: UIScreen.main.bounds.width, height:300 )
+        var fheight:CGFloat = 300  // other
+        switch iphoneType {
+        case "X":
+            fheight = 334
+        case "SE":
+            fheight = 280
+        default:
+            fheight = 300
+        }
+        
+        let frame = CGRect(x:0 , y:0, width: UIScreen.main.bounds.width, height: fheight )
         keyboard = CalculatorKeyboard(frame: frame)
 
         keyboard.delegate = self
@@ -295,16 +335,12 @@ class ViewController: UIViewController
             preferredStyle: .alert
         )
         
-        alert.view.backgroundColor = UIColor.green
-        //  alert.view.subviews[0].backgroundColor = UIColor.yellow
         let subView = alert.view.subviews.first!
         let alertContentView = subView.subviews.first!
-        //alertContentView.superview?.backgroundColor = UIColor.red
-        //alertContentView.backgroundColor = UIColor.red
         alertContentView.layer.cornerRadius = 5
         // アラート表示
         self.present(alert, animated: true, completion: {
-            // アラートを閉じる
+            // アラートを自動で閉じる 非同期処理
             DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
                 alert.dismiss(animated: true, completion: nil)
             })
@@ -349,11 +385,6 @@ class ViewController: UIViewController
     //===============================
     // カメラ
     //===============================
-    func openPhoto() {
-        save()
-    }
-
-    
     func showCamera() {
         print(#function)
         //カメラボタンが使えるかどうか判別するための情報を取得（列挙体）
@@ -396,25 +427,6 @@ class ViewController: UIViewController
     }
 
 
-    
-    func save() {
-        print("save()")
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            
-            //写真ライブラリ（カメラロール）表示用のViewControllerを宣言
-            let controller = UIImagePickerController()
-            
-            controller.delegate = self
-            //新しく宣言したViewControllerでカメラとカメラロールのどちらを表示するかを指定
-            controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            //トリミング
-            controller.allowsEditing = true
-            //新たに追加したカメラロール表示ViewControllerをpresetViewControllerにする
-            self.present(controller, animated: true,completion: nil)
-            
-        }
-    }
-    
 
     //カメラロールで写真を選んだ後発動
     func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

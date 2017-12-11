@@ -57,7 +57,6 @@ class pictureViewController: UIViewController
         //画像セット後（viewWillAppear内）にinitScrollImage()を実行するように処理の場所を変えてみてくださいー。
         initScrollImage()
 
-        //updateScrollInset()
 
     }
     
@@ -73,10 +72,11 @@ class pictureViewController: UIViewController
         present(controller, animated: true, completion: nil)
     }
     
-    @IBAction func tapBack(_ sender: UIButton) {
-        
-    }
     
+
+    @IBAction func tapBack(_ sender: UIBarButtonItem) {
+
+    }
     
     //==============================
     // ScrolView

@@ -27,16 +27,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
-                                <rect key="frame" x="0.0" y="147" width="320" height="421"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-Tl-Mal">
+                                <rect key="frame" x="0.0" y="147" width="320" height="130"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="Jwh-5a-TaU"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cty-1a-cjX">
-                                <rect key="frame" x="0.0" y="147" width="320" height="500"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cty-1a-cjX">
+                                <rect key="frame" x="0.0" y="147" width="320" height="100"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -97,6 +97,7 @@
                             <constraint firstItem="AaI-vp-b6a" firstAttribute="leading" secondItem="SEr-N8-UKr" secondAttribute="leading" id="J0I-pV-W7Z"/>
                             <constraint firstItem="7rD-Bv-jkZ" firstAttribute="bottom" secondItem="AaI-vp-b6a" secondAttribute="bottom" constant="-1" id="Jko-y2-eUW"/>
                             <constraint firstItem="EGJ-Tl-Mal" firstAttribute="trailing" secondItem="Cty-1a-cjX" secondAttribute="trailing" id="Xt0-2B-5iZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cty-1a-cjX" secondAttribute="bottom" priority="750" constant="280" id="a3Q-9w-80Q"/>
                             <constraint firstItem="GNG-5e-TA4" firstAttribute="top" secondItem="SEr-N8-UKr" secondAttribute="bottom" id="af7-fN-pQ9"/>
                             <constraint firstItem="7rD-Bv-jkZ" firstAttribute="leading" secondItem="YgQ-vC-DCN" secondAttribute="trailing" constant="9" id="cyd-Pl-acN"/>
                             <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="7rD-Bv-jkZ" secondAttribute="bottom" constant="8" id="dop-ds-a87"/>
@@ -104,7 +105,7 @@
                             <constraint firstItem="YgQ-vC-DCN" firstAttribute="leading" secondItem="SEr-N8-UKr" secondAttribute="leading" id="iBD-XA-ftR"/>
                             <constraint firstItem="Cty-1a-cjX" firstAttribute="leading" secondItem="EGJ-Tl-Mal" secondAttribute="leading" id="iQQ-sq-E9K"/>
                             <constraint firstItem="YgQ-vC-DCN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="iVJ-gg-WJW"/>
-                            <constraint firstItem="EGJ-Tl-Mal" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" priority="750" constant="-300" id="jeB-mk-bDD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EGJ-Tl-Mal" secondAttribute="bottom" priority="750" constant="300" id="jeB-mk-bDD"/>
                             <constraint firstAttribute="trailing" secondItem="Cty-1a-cjX" secondAttribute="trailing" id="jg0-tN-B1K"/>
                             <constraint firstItem="EGJ-Tl-Mal" firstAttribute="top" secondItem="Cty-1a-cjX" secondAttribute="top" id="n57-C9-RDB"/>
                             <constraint firstItem="SEr-N8-UKr" firstAttribute="top" secondItem="YgQ-vC-DCN" secondAttribute="bottom" id="sry-h3-pGR"/>
@@ -135,6 +136,9 @@
                         <outlet property="multiplyLabel" destination="GNG-5e-TA4" id="rrA-x3-sMp"/>
                         <outlet property="myScrollView" destination="Cty-1a-cjX" id="MIW-ql-xST"/>
                         <outlet property="plusLabel" destination="YgQ-vC-DCN" id="9iE-fp-VQc"/>
+                        <outlet property="safeABeqIMVB" destination="jeB-mk-bDD" id="u2S-Ef-nZ9"/>
+                        <outlet property="safeABeqMSVB" destination="Fzw-Ra-Szw" id="3L2-vV-FN8"/>
+                        <outlet property="safeABeqMSVBforSE" destination="a3Q-9w-80Q" id="8I1-Ug-Fmg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -199,69 +203,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bS-F4-gCa">
-                                <rect key="frame" x="0.0" y="112" width="320" height="296"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bS-F4-gCa">
+                                <rect key="frame" x="0.0" y="70" width="320" height="300"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2zN-Kj-Raz">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="296"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zN-Kj-Raz">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="centerX" secondItem="6bS-F4-gCa" secondAttribute="centerX" id="CuV-iS-7gj"/>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="centerY" secondItem="6bS-F4-gCa" secondAttribute="centerY" id="GZm-ho-vlh"/>
-                                    <constraint firstAttribute="bottom" secondItem="2zN-Kj-Raz" secondAttribute="bottom" id="JXv-gt-LYq"/>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="top" secondItem="6bS-F4-gCa" secondAttribute="top" id="MBo-TF-vYa"/>
-                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="leading" secondItem="6bS-F4-gCa" secondAttribute="leading" id="Zvs-dM-dPi"/>
-                                    <constraint firstAttribute="trailing" secondItem="2zN-Kj-Raz" secondAttribute="trailing" id="xTl-YJ-R3Z"/>
+                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="top" secondItem="6bS-F4-gCa" secondAttribute="top" id="1jC-hh-ftg"/>
+                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="centerX" secondItem="6bS-F4-gCa" secondAttribute="centerX" id="Fnu-wj-55V"/>
+                                    <constraint firstAttribute="trailing" secondItem="2zN-Kj-Raz" secondAttribute="trailing" id="Jcs-RF-xKr"/>
+                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="centerY" secondItem="6bS-F4-gCa" secondAttribute="centerY" id="KWG-Zb-yd2"/>
+                                    <constraint firstItem="2zN-Kj-Raz" firstAttribute="leading" secondItem="6bS-F4-gCa" secondAttribute="leading" id="hKe-EV-bfx"/>
+                                    <constraint firstAttribute="bottom" secondItem="2zN-Kj-Raz" secondAttribute="bottom" id="oOg-j1-QuP"/>
                                 </constraints>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ytb-eb-Dis">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="AAA" id="i8n-Zw-6Cc">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="iZN-8f-8MB">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="73T-o9-bgS">
-                                                <rect key="frame" x="16" y="7" width="34" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="Back"/>
-                                                <connections>
-                                                    <action selector="tapBack:" destination="6rC-ad-928" eventType="touchUpInside" id="hCw-Qs-hhb"/>
-                                                    <segue destination="4S1-UX-914" kind="unwind" unwindAction="returnMenu:" id="51C-pE-cfs"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="cSg-Xk-2lQ">
-                                            <connections>
-                                                <action selector="tapShare:" destination="6rC-ad-928" id="wU3-tY-aS1"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed6-SK-5yV">
-                                <rect key="frame" x="0.0" y="405" width="320" height="119"/>
+                                <rect key="frame" x="0.0" y="344" width="320" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="119" id="Odz-NO-mlu"/>
+                                    <constraint firstAttribute="height" constant="180" id="fcY-iU-aka"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzH-az-RfV">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="eFL-wN-QKG">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="iVL-xK-mbA">
+                                            <connections>
+                                                <action selector="tapBack:" destination="6rC-ad-928" id="DLe-BR-Ue0"/>
+                                                <segue destination="4S1-UX-914" kind="unwind" unwindAction="returnMenu:" id="nTd-NV-Ik0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="n7D-6d-7Mx">
+                                            <connections>
+                                                <action selector="tapShare:" destination="6rC-ad-928" id="wgB-1a-pus"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="top" secondItem="Ytb-eb-Dis" secondAttribute="bottom" constant="48" id="ISu-QE-VNY"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="trailing" secondItem="Ed6-SK-5yV" secondAttribute="trailing" id="KA2-oR-9j7"/>
-                            <constraint firstItem="Ytb-eb-Dis" firstAttribute="trailing" secondItem="6bS-F4-gCa" secondAttribute="trailing" id="V4F-on-LMk"/>
-                            <constraint firstItem="Ytb-eb-Dis" firstAttribute="leading" secondItem="UvU-hP-Vpd" secondAttribute="leading" id="WyH-cC-W1U"/>
-                            <constraint firstItem="Ytb-eb-Dis" firstAttribute="leading" secondItem="6bS-F4-gCa" secondAttribute="leading" id="ZgJ-Zg-sDw"/>
-                            <constraint firstItem="6bS-F4-gCa" firstAttribute="leading" secondItem="Ed6-SK-5yV" secondAttribute="leading" id="hVi-p5-AXO"/>
-                            <constraint firstItem="Ed6-SK-5yV" firstAttribute="bottom" secondItem="GRn-vY-Lv4" secondAttribute="bottom" id="iUP-HA-cbC"/>
-                            <constraint firstItem="GRn-vY-Lv4" firstAttribute="bottom" secondItem="6bS-F4-gCa" secondAttribute="bottom" constant="116" id="nCM-pV-Ajc"/>
-                            <constraint firstItem="Ytb-eb-Dis" firstAttribute="top" secondItem="GRn-vY-Lv4" secondAttribute="top" id="wVr-rV-3eR"/>
-                            <constraint firstAttribute="trailing" secondItem="Ytb-eb-Dis" secondAttribute="trailing" id="ygw-ee-esh"/>
+                            <constraint firstItem="CzH-az-RfV" firstAttribute="trailing" secondItem="UvU-hP-Vpd" secondAttribute="trailing" id="62h-We-oCh"/>
+                            <constraint firstItem="6bS-F4-gCa" firstAttribute="top" secondItem="GRn-vY-Lv4" secondAttribute="top" constant="50" id="CmP-1S-V1a"/>
+                            <constraint firstItem="6bS-F4-gCa" firstAttribute="trailing" secondItem="Ed6-SK-5yV" secondAttribute="trailing" id="Ld0-QF-bes"/>
+                            <constraint firstItem="CzH-az-RfV" firstAttribute="leading" secondItem="6bS-F4-gCa" secondAttribute="leading" id="Snl-74-WAC"/>
+                            <constraint firstItem="GRn-vY-Lv4" firstAttribute="bottom" secondItem="6bS-F4-gCa" secondAttribute="bottom" constant="200" id="U7B-yZ-7mr"/>
+                            <constraint firstItem="CzH-az-RfV" firstAttribute="leading" secondItem="UvU-hP-Vpd" secondAttribute="leading" id="WAQ-wt-viW"/>
+                            <constraint firstItem="6bS-F4-gCa" firstAttribute="leading" secondItem="Ed6-SK-5yV" secondAttribute="leading" id="cAy-JE-dcN"/>
+                            <constraint firstItem="CzH-az-RfV" firstAttribute="trailing" secondItem="6bS-F4-gCa" secondAttribute="trailing" id="dVc-h1-Sdt"/>
+                            <constraint firstItem="CzH-az-RfV" firstAttribute="top" secondItem="GRn-vY-Lv4" secondAttribute="top" id="dbS-J1-zvZ"/>
+                            <constraint firstItem="Ed6-SK-5yV" firstAttribute="bottom" secondItem="GRn-vY-Lv4" secondAttribute="bottom" id="zfM-dw-9it"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GRn-vY-Lv4"/>
                     </view>
@@ -270,7 +268,7 @@
                     <connections>
                         <outlet property="detailImageView" destination="2zN-Kj-Raz" id="cxv-UD-gDt"/>
                         <outlet property="detailScrollView" destination="6bS-F4-gCa" id="WqM-OV-kCn"/>
-                        <outlet property="myNavigationBar" destination="Ytb-eb-Dis" id="uRb-If-ycE"/>
+                        <outlet property="myNavigationBar" destination="CzH-az-RfV" id="k3k-oa-v3Y"/>
                         <outlet property="myTextView" destination="Ed6-SK-5yV" id="tk7-6d-rVS"/>
                     </connections>
                 </viewController>
