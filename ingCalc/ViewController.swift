@@ -46,7 +46,7 @@ class ViewController: UIViewController
     var apCat3:AVAudioPlayer = AVAudioPlayer()
 
 
-    //
+    // レイアウト
     @IBOutlet weak var safeABeqMSVB: NSLayoutConstraint!
     @IBOutlet weak var safeABeqIMVB: NSLayoutConstraint!
     
@@ -61,6 +61,7 @@ class ViewController: UIViewController
         
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
+        //displayImageView.image = UIImage(named: "Red-kitten.jpg")
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
 
 
@@ -93,11 +94,14 @@ class ViewController: UIViewController
     //===============================
     // viewDidAppear
     //===============================
-    
+    var onetime:Bool = false
     override func viewDidAppear(_ animated: Bool) {
         print(#function)
         super.viewDidAppear(animated)
-        initScrollImage()
+        if onetime == false {
+            initScrollImage()
+            onetime = true
+        }
         inputText.becomeFirstResponder()   //計算機
     }
 
@@ -106,10 +110,12 @@ class ViewController: UIViewController
     //==============================
     func adustConstrains() {
         if iphoneType == "SE" { // SEの時
-        NSLayoutConstraint.deactivate([safeABeqMSVB,safeABeqIMVB])
+           //NSLayoutConstraint.deactivate([safeABeqMSVB,safeABeqIMVB])
+            NSLayoutConstraint.deactivate([safeABeqMSVB])
             NSLayoutConstraint.activate([safeABeqMSVBforSE])
         } else {
-            NSLayoutConstraint.activate([safeABeqMSVB,safeABeqIMVB])
+            //NSLayoutConstraint.activate([safeABeqMSVB,safeABeqIMVB])
+            NSLayoutConstraint.activate([safeABeqMSVB])
         NSLayoutConstraint.deactivate([safeABeqMSVBforSE])
         }
         
@@ -503,7 +509,8 @@ class ViewController: UIViewController
             displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
             
             // contentSizeははみ出すサイズなので、画像サイズに設定
-            myScrollView.contentSize = (displayImageView.image?.size)!
+           // myScrollView.contentSize = (displayImageView.image?.size)!
+            myScrollView.contentSize = displayImageView.frame.size
             myScrollView.maximumZoomScale = 4.0
             myScrollView.minimumZoomScale = 1.0
             

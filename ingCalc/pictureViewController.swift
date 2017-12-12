@@ -15,6 +15,7 @@ class pictureViewController: UIViewController
     var passedIndex:Int = -1
     
     @IBOutlet weak var detailImageView: UIImageView!
+    //var detailImageView: UIImageView!
     @IBOutlet weak var detailScrollView: UIScrollView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myNavigationBar: UINavigationBar!
@@ -35,10 +36,6 @@ class pictureViewController: UIViewController
         }
 
         
-        let myIngLocalImage:ingLocalImage = ingLocalImage()
-        let image = myIngLocalImage.readJpgImageInDocument(nameOfImage: "image\(passedIndex).jpg")
-        detailImageView.image = image
-        
         let myIngCoreData:ingCoreData = ingCoreData()
         let dic = myIngCoreData.readRireki(r_id: passedIndex)
         
@@ -53,20 +50,31 @@ class pictureViewController: UIViewController
 
         myNavigationBar.topItem?.title = df.string(from: dic["resultDate"] as! Date)
 
-        //imageView.imageに画像を指定する前にinitScrollImage()を実行しているせいでサイズが取得できずにサイズ取得後のif文の内容が実行できてないのが原因です。
-        //画像セット後（viewWillAppear内）にinitScrollImage()を実行するように処理の場所を変えてみてくださいー。
-        initScrollImage()
-
-
     }
     
+    //===============================
+    // viewDidAppear
+    //===============================
+    var onetime:Bool = false
+    override func viewDidAppear(_ animated: Bool) {
+        print(#function)
+        super.viewDidAppear(animated)
+        if onetime == false {
+            let myIngLocalImage:ingLocalImage = ingLocalImage()
+            let image = myIngLocalImage.readJpgImageInDocument(nameOfImage: "image\(passedIndex).jpg")
+            detailImageView.image = image
+            initScrollImage()
+            onetime = true
+        }
+    }
+
     //=================================
     //ジェスチャー系。タップ
     //=================================
     //ツールバーの中のシェアボタンが押された時
     @IBAction func tapShare(_ sender: UIBarButtonItem) {
         //シェア用画面（インスタンス）の作成
-        let controller = UIActivityViewController(activityItems: [detailImageView.image!], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [detailImageView.image!,myTextView.text], applicationActivities: nil)
         
         //シェア用画面を表示
         present(controller, animated: true, completion: nil)
@@ -84,13 +92,16 @@ class pictureViewController: UIViewController
     func initScrollImage() {
         if Constants.DEBUG == true {
             print(#function)
+            print("rireki:\(detailImageView.image?.size)")
+            print("rireki:\(detailImageView.frame)")
         }
         
         if let size = detailImageView.image?.size {
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = detailScrollView.frame.width / size.width
             let hrate = detailScrollView.frame.height / size.height
-            let rate = min(wrate, hrate , 1)
+            let rate = min(wrate, hrate)
+            print(rate)
             detailImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
             detailImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
             
@@ -98,9 +109,13 @@ class pictureViewController: UIViewController
             detailScrollView.contentSize = detailImageView.frame.size
             detailScrollView.maximumZoomScale = 4.0
             detailScrollView.minimumZoomScale = 1.0
-            
+
+            print("detailScrollView:\(detailScrollView.frame)")
+            print("contentSize:\(detailScrollView.contentSize)")
+            print("detailImageView:\(detailImageView.frame)")
+
             detailScrollView.delegate = self
-            detailScrollView.addSubview(detailImageView)
+           //StoryBoadでされてる detailScrollView.addSubview(detailImageView)
             // 初期表示のためcontentInsetを更新
             updateScrollInset()
         }
@@ -115,12 +130,16 @@ class pictureViewController: UIViewController
         
         // imageViewの大きさからcontentInsetを再計算
         // 0を下回らないようにする
-        detailScrollView.contentInset = UIEdgeInsetsMake(
-            max((detailScrollView.frame.height - detailImageView.frame.height)/2, 0)
-            ,max((detailScrollView.frame.width - detailImageView.frame.width)/2, 0)
-            , 0
-            , 0
-        )
+//        detailScrollView.contentInset = UIEdgeInsetsMake(
+//            max((detailScrollView.frame.height - detailImageView.frame.height)/2, 0)
+//            ,max((detailScrollView.frame.width - detailImageView.frame.width)/2, 0)
+//            , 0
+//            , 0
+//        )
+        
+        print(detailScrollView.contentOffset)
+        print(detailScrollView.contentInset)
+        print(detailImageView.frame)
         
     }
     
@@ -198,6 +217,8 @@ class pictureViewController: UIViewController
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         if Constants.DEBUG == true {
             print(#function)
+            print(detailScrollView.frame)
+            print(detailImageView.frame)
         }
         return self.detailImageView
     }
