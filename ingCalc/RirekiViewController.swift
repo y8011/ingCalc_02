@@ -134,7 +134,6 @@ class RirekiViewController: UIViewController
                             
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
-                         //   action.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.73, alpha:1.00)
                             action.backgroundColor = UIColor(red: 255/255, green:70/255, blue: 70/255, alpha:1.00)
                             return action
                         }(),
@@ -147,7 +146,6 @@ class RirekiViewController: UIViewController
                             action.label.text = "Copy"
                             action.label.font = UIFont.systemFont(ofSize: 12)
                             action.label.textColor = UIColor.white
-                            //action.backgroundColor = UIColor(red:0.14, green:0.69, blue:0.67, alpha:1.00)
                             action.backgroundColor = UIColor(red: 70/255, green: 70/255, blue: 255/255, alpha:1.00)
                             return action
                         }(),
@@ -255,6 +253,7 @@ class CustomTableViewCell: UITableViewCell {
     var hiddenLabelOfResult:String = ""
     var hiddenLabelOfRid:Int = 0
     
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -273,7 +272,7 @@ class CustomTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
-        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 500))  //TODO: ここの数字の横幅を画面最大にすること
+        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: widthOfScreen))  //TODO: ここの数字の横幅を画面最大にすること
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50))  //TODO: ここの数字とセルの高さを同じにすること
     }
     

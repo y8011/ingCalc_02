@@ -37,7 +37,6 @@
 		45C5246A1C12127C00510CF7 /* CalculatorKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorKeyboard.swift; sourceTree = "<group>"; };
 		45C5246B1C12127C00510CF7 /* CalculatorProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorProcessor.swift; sourceTree = "<group>"; };
 		45C524701C12130000510CF7 /* CalculatorProcessorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorProcessorTests.swift; sourceTree = "<group>"; };
-		B20B2B021FD8541E005BE385 /* CalculatorKeyboard copy.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "CalculatorKeyboard copy.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				45C524681C12127C00510CF7 /* CalculatorKeyboard.xib */,
-				B20B2B021FD8541E005BE385 /* CalculatorKeyboard copy.xib */,
 				45C524691C12127C00510CF7 /* Images.xcassets */,
 				45C5246A1C12127C00510CF7 /* CalculatorKeyboard.swift */,
 				45C5246B1C12127C00510CF7 /* CalculatorProcessor.swift */,

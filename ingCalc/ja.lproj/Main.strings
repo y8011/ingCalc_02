@@ -1,0 +1,30 @@
+
+/* Class = "UITextField"; text = "0"; ObjectID = "7rD-Bv-jkZ"; */
+"7rD-Bv-jkZ.text" = "0";
+
+/* Class = "UILabel"; text = "÷"; ObjectID = "AaI-vp-b6a"; */
+"AaI-vp-b6a.text" = "÷";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Ed6-SK-5yV"; */
+"Ed6-SK-5yV.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "×"; ObjectID = "GNG-5e-TA4"; */
+"GNG-5e-TA4.text" = "×";
+
+/* Class = "UINavigationItem"; title = "history"; ObjectID = "Q2j-vK-wmr"; */
+"Q2j-vK-wmr.title" = "history";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "SEr-N8-UKr"; */
+"SEr-N8-UKr.text" = "-";
+
+/* Class = "UILabel"; text = "+"; ObjectID = "YgQ-vC-DCN"; */
+"YgQ-vC-DCN.text" = "+";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "eFL-wN-QKG"; */
+"eFL-wN-QKG.title" = "Title";
+
+/* Class = "UILabel"; text = "history"; ObjectID = "g8q-DF-fXe"; */
+"g8q-DF-fXe.text" = "history";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "iVL-xK-mbA"; */
+"iVL-xK-mbA.title" = "Back";

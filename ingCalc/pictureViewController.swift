@@ -22,6 +22,10 @@ class pictureViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //背景色
+        detailScrollView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
+        myTextView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
         detailImageView.isUserInteractionEnabled = true  // Gestureの許可
 
         myNavigationBar.titleTextAttributes
@@ -92,18 +96,20 @@ class pictureViewController: UIViewController
     func initScrollImage() {
         if Constants.DEBUG == true {
             print(#function)
-            print("rireki:\(detailImageView.image?.size)")
+            print("rireki:\((detailImageView.image?.size)!)")
             print("rireki:\(detailImageView.frame)")
         }
-        
+        print("rireki:\((detailImageView.image?.size)!)")
+        print("rireki:\(detailImageView.frame)")
+
         if let size = detailImageView.image?.size {
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = detailScrollView.frame.width / size.width
             let hrate = detailScrollView.frame.height / size.height
             let rate = min(wrate, hrate)
-            print(rate)
             detailImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
             detailImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
+
             
             // contentSizeを画像サイズに設定
             detailScrollView.contentSize = detailImageView.frame.size

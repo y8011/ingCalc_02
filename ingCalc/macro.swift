@@ -12,5 +12,5 @@ class Constants {
     
     // MARK: List of Constants
     
-    static let DEBUG:Bool = true
+    static let DEBUG:Bool = false
 }

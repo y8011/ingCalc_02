@@ -15,6 +15,7 @@ import CoreData
 import AVFoundation
 
 var iphoneType:String = ""
+var widthOfScreen:CGFloat = 0
 
 class ViewController: UIViewController
 , CalculatorDelegate
@@ -83,6 +84,7 @@ class ViewController: UIViewController
         default:
             iphoneType = "other"
         }
+        widthOfScreen = self.view.frame.size.width
 
         initCalc()
         
@@ -304,7 +306,7 @@ class ViewController: UIViewController
                 If you yell at a cat, you're the one who is making a fool of yourself.
                 猫に怒鳴るという行為は、自分で自分を笑い者にしているようなものだ。.
                 """
-                alert1(s_title: "Unknown", s_message: text)
+                alert1(s_title: "Author Unknown", s_message: text)
                 
             default:
                 let text = """
@@ -337,6 +339,15 @@ class ViewController: UIViewController
         let subView = alert.view.subviews.first!
         let alertContentView = subView.subviews.first!
         alertContentView.layer.cornerRadius = 5
+
+        alert.addAction(
+            UIAlertAction(
+                title: "Huh",
+                style: .default,
+                handler: nil)
+        )
+        
+        
         // アラート表示
         self.present(alert, animated: true, completion: {
             // アラートを自動で閉じる 非同期処理
@@ -486,6 +497,7 @@ class ViewController: UIViewController
             //閉じる処理
             imagePicker.dismiss(animated: true, completion: nil)
         }
+        imageViewSetting()
         
     }
     
@@ -497,25 +509,11 @@ class ViewController: UIViewController
         if Constants.DEBUG == true {
             print("initScrollImage")
         }
-
-        if let size = displayImageView.image?.size {
-            print(size)
-            // imageViewのサイズがscrollView内に収まるように調整
-            let wrate = myScrollView.frame.width / size.width
-//            let hrate = myScrollView.frame.height / size.height
-            let rate = wrate
-
-            displayImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
-            displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
-            
-            // contentSizeははみ出すサイズなので、画像サイズに設定
-           // myScrollView.contentSize = (displayImageView.image?.size)!
-            myScrollView.contentSize = displayImageView.frame.size
-            myScrollView.maximumZoomScale = 4.0
-            myScrollView.minimumZoomScale = 1.0
-            
-            print(myScrollView.contentSize)
-            print((displayImageView.image?.size)!)
+        
+        imageViewSetting()
+        myScrollView.maximumZoomScale = 4.0
+        myScrollView.minimumZoomScale = 1.0
+        
             myScrollView.delegate = self
             myScrollView.addSubview(displayImageView)
             // 初期表示のためcontentInsetを更新
@@ -524,16 +522,43 @@ class ViewController: UIViewController
             print(displayImageView.frame)
             print(myScrollView.frame)
 
-
         
+    }
+    
+    func imageViewSetting() {
+        if Constants.DEBUG == true {
+            print("initScrollImage")
         }
-        
+        if let size = displayImageView.image?.size {
+            print(size)
+            // imageViewのサイズがscrollView内に収まるように調整
+            let wrate = myScrollView.frame.width / size.width
+            let hrate = myScrollView.frame.height / size.height
+            var rate = min(wrate,hrate)
+            if onetime == false {
+                rate = wrate
+            }
+            print("w:r=\(wrate):\(hrate) -> \(rate)")
+            
+            
+            displayImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
+            displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
+
+            // contentSizeははみ出すサイズなので、画像サイズに設定
+            myScrollView.contentSize = displayImageView.frame.size
+
+            
+            print(myScrollView.contentSize)
+            print((displayImageView.image?.size)!)
+        }
     }
     
     func updateScrollInset()
     {
-        print(#function)
-
+        if Constants.DEBUG == true {
+            print(#function)
+        }
+        
         // imageViewの大きさからcontentInsetを再計算
         // 0を下回らないようにする
 //        myScrollView.contentInset = UIEdgeInsetsMake(
@@ -556,12 +581,16 @@ class ViewController: UIViewController
     
     // スクロール中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
     }
     
     // ズーム中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        print(#function)
+        if Constants.DEBUG == true {
+            print(#function)
+        }
         updateScrollInset()
     }
     
