@@ -95,19 +95,12 @@ class ViewController: UIViewController
     //===============================
     
     override func viewDidAppear(_ animated: Bool) {
+        print(#function)
         super.viewDidAppear(animated)
+        initScrollImage()
         inputText.becomeFirstResponder()   //計算機
     }
-    
-    //===============================
-    // viewDidLayoutSubviews
-    //===============================
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        initScrollImage()
 
-    }
-    
     //==============================
     // Constrains
     //==============================
@@ -353,7 +346,7 @@ class ViewController: UIViewController
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
         
-        if sender.state != UIGestureRecognizerState.began{
+        if sender.state == UIGestureRecognizerState.began{
             return
         }
         
@@ -503,14 +496,9 @@ class ViewController: UIViewController
             print(size)
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = myScrollView.frame.width / size.width
-            let hrate = myScrollView.frame.height / size.height
-            //let rate = min(wrate, hrate , 1)
-            //let rate = max(wrate, hrate)
+//            let hrate = myScrollView.frame.height / size.height
             let rate = wrate
-            print("rate")
-            print(wrate)
-            print(hrate)
-            print(rate)
+
             displayImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
             displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
             
@@ -520,7 +508,7 @@ class ViewController: UIViewController
             myScrollView.minimumZoomScale = 1.0
             
             print(myScrollView.contentSize)
-            print(displayImageView.image?.size)
+            print((displayImageView.image?.size)!)
             myScrollView.delegate = self
             myScrollView.addSubview(displayImageView)
             // 初期表示のためcontentInsetを更新
@@ -528,26 +516,8 @@ class ViewController: UIViewController
             print("デバッグ")
             print(displayImageView.frame)
             print(myScrollView.frame)
-            print(displayImageView.frame.size)
 
-//            //代入がうまくいったら。　nilじゃなかったら。
-//            if let image = imageView.image {
-//
-//                let ratioW = imageView.frame.width / image.size.width
-//                let ratioH = imageView.frame.height / image.size.height
-//
-//                let ratio = ratioW < ratioH ? ratioW:ratioH
-//
-//                let newWidth = image.size.width*ratio
-//                let newHeight = image.size.height*ratio
-//
-//                let left = 0.5 * (newWidth * myScrollView.zoomScale > displayImageView.frame.width ? (newWidth - imageView.frame.width) : (myScrollView.frame.width - myScrollView.contentSize.width))
-//                let top = 0.5 * (newHeight * myScrollView.zoomScale > imageView.frame.height ? (newHeight - imageView.frame.height) : (myScrollView.frame.height - scrollView.contentSize.height))
-//
-//                scrollView.contentInset = UIEdgeInsetsMake(top, left, top, left)
-//        
-//            }
-        
+
         
         }
         
@@ -555,14 +525,26 @@ class ViewController: UIViewController
     
     func updateScrollInset()
     {
+        print(#function)
+
         // imageViewの大きさからcontentInsetを再計算
         // 0を下回らないようにする
-        myScrollView.contentInset = UIEdgeInsetsMake(
-            max((myScrollView.frame.height - displayImageView.frame.height)/2, 0)
-            ,max((myScrollView.frame.width - displayImageView.frame.width)/2, 0)
-            , 0
-            , 0
-        )
+//        myScrollView.contentInset = UIEdgeInsetsMake(
+//            max((myScrollView.frame.height - displayImageView.frame.height)/2, 0)
+//            ,max((myScrollView.frame.width - displayImageView.frame.width)/2, 0)
+//            , 0
+//            , 0
+//        )
+        
+        print("デバッグ")
+        print(displayImageView.frame)
+        print(myScrollView.frame)
+        print(myScrollView.contentInset)
+        print(myScrollView.contentSize)
+        print(myScrollView.contentOffset)
+        print("frame,contentInset,contentSize,contentOffset")
+        
+
     }
     
     // スクロール中に呼び出され続けるデリゲートメソッド.
@@ -572,6 +554,7 @@ class ViewController: UIViewController
     
     // ズーム中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        print(#function)
         updateScrollInset()
     }
     
@@ -600,11 +583,7 @@ class ViewController: UIViewController
     // その場合は「scrollViewWillBeginDecelerating:」「scrollViewDidEndDecelerating:」が呼ばれない？
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if Constants.DEBUG == true {
-            print("[displayImageView.center]↓")
-            print(displayImageView.center)
-            print(displayImageView.image?.size)
-            print(displayImageView.frame.size)
-            print(myScrollView.contentSize)
+            print(#function)
         }
     }
     
@@ -619,8 +598,8 @@ class ViewController: UIViewController
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if Constants.DEBUG == true {
             print(#function)
-            print(displayImageView.frame.size)
-            print(myScrollView.frame.size)
+            print(displayImageView.frame)
+            print(myScrollView.frame)
         }
    }
     

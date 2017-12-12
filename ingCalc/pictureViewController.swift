@@ -66,7 +66,7 @@ class pictureViewController: UIViewController
     //ツールバーの中のシェアボタンが押された時
     @IBAction func tapShare(_ sender: UIBarButtonItem) {
         //シェア用画面（インスタンス）の作成
-        let controller = UIActivityViewController(activityItems: [detailImageView.image], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [detailImageView.image!], applicationActivities: nil)
         
         //シェア用画面を表示
         present(controller, animated: true, completion: nil)
@@ -123,6 +123,7 @@ class pictureViewController: UIViewController
         )
         
     }
+    
     // スクロール中に呼び出され続けるデリゲートメソッド.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if Constants.DEBUG == true {
@@ -137,6 +138,7 @@ class pictureViewController: UIViewController
         }
       updateScrollInset()
     }
+    
     // ユーザが指でドラッグを開始した場合に呼び出されるデリゲートメソッド.
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if Constants.DEBUG == true {
