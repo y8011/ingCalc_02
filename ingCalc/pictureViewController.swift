@@ -46,7 +46,11 @@ class pictureViewController: UIViewController
         myTextView.text = dic["resultText"] as! String
         //日付を文字列に変換
         let df = DateFormatter()
-        df.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+        //ローカライズ
+        let hereLocale = Locale.autoupdatingCurrent
+        df.timeZone = TimeZone.ReferenceType.local
+
+        df.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: hereLocale)
         df.dateStyle = .long
         df.timeStyle = .short
 
@@ -79,6 +83,8 @@ class pictureViewController: UIViewController
     @IBAction func tapShare(_ sender: UIBarButtonItem) {
         //シェア用画面（インスタンス）の作成
         let controller = UIActivityViewController(activityItems: [detailImageView.image!,myTextView.text], applicationActivities: nil)
+
+        controller.popoverPresentationController?.sourceView = self.view
         
         //シェア用画面を表示
         present(controller, animated: true, completion: nil)
@@ -99,8 +105,6 @@ class pictureViewController: UIViewController
             print("rireki:\((detailImageView.image?.size)!)")
             print("rireki:\(detailImageView.frame)")
         }
-        print("rireki:\((detailImageView.image?.size)!)")
-        print("rireki:\(detailImageView.frame)")
 
         if let size = detailImageView.image?.size {
             // imageViewのサイズがscrollView内に収まるように調整

@@ -62,7 +62,6 @@ class ViewController: UIViewController
         
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
-        //displayImageView.image = UIImage(named: "Red-kitten.jpg")
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
 
 
@@ -72,8 +71,6 @@ class ViewController: UIViewController
         self.makeSound2("cat-meowing-2.mp3")
         self.makeSound3("cat2.mp3")
         
-        print("frame")
-        print(self.view.frame)
         switch self.view.frame.size.height {
         case 812 :
             iphoneType = "X"
@@ -82,7 +79,13 @@ class ViewController: UIViewController
         case 568 :
             iphoneType = "SE"
         default:
-            iphoneType = "other"
+            if( UIDevice.current.userInterfaceIdiom == .pad) {
+                iphoneType = "iPad"
+            }
+            else {
+                iphoneType = "iPhone"
+            }
+
         }
         widthOfScreen = self.view.frame.size.width
 
@@ -514,15 +517,11 @@ class ViewController: UIViewController
         myScrollView.maximumZoomScale = 4.0
         myScrollView.minimumZoomScale = 1.0
         
-            myScrollView.delegate = self
-            myScrollView.addSubview(displayImageView)
-            // 初期表示のためcontentInsetを更新
-            updateScrollInset()
-            print("デバッグ")
-            print(displayImageView.frame)
-            print(myScrollView.frame)
+        myScrollView.delegate = self
+        myScrollView.addSubview(displayImageView)
+        // 初期表示のためcontentInsetを更新
+        updateScrollInset()
 
-        
     }
     
     func imageViewSetting() {
@@ -538,8 +537,9 @@ class ViewController: UIViewController
             if onetime == false {
                 rate = wrate
             }
-            print("w:r=\(wrate):\(hrate) -> \(rate)")
-            
+            if Constants.DEBUG == true {
+                print("w:r=\(wrate):\(hrate) -> \(rate)")
+            }
             
             displayImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
             displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
@@ -548,8 +548,11 @@ class ViewController: UIViewController
             myScrollView.contentSize = displayImageView.frame.size
 
             
-            print(myScrollView.contentSize)
-            print((displayImageView.image?.size)!)
+            if Constants.DEBUG == true {
+                print(myScrollView.contentSize)
+                print((displayImageView.image?.size)!)
+            }
+
         }
     }
     
@@ -559,7 +562,7 @@ class ViewController: UIViewController
             print(#function)
         }
         
-        // imageViewの大きさからcontentInsetを再計算
+        // imageViewの大きさからcontentInsetを再計算 iOS11では不要
         // 0を下回らないようにする
 //        myScrollView.contentInset = UIEdgeInsetsMake(
 //            max((myScrollView.frame.height - displayImageView.frame.height)/2, 0)
@@ -568,14 +571,14 @@ class ViewController: UIViewController
 //            , 0
 //        )
         
-        print("デバッグ")
-        print(displayImageView.frame)
-        print(myScrollView.frame)
-        print(myScrollView.contentInset)
-        print(myScrollView.contentSize)
-        print(myScrollView.contentOffset)
-        print("frame,contentInset,contentSize,contentOffset")
-        
+        if Constants.DEBUG == true {
+            print(displayImageView.frame)
+            print(myScrollView.frame)
+            print(myScrollView.contentInset)
+            print(myScrollView.contentSize)
+            print(myScrollView.contentOffset)
+            print("frame,contentInset,contentSize,contentOffset")
+        }
 
     }
     

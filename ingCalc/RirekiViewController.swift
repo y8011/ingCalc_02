@@ -9,6 +9,8 @@
 import UIKit
 import ActionCell           // アクションセル
 
+let tableHeight:CGFloat = 55
+
 class RirekiViewController: UIViewController
     ,UITableViewDelegate
     ,UITableViewDataSource
@@ -24,6 +26,7 @@ class RirekiViewController: UIViewController
         myTableView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
         
         // TableViewとCellの設定
+        myTableView.rowHeight = tableHeight
         myTableView.dataSource = self
         myTableView.delegate   = self
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cellta")
@@ -117,7 +120,8 @@ class RirekiViewController: UIViewController
         cell.button.setTitle((rirekiForCell["resultText"] as! String), for: .normal)
         cell.button.addTarget(self, action:  #selector(cellButtonClicked(_:))
             , for: .touchUpInside)
-        myTableView.separatorColor = UIColor.white
+        myTableView.separatorColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
+
 
         let wrapper = ActionCell()
         wrapper.delegate = self
@@ -151,7 +155,6 @@ class RirekiViewController: UIViewController
                         }(),
                         ])
         
-        cell.selectedBackgroundView?.backgroundColor = UIColor.red
         return cell
     }
     
@@ -195,10 +198,6 @@ class RirekiViewController: UIViewController
     
     }
     
-//    @objc func closeAlert(_ sender: UIAlertController) {
-//        sender.dismiss(animated: true, completion: nil)
-////        sender = nil
-//    }
     
 
 }
@@ -213,8 +212,10 @@ extension RirekiViewController: ActionCellDelegate {
     
     
     public func didActionTriggered(cell: UITableViewCell, action: String) {
-        print(#function)
-        print(action)
+        if Constants.DEBUG == true {
+            print(#function)
+            print(action)
+        }
         let cellta = cell as! CustomTableViewCell
         
         if(action == "Delete")
@@ -224,7 +225,6 @@ extension RirekiViewController: ActionCellDelegate {
             let ridOfCell = cellta.hiddenLabelOfRid
             
             myIngCoreData.deleteRireki(r_id: ridOfCell )
-            print("cellta.hiddenLabelOfRid : \(ridOfCell)")
             myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(ridOfCell).jpg")
             self.reloadForTableView()
             
@@ -233,7 +233,6 @@ extension RirekiViewController: ActionCellDelegate {
         else if(action == "Copy")
         {
             let myPasteBoard = UIPasteboard.general
-//            myPasteBoard.string = (cellta.button.titleLabel?.text as! String)
             myPasteBoard.string = cellta.hiddenLabelOfResult
 
             alertAction1(s_title: "ながら電卓",s_message: "クリップボードにコピーされました",s_action: "OK")
@@ -263,8 +262,9 @@ class CustomTableViewCell: UITableViewCell {
             the.setTitleColor(UIColor.black, for: .normal)
             the.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
             the.layer.borderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1).cgColor
-            the.layer.cornerRadius = 5
-            the.layer.borderWidth = 1.5
+            //the.layer.cornerRadius = 5
+            the.layer.borderWidth = 1
+            //the.center.y = self.center.y
             
             return the
         }()
@@ -272,8 +272,8 @@ class CustomTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
-        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: widthOfScreen))  //TODO: ここの数字の横幅を画面最大にすること
-        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50))  //TODO: ここの数字とセルの高さを同じにすること
+        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: widthOfScreen))
+        contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: tableHeight))  //TODO: ここの数字とセルの高さを同じにすること
     }
     
     required init?(coder aDecoder: NSCoder) {
