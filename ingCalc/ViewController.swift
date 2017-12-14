@@ -213,31 +213,31 @@ class ViewController: UIViewController
             
             
         case CalculatorKey.clear.rawValue:
-            if Constants.DEBUG == true {
-                print("けされたぁ")
-            }
+
             resultText = ""
             hideOpeLabel()
-            let myIngCoreData:ingCoreData = ingCoreData()
-            let myIngLocalImage:ingLocalImage = ingLocalImage()
             
-            let dics = myIngCoreData.readRirekiAll()
-            switch myIngCoreData.rirekiCount {
-            case 0:
-                break
-            case 1:
-                let r_id = myIngCoreData.max_rid
-                myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(r_id).jpg")
-            case 2...:
-                for i in 1...myIngCoreData.rirekiCount {
-                    let dic = dics[i-1]
-                    let r_id:Int  = dic["r_id"] as! Int
-                    myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(r_id).jpg")
-                }
-            default:
-                break
-            }
             if Constants.DEBUG == true {
+                print("けされたぁ")
+                let myIngCoreData:ingCoreData = ingCoreData()
+                let myIngLocalImage:ingLocalImage = ingLocalImage()
+                
+                let dics = myIngCoreData.readRirekiAll()
+                switch myIngCoreData.rirekiCount {
+                case 0:
+                    break
+                case 1:
+                    let r_id = myIngCoreData.max_rid
+                    myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(r_id).jpg")
+                case 2...:
+                    for i in 1...myIngCoreData.rirekiCount {
+                        let dic = dics[i-1]
+                        let r_id:Int  = dic["r_id"] as! Int
+                        myIngLocalImage.deleteJpgImageInDocument(nameOfImage: "image\(r_id).jpg")
+                    }
+                default:
+                    break
+                }
                 myIngCoreData.deleteRirekiAll()
             }
             

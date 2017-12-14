@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionCell           // アクションセル
+import CoreGraphics
 
 let tableHeight:CGFloat = 55
 
@@ -260,11 +261,12 @@ class CustomTableViewCell: UITableViewCell {
             let the = UIButton()
             the.setTitle("click me", for: .normal)
             the.setTitleColor(UIColor.black, for: .normal)
-            the.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
+           // the.setTitleColor(UIColor.white , for: .highlighted)
+            the.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)), for: .highlighted)
+            the.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha: 1)), for: .normal)
+            //the.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
             the.layer.borderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1).cgColor
-            //the.layer.cornerRadius = 5
             the.layer.borderWidth = 1
-            //the.center.y = self.center.y
             
             return the
         }()
@@ -283,6 +285,20 @@ class CustomTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         clearActionsheet()
+    }
+    
+    private func createImageFromUIColor(color: UIColor) -> UIImage {
+        // 1x1のbitmapを作成
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        // bitmapを塗りつぶし
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        // UIImageに変換
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
     }
 }
 

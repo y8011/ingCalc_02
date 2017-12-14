@@ -159,11 +159,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ouK-zP-7Dz">
-                                <rect key="frame" x="0.0" y="142" width="320" height="426"/>
+                                <rect key="frame" x="0.0" y="141" width="320" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="history" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
-                                <rect key="frame" x="60" y="71" width="200" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="history" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-DF-fXe">
+                                <rect key="frame" x="60" y="72" width="200" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="8L7-dE-w3t"/>
                                 </constraints>
@@ -179,7 +179,7 @@
                             <constraint firstItem="g8q-DF-fXe" firstAttribute="centerX" secondItem="ouK-zP-7Dz" secondAttribute="centerX" id="JpS-cQ-6Hh"/>
                             <constraint firstAttribute="trailing" secondItem="ouK-zP-7Dz" secondAttribute="trailing" id="PYZ-wL-GSi"/>
                             <constraint firstItem="ouK-zP-7Dz" firstAttribute="leading" secondItem="toU-LQ-yKp" secondAttribute="leading" id="fHW-Bb-3K8"/>
-                            <constraint firstItem="ouK-zP-7Dz" firstAttribute="top" secondItem="g8q-DF-fXe" secondAttribute="bottom" constant="1" id="pTD-oH-Jh9"/>
+                            <constraint firstItem="ouK-zP-7Dz" firstAttribute="top" secondItem="g8q-DF-fXe" secondAttribute="bottom" id="pTD-oH-Jh9"/>
                             <constraint firstAttribute="bottom" secondItem="ouK-zP-7Dz" secondAttribute="bottom" id="za9-EO-ewN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mns-t9-i6x"/>

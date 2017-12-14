@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B20B2B011FD850F7005BE385 /* cat2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B20B2B001FD850F6005BE385 /* cat2.mp3 */; };
 		B214A3871FD1CAAE0072714A /* pictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B214A3861FD1CAAE0072714A /* pictureViewController.swift */; };
+		B21A39521FE20252000BCD05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B21A39541FE20252000BCD05 /* InfoPlist.strings */; };
 		B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */; };
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
 		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
@@ -65,6 +66,8 @@
 /* Begin PBXFileReference section */
 		B20B2B001FD850F6005BE385 /* cat2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat2.mp3; sourceTree = "<group>"; };
 		B214A3861FD1CAAE0072714A /* pictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pictureViewController.swift; sourceTree = "<group>"; };
+		B21A394F1FE1FC49000BCD05 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		B21A39531FE20252000BCD05 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +165,7 @@
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
 				B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */,
 				B2F152AB1FBC9EFF00FD9030 /* Info.plist */,
+				B21A39541FE20252000BCD05 /* InfoPlist.strings */,
 			);
 			path = ingCalc;
 			sourceTree = "<group>";
@@ -303,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */,
+				B21A39521FE20252000BCD05 /* InfoPlist.strings in Resources */,
 				B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */,
 				B296CB941FC44C8600E17D46 /* Red-kitten.jpg in Resources */,
 				B20B2B011FD850F7005BE385 /* cat2.mp3 in Resources */,
@@ -376,10 +381,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B21A39541FE20252000BCD05 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B21A39531FE20252000BCD05 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B2F152A31FBC9EFF00FD9030 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B2F152A41FBC9EFF00FD9030 /* Base */,
+				B21A394F1FE1FC49000BCD05 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

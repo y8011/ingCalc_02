@@ -24,7 +24,7 @@
 "eFL-wN-QKG.title" = "Title";
 
 /* Class = "UILabel"; text = "history"; ObjectID = "g8q-DF-fXe"; */
-"g8q-DF-fXe.text" = "history";
+"g8q-DF-fXe.text" = "rireki";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "iVL-xK-mbA"; */
-"iVL-xK-mbA.title" = "Back";
+"iVL-xK-mbA.title" = "戻る";
