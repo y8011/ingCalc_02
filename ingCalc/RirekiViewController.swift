@@ -189,10 +189,17 @@ class RirekiViewController: UIViewController
             preferredStyle: .alert
         )
         
+        alert.addAction(
+            UIAlertAction(
+                title: s_action,
+                style: .default,
+                handler: nil)
+        )
+        
         // アラート表示
         self.present(alert, animated: true, completion: {
             // アラートを閉じる
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 8.0, execute: {
                 alert.dismiss(animated: true, completion: nil)
             })
         })
@@ -236,7 +243,7 @@ extension RirekiViewController: ActionCellDelegate {
             let myPasteBoard = UIPasteboard.general
             myPasteBoard.string = cellta.hiddenLabelOfResult
 
-            alertAction1(s_title: "ながら電卓",s_message: "クリップボードにコピーされました",s_action: "OK")
+            alertAction1(s_title: "Text has been copied to clipboard.",s_message: "クリップボードにコピーされました",s_action: "OK")
             
         }
         
