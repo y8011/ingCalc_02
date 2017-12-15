@@ -209,6 +209,7 @@
 				B2F152991FBC9EFF00FD9030 /* Frameworks */,
 				B2F1529A1FBC9EFF00FD9030 /* Resources */,
 				B2FFD30F1FC1CCE90008DBF1 /* CopyFiles */,
+				B29E82221FE3712E00C13260 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -333,6 +334,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B29E82221FE3712E00C13260 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/ActionCell.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B2F152981FBC9EFF00FD9030 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -456,6 +474,8 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				"VALID_ARCHS[sdk=*]" = "i386 x86_64 arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -507,6 +527,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
@@ -527,6 +548,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -547,6 +570,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
