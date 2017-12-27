@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		45C524521C120F4E00510CF7 /* CalculatorKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 45C524511C120F4E00510CF7 /* CalculatorKeyboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45C524591C120F4E00510CF7 /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C5244E1C120F4E00510CF7 /* CalculatorKeyboard.framework */; };
-		45C5246C1C12127C00510CF7 /* CalculatorKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C524681C12127C00510CF7 /* CalculatorKeyboard.xib */; };
 		45C5246D1C12127C00510CF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45C524691C12127C00510CF7 /* Images.xcassets */; };
 		45C5246E1C12127C00510CF7 /* CalculatorKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5246A1C12127C00510CF7 /* CalculatorKeyboard.swift */; };
 		45C5246F1C12127C00510CF7 /* CalculatorProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5246B1C12127C00510CF7 /* CalculatorProcessor.swift */; };
 		45C524711C12130000510CF7 /* CalculatorProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C524701C12130000510CF7 /* CalculatorProcessorTests.swift */; };
+		B2E39D6D1FE8ACFA009ED06A /* CatCalculatorKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24846A61FE3571C00E2AA41 /* CatCalculatorKeyboard.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,12 +32,11 @@
 		45C524531C120F4E00510CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45C524581C120F4E00510CF7 /* CalculatorKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45C5245F1C120F4E00510CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		45C524681C12127C00510CF7 /* CalculatorKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculatorKeyboard.xib; sourceTree = "<group>"; };
 		45C524691C12127C00510CF7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		45C5246A1C12127C00510CF7 /* CalculatorKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorKeyboard.swift; sourceTree = "<group>"; };
 		45C5246B1C12127C00510CF7 /* CalculatorProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorProcessor.swift; sourceTree = "<group>"; };
 		45C524701C12130000510CF7 /* CalculatorProcessorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorProcessorTests.swift; sourceTree = "<group>"; };
-		B24846A61FE3571C00E2AA41 /* CatverCalculatorKeyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatverCalculatorKeyboard.xib; sourceTree = "<group>"; };
+		B24846A61FE3571C00E2AA41 /* CatCalculatorKeyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatCalculatorKeyboard.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +79,7 @@
 		45C524501C120F4E00510CF7 /* CalculatorKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				45C524681C12127C00510CF7 /* CalculatorKeyboard.xib */,
-				B24846A61FE3571C00E2AA41 /* CatverCalculatorKeyboard.xib */,
+				B24846A61FE3571C00E2AA41 /* CatCalculatorKeyboard.xib */,
 				45C524691C12127C00510CF7 /* Images.xcassets */,
 				45C5246A1C12127C00510CF7 /* CalculatorKeyboard.swift */,
 				45C5246B1C12127C00510CF7 /* CalculatorProcessor.swift */,
@@ -194,7 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45C5246C1C12127C00510CF7 /* CalculatorKeyboard.xib in Resources */,
+				B2E39D6D1FE8ACFA009ED06A /* CatCalculatorKeyboard.xib in Resources */,
 				45C5246D1C12127C00510CF7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

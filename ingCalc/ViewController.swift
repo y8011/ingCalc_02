@@ -274,6 +274,12 @@ class ViewController: UIViewController
         inputText.inputView = keyboard
         
         hideOpeLabel()
+        
+        keyboard.numbersBackgroundColor = UIColor(white: 0, alpha: 1)
+        keyboard.setBackGroundImage(image: UIImage(named: "Red-kitten.jpg")!)
+        keyboard.equalBackgroundColor = UIColor(red:0.96, green:0.5, blue:0, alpha:0.5)
+
+        
     }
     
     func hideOpeLabel () {

@@ -38,7 +38,7 @@ public enum CalculatorKey: Int {
 
 open class CalculatorKeyboard: UIView {
     open weak var delegate: CalculatorDelegate?
-    open var numbersBackgroundColor = UIColor(white: 0.97, alpha: 1.0) {
+    open var numbersBackgroundColor = UIColor(white: 0.97, alpha: 0.97) {
 
         didSet {
             adjustLayout()
@@ -77,6 +77,7 @@ open class CalculatorKeyboard: UIView {
         }
     }
     
+    @IBOutlet weak var backImageView: UIImageView!
     var view: UIView!
     fileprivate var processor = CalculatorProcessor()
     
@@ -103,16 +104,24 @@ open class CalculatorKeyboard: UIView {
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         adjustLayout()
         addSubview(view)
+        //debug
+        print("bounds:\(bounds)")
     }
+    
+
     
     fileprivate func loadViewFromNib() -> UIView {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "CalculatorKeyboard", bundle: bundle)
+        let nib = UINib(nibName: "CatCalculatorKeyboard", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         adjustButtonConstraint()
         return view
     }
     
+    // add
+    let alphaOfKeyboad:CGFloat = 0.5
+    
+    //変更
     fileprivate func adjustLayout() {
         if viewWithTag(CalculatorKey.decimal.rawValue) != nil {
             adjustButtonConstraint()
@@ -124,6 +133,8 @@ open class CalculatorKeyboard: UIView {
                 button.setTitleColor(numbersTextColor, for: UIControlState())
                 //okayu
                 button.titleLabel?.font.withSize(20.0)
+                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: alphaOfKeyboad)), for: .highlighted)
+                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha: alphaOfKeyboad)), for: .normal)
             }
         }
         
@@ -132,12 +143,17 @@ open class CalculatorKeyboard: UIView {
                 button.tintColor = operationsBackgroundColor
                 button.setTitleColor(operationsTextColor, for: UIControlState())
                 button.tintColor = operationsTextColor
+                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: alphaOfKeyboad)), for: .highlighted)
+                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha: alphaOfKeyboad)), for: .normal)
+                
             }
         }
         
         if let button = self.view.viewWithTag(CalculatorKey.equal.rawValue) as? UIButton {
             button.tintColor = equalBackgroundColor
             button.setTitleColor(equalTextColor, for: UIControlState())
+            button.setImage(createImageFromUIColor(color: UIColor(red:0.96, green:0.5, blue:0, alpha: alphaOfKeyboad)), for: .normal)
+            button.setImage(createImageFromUIColor(color: UIColor(red: 0.96, green: 0.5, blue: 0, alpha: alphaOfKeyboad)), for: .highlighted)
         }
     }
     
@@ -177,5 +193,24 @@ open class CalculatorKeyboard: UIView {
         default:
             break
         }
+    }
+    
+    //okayuadd
+    open func setBackGroundImage(image: UIImage) {
+        backImageView.image = image
+    }
+    
+    private func createImageFromUIColor(color: UIColor) -> UIImage {
+        // 1x1のbitmapを作成
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        // bitmapを塗りつぶし
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        // UIImageに変換
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
     }
 }
