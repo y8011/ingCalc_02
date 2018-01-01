@@ -44,31 +44,33 @@ open class CalculatorKeyboard: UIView {
             adjustLayout()
         }
     }
-    open var numbersTextColor = UIColor.black {
-        didSet {
-            adjustLayout()
-        }
-    }
+//    open var numbersTextColor = UIColor.black {
+//        didSet {
+//            adjustLayout()
+//        }
+//    }
+    open var textColor = UIColor.black
+    
     open var operationsBackgroundColor = UIColor(white: 0.75, alpha: 1.0) {
         didSet {
             adjustLayout()
         }
     }
-    open var operationsTextColor = UIColor.white {
-        didSet {
-            adjustLayout()
-        }
-    }
+//    open var operationsTextColor = UIColor.white {
+//        didSet {
+//            adjustLayout()
+//        }
+//    }
     open var equalBackgroundColor = UIColor(red:0.96, green:0.5, blue:0, alpha:1) {
         didSet {
             adjustLayout()
         }
     }
-    open var equalTextColor = UIColor.white {
-        didSet {
-            adjustLayout()
-        }
-    }
+//    open var equalTextColor = UIColor.white {
+//        didSet {
+//            adjustLayout()
+//        }
+//    }
     
     open var showDecimal = true {
         didSet {
@@ -76,6 +78,10 @@ open class CalculatorKeyboard: UIView {
             adjustLayout()
         }
     }
+    
+    open var isKeyBoadBackChangable:Bool = false
+    open var borderColor:CGColor = UIColor.white.cgColor
+    open var borderWidth:CGFloat = 0
     
     @IBOutlet weak var backImageView: UIImageView!
     var view: UIView!
@@ -102,10 +108,8 @@ open class CalculatorKeyboard: UIView {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        adjustLayout()
+//        adjustLayout()
         addSubview(view)
-        //debug
-        print("bounds:\(bounds)")
     }
     
 
@@ -119,10 +123,10 @@ open class CalculatorKeyboard: UIView {
     }
     
     // add
-    let alphaOfKeyboad:CGFloat = 0.5
+    open var alphaOfKeyboad:CGFloat = 0.5
     
     //変更
-    fileprivate func adjustLayout() {
+    open func adjustLayout() {
         if viewWithTag(CalculatorKey.decimal.rawValue) != nil {
             adjustButtonConstraint()
         }
@@ -130,30 +134,60 @@ open class CalculatorKeyboard: UIView {
         for i in 1...CalculatorKey.decimal.rawValue {
             if let button = self.view.viewWithTag(i) as? UIButton {
                 button.tintColor = numbersBackgroundColor
-                button.setTitleColor(numbersTextColor, for: UIControlState())
                 //okayu
-                button.titleLabel?.font.withSize(20.0)
-                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: alphaOfKeyboad)), for: .highlighted)
-                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha: alphaOfKeyboad)), for: .normal)
+                if isKeyBoadBackChangable {
+                    button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: alphaOfKeyboad)), for: .highlighted)
+                    button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha: alphaOfKeyboad)), for: .normal)
+                    button.layer.borderColor = borderColor
+                    button.layer.borderWidth = borderWidth
+                    button.setTitleColor(textColor, for: UIControlState())
+                    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22.0)
+
+                }
+                else {
+                    button.setTitleColor(UIColor.black, for: UIControlState())
+                    button.titleLabel?.font.withSize(20.0)
+
+                }
             }
         }
         
         for i in CalculatorKey.clear.rawValue...CalculatorKey.add.rawValue {
             if let button = self.view.viewWithTag(i) as? UIButton {
                 button.tintColor = operationsBackgroundColor
-                button.setTitleColor(operationsTextColor, for: UIControlState())
-                button.tintColor = operationsTextColor
-                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: alphaOfKeyboad)), for: .highlighted)
-                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha: alphaOfKeyboad)), for: .normal)
-                
+                button.tintColor = UIColor.white
+                if isKeyBoadBackChangable {
+                    button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 179/255, green: 179/255, blue: 179/255, alpha: alphaOfKeyboad)), for: .normal)
+                    button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 79/255, green: 79/255, blue: 79/255, alpha: alphaOfKeyboad)), for: .highlighted)
+                    button.layer.borderColor = borderColor
+                    button.layer.borderWidth = borderWidth
+                    button.setTitleColor(textColor, for: UIControlState())
+                  //  button.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+                    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22.0)
+
+                }
+                else {
+                    button.setTitleColor(UIColor.white, for: UIControlState())
+
+                }
             }
         }
         
         if let button = self.view.viewWithTag(CalculatorKey.equal.rawValue) as? UIButton {
             button.tintColor = equalBackgroundColor
-            button.setTitleColor(equalTextColor, for: UIControlState())
-            button.setImage(createImageFromUIColor(color: UIColor(red:0.96, green:0.5, blue:0, alpha: alphaOfKeyboad)), for: .normal)
-            button.setImage(createImageFromUIColor(color: UIColor(red: 0.96, green: 0.5, blue: 0, alpha: alphaOfKeyboad)), for: .highlighted)
+            if isKeyBoadBackChangable {
+                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red:0.96, green:0.5, blue:0.0, alpha: alphaOfKeyboad)), for: .normal)
+                button.setBackgroundImage(createImageFromUIColor(color: UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: alphaOfKeyboad)), for: .highlighted)
+                button.layer.borderColor = borderColor
+                button.layer.borderWidth = borderWidth
+                button.setTitleColor(textColor, for: UIControlState())
+                //button.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22.0)
+
+            }
+            else {
+                button.setTitleColor(UIColor.white, for: UIControlState())
+            }
         }
     }
     
@@ -185,7 +219,6 @@ open class CalculatorKeyboard: UIView {
             let output = processor.storeOperator(sender.tag)
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.equal.rawValue:
- 
             let output = processor.computeFinalValue()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
             btn4cnt = 0  //ingCalc側の計算の都合上、delegateの後に移動

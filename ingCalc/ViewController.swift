@@ -108,6 +108,7 @@ class ViewController: UIViewController
             onetime = true
         }
         inputText.becomeFirstResponder()   //計算機
+        
     }
 
     //==============================
@@ -275,9 +276,15 @@ class ViewController: UIViewController
         
         hideOpeLabel()
         
-        keyboard.numbersBackgroundColor = UIColor(white: 0, alpha: 1)
-        keyboard.setBackGroundImage(image: UIImage(named: "Red-kitten.jpg")!)
-        keyboard.equalBackgroundColor = UIColor(red:0.96, green:0.5, blue:0, alpha:0.5)
+        keyboard.isKeyBoadBackChangable = true
+        if keyboard.isKeyBoadBackChangable {
+            keyboard.borderColor = UIColor.white.cgColor
+            keyboard.borderWidth = 1
+            keyboard.alphaOfKeyboad = 0.5
+            keyboard.setBackGroundImage(image: UIImage(named: "KeyBoadBackGround.jpg")!)
+            keyboard.textColor = UIColor.white
+            keyboard.adjustLayout()
+        }
 
         
     }

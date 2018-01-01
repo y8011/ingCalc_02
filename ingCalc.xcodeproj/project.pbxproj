@@ -14,6 +14,7 @@
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
 		B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; };
 		B240578A1FC89520007AB4AE /* CalculatorKeyboard.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B24724EA1FF79DCB00EC5DFD /* KeyBoadBackGround.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B24724E91FF79DCB00EC5DFD /* KeyBoadBackGround.jpg */; };
 		B26781751FD3DC5100934ECE /* macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26781741FD3DC5100934ECE /* macro.swift */; };
 		B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B27698801FD62F1D00A83AE4 /* cat1b.mp3 */; };
 		B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */; };
@@ -71,6 +72,7 @@
 		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
 		B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculatorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B24724E91FF79DCB00EC5DFD /* KeyBoadBackGround.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = KeyBoadBackGround.jpg; sourceTree = "<group>"; };
 		B26781741FD3DC5100934ECE /* macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macro.swift; sourceTree = "<group>"; };
 		B27698801FD62F1D00A83AE4 /* cat1b.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat1b.mp3; sourceTree = "<group>"; };
 		B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cat-meowing-2.mp3"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		B2F1529E1FBC9EFF00FD9030 /* ingCalc */ = {
 			isa = PBXGroup;
 			children = (
+				B24724E91FF79DCB00EC5DFD /* KeyBoadBackGround.jpg */,
 				B296CB931FC44C8600E17D46 /* Red-kitten.jpg */,
 				B2F1529F1FBC9EFF00FD9030 /* AppDelegate.swift */,
 				B2F152A11FBC9EFF00FD9030 /* ViewController.swift */,
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24724EA1FF79DCB00EC5DFD /* KeyBoadBackGround.jpg in Resources */,
 				B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */,
 				B21A39521FE20252000BCD05 /* InfoPlist.strings in Resources */,
 				B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */,
@@ -544,7 +548,7 @@
 				INFOPLIST_FILE = ingCalc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc02;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -566,7 +570,7 @@
 				INFOPLIST_FILE = ingCalc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc02;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
